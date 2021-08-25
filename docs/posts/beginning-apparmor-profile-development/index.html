@@ -7,9 +7,9 @@
   <title>Learn how to create AppArmor profiles to confine your applications.</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://nekocode.github.io/codelabs-hugo-theme/google_codelab_step_scss_bin.css">
-  <link rel="stylesheet" href="https://nekocode.github.io/codelabs-hugo-theme/google_codelab_survey_scss_bin.css">
-  <link rel="stylesheet" href="https://nekocode.github.io/codelabs-hugo-theme/google_codelab_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_survey_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_scss_bin.css">
   <style>
     body {
       transition: opacity ease-in 0.2s;
@@ -25,7 +25,7 @@
 </head>
 
 <body unresolved>
-  <google-codelab title="Learn how to create AppArmor profiles to confine your applications." id="learn-how-to-create-apparmor-profiles-to-confine-your-applications." environment="web" feedback-link="mailto:nekocode.cn@gmail.com" home-url="https://nekocode.github.io/codelabs-hugo-theme/">
+  <google-codelab title="Learn how to create AppArmor profiles to confine your applications." id="learn-how-to-create-apparmor-profiles-to-confine-your-applications." environment="web" feedback-link="mailto:nekocode.cn@gmail.com" home-url="https://gde-codelabs.github.io/">
 
 <google-codelab-step label="Overview">
 <p>AppArmor is a Mandatory Access Control (MAC) system which confines programs to a limited set of resources. AppArmor confinement is provided via profiles loaded into the kernel. AppArmor can be set to either enforce the profile or complain when profile rules are violated.</p>
@@ -62,13 +62,13 @@
 <li>include files are supported to ease development and simplify profiles (ie <code>#include &lt;abstractions/base&gt;</code>, <code>#include &lt;abstractions/nameservice&gt;</code>, <code>#include &lt;abstractions/user-tmp&gt;</code>)</li>
 </ul>
 <p>To get started, let&rsquo;s install some useful AppArmor utilities and the application that we want to confine:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install apparmor-easyprof apparmor-notify apparmor-utils certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install apparmor-easyprof apparmor-notify apparmor-utils certspotter
 </code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="Generating a basic profile">
 <p>The easiest way to get started is to create a skeleton profile, set AppArmor to complain mode for your target and then use the <code>aa-logprof</code> tool to evaluate the denials.</p>
 <p>We&rsquo;ll use <code>aa-easyprof</code> to generate the skeleton policy; let&rsquo;s see what it generates (be sure to specify the absolute path to the application):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aa-easyprof /usr/bin/certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aa-easyprof /usr/bin/certspotter
 </code></pre></div><pre><code># vim:syntax=apparmor
 # AppArmor policy for certspotter
 # ###AUTHOR###
@@ -91,26 +91,26 @@
 # No write paths specified
 }
 </code></pre><p>Looks pretty basic, so let&rsquo;s write that output into the profile file (the name of the file can be anything; it is the contents of the file which matter):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aa-easyprof /usr/bin/certspotter &gt; usr.bin.certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aa-easyprof /usr/bin/certspotter &gt; usr.bin.certspotter
 $ sudo mv usr.bin.certspotter /etc/apparmor.d
 </code></pre></div><p>and then load the profile into the kernel:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apparmor_parser -r /etc/apparmor.d/usr.bin.certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apparmor_parser -r /etc/apparmor.d/usr.bin.certspotter
 </code></pre></div><p>Trying to run certspotter, results in an immediate (safe) crash.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ certspotter
 certspotter: /home/testuser/.certspotter/watchlist: open /home/testuser/.certspotter/watchlist permission denied
 </code></pre></div><p>This basic profile doesn&rsquo;t allow certspotter access to resources it needs, so let&rsquo;s look at the AppArmor denial messages to see what went wrong.</p>
 
 </google-codelab-step>
 <google-codelab-step label="AppArmor Denials and Complain Mode">
 <p>AppArmor denials are logged to <code>/var/log/syslog</code> (or <code>/var/log/audit/audit.log</code> for non-DBus policy violations if auditd is installed). The kernel will rate limit AppArmor denials which can cause problems while profiling. You can avoid this by installing auditd or by adjusting rate limiting in the kernel:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo sysctl -w kernel.printk_ratelimit<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo sysctl -w kernel.printk_ratelimit<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
 </code></pre></div><p>Another way to to view AppArmor denials is by using the aa-notify tool. aa-notify is a very simple program that will report any new AppArmor denials by consulting <code>/var/log/syslog</code> (or <code>/var/log/audit/audit.log</code> if auditd is installed). For example,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ /usr/bin/aa-notify -s <span style="color:#ae81ff">1</span> -v
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ /usr/bin/aa-notify -s <span style="color:#ae81ff">1</span> -v
 </code></pre></div><p>will show any AppArmor denials within the last day.</p>
 <p>We are going to take the easy route to develop this profile and use the <code>aa-logprof</code> tool to evaluate the log entries that AppArmor makes in complain mode, so let&rsquo;s set the AppArmor profile for certspotter to complain mode for this policy so that we can see what is happening.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo aa-complain certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo aa-complain certspotter
 </code></pre></div><p>Now let&rsquo;s try running certspotter again:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ certspotter
 </code></pre></div><p>It immediately starts generating AppArmor entries in the logs that look like this:</p>
 <pre><code>Feb 23 13:34:24 tutorials audit[18643]: AVC apparmor=&quot;ALLOWED&quot; operation=&quot;recvmsg&quot; profile=&quot;/usr/bin/certspotter&quot; pid=18643 comm=&quot;certspotter&quot; laddr=10.0.2.15 lport=46314 faddr=10.0.2.16 fport=443 family=&quot;inet&quot; sock_type=&quot;stream&quot; protocol=6 requested_mast=&quot;receive&quot; denied_mask=&quot;receive&quot;
 </code></pre><p>because we haven&rsquo;t yet created the profile rules to allow it to access the network.</p>
@@ -118,7 +118,7 @@ certspotter: /home/testuser/.certspotter/watchlist: open /home/testuser/.certspo
 </google-codelab-step>
 <google-codelab-step label="Using aa-logprof to Refine the Profile">
 <p>The <code>aa-logprof</code> tool will parse the AppArmor messages and suggest policy rules which would permit certspotter to run under confinement.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo aa-logprof
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo aa-logprof
 </code></pre></div><pre><code>Reading log entries from /var/log/syslog.
 Updating AppArmor profiles in /etc/apparmor.d.
 Complain-mode changes:
@@ -189,9 +189,9 @@ S
 </google-codelab-step>
 <google-codelab-step label="Hand Editing the Profile">
 <p>Let&rsquo;s go back and touch up the profile to allow certspotter to read and write from the <code>$HOME/.certspotter</code> directory.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo vi /etc/apparmor.d/usr.bin.certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo vi /etc/apparmor.d/usr.bin.certspotter
 </code></pre></div><p>let&rsquo;s change the <code>/home/*/.certspotter/watchlist r,</code> line to <code>owner @{HOME}/.certspotter/** rw,</code>. The <code>**</code> glob means certspotter can now read and write to all files, directories and all paths under the current user&rsquo;s <code>.certspotter</code> directory in their home directory. You can take this opportunity to touch up the <code>###AUTHOR###</code>, <code>###COPYRIGHT###</code>, and <code>###COMMENT###</code> placeholders with your preferred information. Reload the policy once again:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apparmor_parser -r /etc/apparmor.d/usr.bin.certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apparmor_parser -r /etc/apparmor.d/usr.bin.certspotter
 </code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="AppArmor deny rules">
@@ -206,11 +206,11 @@ deny @{HOME}/.ssh/ rw,
 deny @{HOME}/.bashrc rw,
 </code></pre><p>The fake directory doesn&rsquo;t exist on this system, but the policy rule is still valid and AppArmor will enforce rules on it if it ever gets created someday. Remember when specifying a directory itself to use the trailing &lsquo;/'; this is how AppArmor tells the difference between a file and a directory.</p>
 <p>Don&rsquo;t forget to reload the policy!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apparmor_parser -r /etc/apparmor.d/usr.bin.certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apparmor_parser -r /etc/apparmor.d/usr.bin.certspotter
 </code></pre></div><p>Ok, let&rsquo;s restart certspotter and see if it works:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ /usr/bin/certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ /usr/bin/certspotter
 </code></pre></div><p>It seems to be working with no new denials being generated, so let&rsquo;s take AppArmor out of complain mode for this profile and set it to enforcing:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo aa-enforce certspotter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo aa-enforce certspotter
 </code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="That&#39;s it!">
@@ -230,12 +230,12 @@ deny @{HOME}/.bashrc rw,
 
 
   </google-codelab>
-  <script src="https://nekocode.github.io/codelabs-hugo-theme/native-shim.js"></script>
-  <script src="https://nekocode.github.io/codelabs-hugo-theme/custom-elements.min.js"></script>
-  <script src="https://nekocode.github.io/codelabs-hugo-theme/prettify.js"></script>
-  <script src="https://nekocode.github.io/codelabs-hugo-theme/google_codelab_step_bin.js"></script>
-  <script src="https://nekocode.github.io/codelabs-hugo-theme/google_codelab_survey_bin.js"></script>
-  <script src="https://nekocode.github.io/codelabs-hugo-theme/google_codelab_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/native-shim.js"></script>
+  <script src="https://gde-codelabs.github.io/custom-elements.min.js"></script>
+  <script src="https://gde-codelabs.github.io/prettify.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_survey_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_bin.js"></script>
 </body>
 
 </html>

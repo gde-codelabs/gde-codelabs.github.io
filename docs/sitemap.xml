@@ -1,145 +1,89 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/apparmor/</loc>
+    <loc>https://gde-codelabs.github.io/tags/apparmor/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/categories/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/categories/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/guide/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/guide/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/posts/beginning-apparmor-profile-development/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/posts/beginning-apparmor-profile-development/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/policy/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/policy/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/posts/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/posts/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/security/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/security/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/categories/security/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/categories/security/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/tutorial/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/tutorial/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/</loc>
     <lastmod>2018-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/chat/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/chat/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/hidden/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/hidden/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/inspircd/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/inspircd/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/irc/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/irc/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/posts/install-irc-server/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/posts/install-irc-server/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/server/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/server/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/categories/server/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/categories/server/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/desktop/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/desktop/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/categories/desktop/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/categories/desktop/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/posts/create-a-usb-stick-on-macos/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/posts/create-a-usb-stick-on-macos/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/installation/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/installation/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/macos/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/macos/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/ubuntu/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/ubuntu/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/usb/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/usb/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/burn/</loc>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/burn/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/tags/dvd/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/posts/burn-a-dvd-on-macos/</loc>
     <lastmod>2017-05-31T00:00:00+00:00</lastmod>
   </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/tags/dvd/</loc>
-    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nekocode.github.io/codelabs-hugo-theme/posts/burn-a-dvd-on-macos/</loc>
-    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
-  </url>
-  
 </urlset>
