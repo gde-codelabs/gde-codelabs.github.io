@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Ubuntu Tutorials</title>
+    <title>Tags on Tutorials made by GDEs</title>
     <link>https://gde-codelabs.github.io/tags/</link>
-    <description>Recent content in Tags on Ubuntu Tutorials</description>
+    <description>Recent content in Tags on Tutorials made by GDEs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Mar 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KFP</title>
+      <link>https://gde-codelabs.github.io/tags/kfp/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/kfp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pipeline</title>
+      <link>https://gde-codelabs.github.io/tags/pipeline/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/pipeline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TFX</title>
+      <link>https://gde-codelabs.github.io/tags/tfx/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/tfx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://gde-codelabs.github.io/tags/tutorial/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VertexAI</title>
+      <link>https://gde-codelabs.github.io/tags/vertexai/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/vertexai/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>apparmor</title>
       <link>https://gde-codelabs.github.io/tags/apparmor/</link>
@@ -40,15 +85,6 @@
       <pubDate>Fri, 23 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gde-codelabs.github.io/tags/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tutorial</title>
-      <link>https://gde-codelabs.github.io/tags/tutorial/</link>
-      <pubDate>Fri, 23 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/tags/tutorial/</guid>
       <description></description>
     </item>
     

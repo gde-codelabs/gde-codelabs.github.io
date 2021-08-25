@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>macOS on Ubuntu Tutorials</title>
+    <title>macOS on Tutorials made by GDEs</title>
     <link>https://gde-codelabs.github.io/tags/macos/</link>
-    <description>Recent content in macOS on Ubuntu Tutorials</description>
+    <description>Recent content in macOS on Tutorials made by GDEs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 18 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/macos/index.xml" rel="self" type="application/rss+xml" />
