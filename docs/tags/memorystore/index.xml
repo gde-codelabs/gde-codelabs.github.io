@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MemoryStore on Tutorials made by GDEs</title>
+    <link>https://gde-codelabs.github.io/tags/memorystore/</link>
+    <description>Recent content in MemoryStore on Tutorials made by GDEs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/memorystore/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learn how to deploy OpenAI&#39;s CLIP model on GKE. Also learn about how to cache intermediate results in MemoryStore(Radius)</title>
+      <link>https://gde-codelabs.github.io/posts/deploy-clip-on-gke-radius/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/deploy-clip-on-gke-radius/</guid>
+      <description>       </description>
+    </item>
+    
+  </channel>
+</rss>

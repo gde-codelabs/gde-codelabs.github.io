@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AutoML on Tutorials made by GDEs</title>
+    <link>https://gde-codelabs.github.io/tags/automl/</link>
+    <description>Recent content in AutoML on Tutorials made by GDEs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/automl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learn how to use Vertex AI Dataset, AutoML, Pipeline, and Prediction to adapt to changes in data trend</title>
+      <link>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</guid>
+      <description>       </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -16,5 +16,32 @@
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in viverra libero, id bibendum dui. Suspendisse bibendum, odio et varius ultricies, sapien libero interdum mauris, eget dapibus ipsum ex ut odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus justo, at dignissim urna. Quisque libero lectus, consectetur at mauris sed, molestie pretium purus. Vivamus pulvinar lacus pretium, faucibus ante ut, rhoncus augue. Proin maximus vehicula vulputate. Praesent sit amet tincidunt sem.</description>
     </item>
     
+    <item>
+      <title>Learn how to integrate GitHub Action, Cloud Build, and TFX based project for realizing CI/CD in MLOps.</title>
+      <link>https://gde-codelabs.github.io/posts/ci-cd-pipeline-and-modules-update/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/ci-cd-pipeline-and-modules-update/</guid>
+      <description>       </description>
+    </item>
+    
+    <item>
+      <title>Learn how to use Vertex AI Dataset, AutoML, Pipeline, and Prediction to adapt to changes in data trend</title>
+      <link>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</guid>
+      <description>       </description>
+    </item>
+    
+    <item>
+      <title>Learn what TFX CLI is, how we can use it for real world MLOps project.</title>
+      <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
+      <description>       </description>
+    </item>
+    
   </channel>
 </rss>
