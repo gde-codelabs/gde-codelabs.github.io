@@ -16,32 +16,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>security</title>
-      <link>https://gde-codelabs.github.io/categories/security/</link>
-      <pubDate>Fri, 23 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/categories/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>server</title>
-      <link>https://gde-codelabs.github.io/categories/server/</link>
-      <pubDate>Fri, 02 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/categories/server/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>desktop</title>
-      <link>https://gde-codelabs.github.io/categories/desktop/</link>
-      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/categories/desktop/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
