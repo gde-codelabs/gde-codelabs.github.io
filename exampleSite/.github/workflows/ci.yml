@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          submodules: true 
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+      
+    - name: Build hugo
+      run: ./build_docs.sh
+      
+    - name: Git init
+      run: |
+          git config --global user.name '${{github.actor}}'
+          git config --global user.email '${{github.actor}}@users.noreply.github.com'
+          
+    - name: Git add
+      run: git add --force docs/
+    
+    - name: Git commit
+      run: git commit -m "publish"
+
+    - name: Push public to branch
+      run: |
+          git push -f origin main
