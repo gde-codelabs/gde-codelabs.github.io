@@ -1,0 +1,5 @@
+.mlops-bg {
+  background-color: #1A73E8 !important; }
+
+google-codelab-index-cards .card.mlops-bottom {
+  border-bottom-color: #1A73E8; }
