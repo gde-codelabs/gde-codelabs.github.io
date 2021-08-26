@@ -8,7 +8,7 @@ theme = "codelabs"
 [params]
   homeTitle = "Tutorials made by GDEs!"
   homeDescription = """
-This page delivers Tutorials made by GDEs ([Google Developers Experts](https://developers.google.com/programs/experts/). We cover broad range
+This page delivers Tutorials made by GDEs ([Google Developers Experts](https://developers.google.com/programs/experts/)). We cover broad range
 of topics including Google Cloud, Android, Firebase, TensorFlow, and so on.
 
 If you'd like to see a tutorial written on a specific topic, [let us know](#).
