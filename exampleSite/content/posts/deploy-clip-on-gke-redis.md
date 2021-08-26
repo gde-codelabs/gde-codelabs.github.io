@@ -6,30 +6,30 @@ tags: [GKE, MemoryStore, Redis, Flask, CLIP, OpenAI]
 duration: 10:00
 ---
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Overview" duration="1:00" >}}
 
 {{< /step >}}
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Create GKE cluster" duration="1:00" >}}
 
 {{< /step >}}
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Setup GKE resources" duration="1:00" >}}
 
 {{< /step >}}
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Write Flask app" duration="1:00" >}}
 
 {{< /step >}}
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Integrate with HuggingFace's CLIP model" duration="1:00" >}}
 
 {{< /step >}}
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Caching with MemoryStore(radius)" duration="1:00" >}}
 
 {{< /step >}}
 
-{{< step label="TFX CLI in a nutshell" duration="1:00" >}}
+{{< step label="Wrap-up" duration="1:00" >}}
 
 {{< /step >}}
