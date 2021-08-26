@@ -16,6 +16,4 @@ If you'd like to see a tutorial written on a specific topic, [let us know](#).
   footer = "<a href=\"https://github.com/nekocode/codelabs-hugo-theme\">❤ Source code</a>"
   feedbackLink = "mailto:nekocode.cn@gmail.com"
   [params.categoryColors]
-    desktop = "#1A73E8"
-    server = "#E37400"
-    security = "#5F6368"
+    mlops = "#1A73E8"
