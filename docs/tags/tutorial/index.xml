@@ -40,7 +40,7 @@
       <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
-      <description>          </description>
+      <description>The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project.  There are two template projects, taxi and penguin at the moment, and we will use taxi template.</description>
     </item>
     
   </channel>

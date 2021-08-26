@@ -28,10 +28,53 @@
   <google-codelab title="Learn what TFX CLI is, how we can use it for real world MLOps project." id="learn-what-tfx-cli-is-how-we-can-use-it-for-real-world-mlops-project." environment="web" feedback-link="mailto:nekocode.cn@gmail.com" home-url="https://gde-codelabs.github.io/">
 
 <google-codelab-step label="TFX CLI in a nutshell" duration="1:00">
-
+The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project.
 </google-codelab-step>
 <google-codelab-step label="Create TFX project from templates" duration="2:00&#34;">
-
+<p>There are two template projects, taxi and penguin at the moment, and we will use <code>taxi</code> template. The following TFX CLI shows how to generate a new TFX project based on <code>taxi</code> template. You can specify which template to use in <code>--model</code>, the name of pipeline in <code>--pipeline-name</code>, and the path where to store the generated project in <code>--destination-path</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx template copy --model<span style="color:#f92672">=</span>taxi <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                    --pipeline-name<span style="color:#f92672">=</span>tfx-pipeline <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                    --destination-path<span style="color:#f92672">=</span>tfx-pipeline
+</code></pre></div><p>When you run the <code>tfx template copy</code> CLI, it will create a folder with the name specified in <code>--destination-path</code>. Let&rsquo;s go inside that directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd tfx-pipeline
+</code></pre></div><p>The below shows how the directories/files are organized in the project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree
+.
+├── __init__.py
+├── __pycache__
+│   └── kubeflow_v2_runner.cpython-37.pyc
+├── data
+│   └── data.csv
+├── data_validation.ipynb
+├── kubeflow_runner.py
+├── kubeflow_v2_runner.py
+├── local_runner.py
+├── model_analysis.ipynb
+├── models
+│   ├── __init__.py
+│   ├── estimator_model
+│   │   ├── __init__.py
+│   │   ├── constants.py
+│   │   ├── model.py
+│   │   └── model_test.py
+│   ├── features.py
+│   ├── features_test.py
+│   ├── keras_model
+│   │   ├── __init__.py
+│   │   ├── constants.py
+│   │   ├── model.py
+│   │   └── model_test.py
+│   ├── preprocessing.py
+│   └── preprocessing_test.py
+└── pipeline
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-37.pyc
+    │   ├── configs.cpython-37.pyc
+    │   └── pipeline.cpython-37.pyc
+    ├── configs.py
+    └── pipeline.py
+</code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="Look around (pipeline)" duration="5:00">
 
@@ -40,12 +83,22 @@
 
 </google-codelab-step>
 <google-codelab-step label="Compile TFX pipeline" duration="2:00">
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline compile --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
+                       --engine<span style="color:#f92672">=</span>vertex
+</code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="Build custom TFX docker image" duration="2:00">
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline create --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
+                      --engine<span style="color:#f92672">=</span>vertex 
+                      --build-image
+</code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="Integrate with GCP (Vertex Pipeline)" duration="5:00">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx run create --engine<span style="color:#f92672">=</span>vertex 
+                 --pipeline_name<span style="color:#f92672">=</span>tfx-pipeline
+                 --project<span style="color:#f92672">=</span>$GCS_PROJECT
+                 --region<span style="color:#f92672">=</span>us-central1
+</code></pre></div><p><img src="/assets/tfx-cli-101/pipeline.png" alt=""></p>
 
 </google-codelab-step>
 <google-codelab-step label="Integrate with GCP (Dataflow)" duration="5:00">
