@@ -16,25 +16,40 @@ jobs:
           submodules: true 
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
+    - name: check if something changed
+      uses: dorny/paths-filter@v2.2.1
+      id: filter
+      with:
+        base: 'main'        
+        filters: |
+          docs:
+            - 'docs/**'
+
     - name: Setup Hugo
+      if: ${{ steps.filter.outputs.docs == 'true' }}
       uses: peaceiris/actions-hugo@v2
       with:
         hugo-version: 'latest'
       
     - name: Build hugo
+      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: ./build_docs.sh
       
     - name: Git init
+      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: |
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
           
     - name: Git add
+      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: git add --force docs/
     
     - name: Git commit
+      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: git commit -m "publish"
 
     - name: Push public to branch
+      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: |
           git push -f origin main
