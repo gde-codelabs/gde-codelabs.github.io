@@ -1,6 +1,6 @@
 Live demo: https://nekocode.github.io/codelabs-hugo-theme/
 
-Here is what you can do to build the page:
+Here is what you can do to add a tutorial:
 
 1. install `hugo` ([instructions](https://gohugo.io/getting-started/installing/))
 2. write posts under exampleSite/content/posts ([guide](https://github.com/googlecodelabs/tools))
