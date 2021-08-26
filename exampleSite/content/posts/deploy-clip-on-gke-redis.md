@@ -1,8 +1,8 @@
 ---
-title: Learn how to deploy OpenAI's CLIP model on GKE. Also learn about how to cache intermediate results in MemoryStore(Radius)
+title: Learn how to deploy OpenAI's CLIP model on GKE. Also learn about how to cache intermediate results in MemoryStore (Redis)
 date: 2021-08-25
 categories: [MLOps]
-tags: [GKE, MemoryStore, Radius, Flask, CLIP, OpenAI]
+tags: [GKE, MemoryStore, Redis, Flask, CLIP, OpenAI]
 duration: 10:00
 ---
 
