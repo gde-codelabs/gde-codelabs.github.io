@@ -23,7 +23,7 @@ jobs:
         base: 'main'        
         filters: |
           docs:
-            - 'docs/**'
+            - 'exampleSite/**'
 
     - name: Setup Hugo
       if: ${{ steps.filter.outputs.docs == 'true' }}
