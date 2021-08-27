@@ -32,49 +32,46 @@ The main advantage of using TFX CLI is that you can get a fully working end to e
 </google-codelab-step>
 <google-codelab-step label="Create TFX project from templates" duration="2:00&#34;">
 <p>There are two template projects, taxi and penguin at the moment, and we will use <code>taxi</code> template. The following TFX CLI shows how to generate a new TFX project based on <code>taxi</code> template. You can specify which template to use in <code>--model</code>, the name of pipeline in <code>--pipeline-name</code>, and the path where to store the generated project in <code>--destination-path</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx template copy --model<span style="color:#f92672">=</span>taxi <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx template copy --model<span style="color:#f92672">=</span>taxi <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>                    --pipeline-name<span style="color:#f92672">=</span>tfx-pipeline <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>                    --destination-path<span style="color:#f92672">=</span>tfx-pipeline
 </code></pre></div><p>When you run the <code>tfx template copy</code> CLI, it will create a folder with the name specified in <code>--destination-path</code>. Let&rsquo;s go inside that directory.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd tfx-pipeline
-</code></pre></div><p>The below shows how the directories/files are organized in the project.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd tfx-pipeline
+</code></pre></div><p>The below shows how the directories/files are organized in the project. I have ommited some minor files like caching, testing, <code>__init__.py</code> to save some space here, but the most important files for understanding TFX pipeline are listed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree
 .
-├── __init__.py
-├── __pycache__
-│   └── kubeflow_v2_runner.cpython-37.pyc
 ├── data
 │   └── data.csv
-├── data_validation.ipynb
-├── kubeflow_runner.py
-├── kubeflow_v2_runner.py
 ├── local_runner.py
+├── kubeflow_v2_runner.py
+├── data_validation.ipynb
 ├── model_analysis.ipynb
 ├── models
-│   ├── __init__.py
 │   ├── estimator_model
-│   │   ├── __init__.py
-│   │   ├── constants.py
 │   │   ├── model.py
-│   │   └── model_test.py
 │   ├── features.py
-│   ├── features_test.py
 │   ├── keras_model
-│   │   ├── __init__.py
 │   │   ├── constants.py
 │   │   ├── model.py
-│   │   └── model_test.py
 │   ├── preprocessing.py
-│   └── preprocessing_test.py
 └── pipeline
-    ├── __init__.py
-    ├── __pycache__
-    │   ├── __init__.cpython-37.pyc
-    │   ├── configs.cpython-37.pyc
-    │   └── pipeline.cpython-37.pyc
     ├── configs.py
     └── pipeline.py
-</code></pre></div>
+</code></pre></div><h3 id="data"><strong>data</strong></h3>
+<p><code>data</code> directory contains <code>data.csv</code> which comes with taxi data for this template project.</p>
+<h3 id="_runnerpy">*<strong>_runner.py</strong></h3>
+<p>You can currently run the TFX pipeline on two different environments out of the box using this template project.</p>
+<p><code>local_runner.py</code> is used for local environment. It is useful for unit test before going to the cloud, but it is also useful when you have high-end devices like GPU in your local machine. TFX is all about pipelining and orchestrating different components consisting of the entire MLOps pipeline. For example, as a researcher, you don&rsquo;t want to go for deployment but for tracking experiments. In this case, you can build a pipeline from data injection to model validation.</p>
+<p><code>kubeflow_v2_runner.py</code> is used for kubeflow environment. There is another file named <code>kubeflow_runner.py</code>, and this is for supporting the past version of kubeflow 1.x. Also, most importantly, <code>kubeflow_v2_runner.py</code> should be used if you want to leverage <code>Vertex AI</code> platform on GCP since <code>Vertex AI</code> is built on top of kubeflow 2.x.</p>
+<h3 id="ipynb">*<strong>.ipynb</strong></h3>
+<p>In the previous TFX version before the rise of <code>Vertex AI</code>, some of the out of the box visualizations for data validation and model analysis were embedded effortless in kubeflow pipeline dashboard. However, it is not supported yet in <code>Vertex AI</code>.</p>
+<p>In order to overcome this issues, this template project provides <code>data_validation.ipynb</code> and <code>model_analysis.ipynb</code> Jupyter notebooks for visualizing the outputs form <code>StatisticsGen</code> and <code>Evaluator</code> TFX components respectively.</p>
+<h3 id="models"><strong>models</strong></h3>
+<p><code>models</code> directory gives you some idea how to perform data preprocessing, modeling, and model training steps. Furthermore, you can find modeling examples in two different flavours of using <code>Keras</code> and <code>tf.estimator</code>.</p>
+<h3 id="pipeline"><strong>pipeline</strong></h3>
+<p>Finally, <code>pipeline.py</code> in the <code>pipeline</code> directory defines how the TFX pipeline is constructed by connecting all the different TFX components. This gives you a nice overview what MLOps pipeline looks like.</p>
+<p><code>pipeline</code> directory contains one more file named <code>configs.py</code>. <code>configs.py</code> is for configuring all the parameters passed down to the components. For instance, you can setup <code>Vertex AI Training</code> and <code>Vertex AI Prediction</code> directly integrated into the TFX pipeline.</p>
+
 </google-codelab-step>
 <google-codelab-step label="Look around (pipeline)" duration="5:00">
 
@@ -83,18 +80,18 @@ The main advantage of using TFX CLI is that you can get a fully working end to e
 
 </google-codelab-step>
 <google-codelab-step label="Compile TFX pipeline" duration="2:00">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline compile --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline compile --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
                        --engine<span style="color:#f92672">=</span>vertex
 </code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="Build custom TFX docker image" duration="2:00">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline create --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline create --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
                       --engine<span style="color:#f92672">=</span>vertex 
                       --build-image
 </code></pre></div>
 </google-codelab-step>
 <google-codelab-step label="Integrate with GCP (Vertex Pipeline)" duration="5:00">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx run create --engine<span style="color:#f92672">=</span>vertex 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx run create --engine<span style="color:#f92672">=</span>vertex 
                  --pipeline_name<span style="color:#f92672">=</span>tfx-pipeline
                  --project<span style="color:#f92672">=</span>$GCS_PROJECT
                  --region<span style="color:#f92672">=</span>us-central1

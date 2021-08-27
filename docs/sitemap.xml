@@ -1,115 +1,71 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://gde-codelabs.github.io/tags/automl/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/categories/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/clip/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/flask/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/gke/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/kfp/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/deploy-clip-on-gke-redis/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/dual-deployments-on-vertex-ai/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/ci-cd-pipeline-and-modules-update/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/tfx-cli-101/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/memorystore/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/categories/mlops/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/openai/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/pipeline/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/redis/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/tfx/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/tutorial/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://gde-codelabs.github.io/tags/vertexai/</loc>
     <lastmod>2021-08-25T00:00:00+00:00</lastmod>
   </url>
-  
 </urlset>
