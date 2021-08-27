@@ -28,46 +28,52 @@ When you run the `tfx template copy` CLI, it will create a folder with the name 
 $ cd tfx-pipeline
 ```
 
-The below shows how the directories/files are organized in the project. 
+The below shows how the directories/files are organized in the project. I have ommited some minor files like caching, testing, `__init__.py` to save some space here, but the most important files for understanding TFX pipeline are listed.
 
 ```bash
 $ tree
 .
-├── __init__.py
-├── __pycache__
-│   └── kubeflow_v2_runner.cpython-37.pyc
 ├── data
 │   └── data.csv
-├── data_validation.ipynb
-├── kubeflow_runner.py
-├── kubeflow_v2_runner.py
 ├── local_runner.py
+├── kubeflow_v2_runner.py
+├── data_validation.ipynb
 ├── model_analysis.ipynb
 ├── models
-│   ├── __init__.py
 │   ├── estimator_model
-│   │   ├── __init__.py
-│   │   ├── constants.py
 │   │   ├── model.py
-│   │   └── model_test.py
 │   ├── features.py
-│   ├── features_test.py
 │   ├── keras_model
-│   │   ├── __init__.py
 │   │   ├── constants.py
 │   │   ├── model.py
-│   │   └── model_test.py
 │   ├── preprocessing.py
-│   └── preprocessing_test.py
 └── pipeline
-    ├── __init__.py
-    ├── __pycache__
-    │   ├── __init__.cpython-37.pyc
-    │   ├── configs.cpython-37.pyc
-    │   └── pipeline.cpython-37.pyc
     ├── configs.py
     └── pipeline.py
 ```
+
+### **data**
+`data` directory contains `data.csv` which comes with taxi data for this template project. 
+
+### ***_runner.py**
+You can currently run the TFX pipeline on two different environments out of the box using this template project.
+
+`local_runner.py` is used for local environment. It is useful for unit test before going to the cloud, but it is also useful when you have high-end devices like GPU in your local machine. TFX is all about pipelining and orchestrating different components consisting of the entire MLOps pipeline. For example, as a researcher, you don't want to go for deployment but for tracking experiments. In this case, you can build a pipeline from data injection to model validation.
+
+`kubeflow_v2_runner.py` is used for kubeflow environment. There is another file named `kubeflow_runner.py`, and this is for supporting the past version of kubeflow 1.x. Also, most importantly, `kubeflow_v2_runner.py` should be used if you want to leverage `Vertex AI` platform on GCP since `Vertex AI` is built on top of kubeflow 2.x.
+
+### ***.ipynb**
+In the previous TFX version before the rise of `Vertex AI`, some of the out of the box visualizations for data validation and model analysis were embedded effortless in kubeflow pipeline dashboard. However, it is not supported yet in `Vertex AI`.
+
+In order to overcome this issues, this template project provides `data_validation.ipynb` and `model_analysis.ipynb` Jupyter notebooks for visualizing the outputs form `StatisticsGen` and `Evaluator` TFX components respectively.
+
+### **models**
+`models` directory gives you some idea how to perform data preprocessing, modeling, and model training steps. Furthermore, you can find modeling examples in two different flavours of using `Keras` and `tf.estimator`.
+
+### **pipeline**
+Finally, `pipeline.py` in the `pipeline` directory defines how the TFX pipeline is constructed by connecting all the different TFX components. This gives you a nice overview what MLOps pipeline looks like. 
+
+`pipeline` directory contains one more file named `configs.py`. `configs.py` is for configuring all the parameters passed down to the components. For instance, you can setup `Vertex AI Training` and `Vertex AI Prediction` directly integrated into the TFX pipeline.
 
 {{< /step >}}
 
