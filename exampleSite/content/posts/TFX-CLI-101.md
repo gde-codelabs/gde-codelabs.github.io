@@ -4,6 +4,7 @@ date: 2021-08-25
 categories: [MLOps]
 tags: [VertexAI, Pipeline, TFX, tutorial]
 duration: 40:00
+authors: me
 ---
 
 {{< step label="TFX CLI in a nutshell" duration="1:00" >}}
