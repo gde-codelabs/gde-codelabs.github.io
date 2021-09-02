@@ -48,181 +48,28 @@
 </ul>
 
 </google-codelab-step>
-<google-codelab-step label="Create TFX project from templates" duration="2:00&#34;">
-<p>There are two template projects, taxi and penguin at the moment, and we will use <code>taxi</code> template. The following TFX CLI shows how to generate a new TFX project based on <code>taxi</code> template. You can specify which template to use in <code>--model</code>, the name of pipeline in <code>--pipeline-name</code>, and the path where to store the generated project in <code>--destination-path</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx template copy --model<span style="color:#f92672">=</span>taxi <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                    --pipeline-name<span style="color:#f92672">=</span>tfx-pipeline <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                    --destination-path<span style="color:#f92672">=</span>tfx-pipeline
-</code></pre></div><p>When you run the <code>tfx template copy</code> CLI, it will create a folder with the name specified in <code>--destination-path</code>. Let&rsquo;s go inside that directory.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd tfx-pipeline
-</code></pre></div><p>The below shows how the directories/files are organized in the project. I have ommited some minor files like caching, testing, <code>__init__.py</code> to save some space here, but the most important files for understanding TFX pipeline are listed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree
-.
-├── data
-│   └── data.csv
-├── local_runner.py
-├── kubeflow_v2_runner.py
-├── data_validation.ipynb
-├── model_analysis.ipynb
-├── models
-│   ├── estimator_model
-│   │   ├── model.py
-│   ├── features.py
-│   ├── keras_model
-│   │   ├── constants.py
-│   │   ├── model.py
-│   ├── preprocessing.py
-└── pipeline
-    ├── configs.py
-    └── pipeline.py
-</code></pre></div><h3 id="data"><strong>data</strong></h3>
-<p><code>data</code> directory contains <code>data.csv</code> which comes with taxi data for this template project.</p>
-<h3 id="_runnerpy">*<strong>_runner.py</strong></h3>
-<p>You can currently run the TFX pipeline on two different environments out of the box using this template project.</p>
-<p><code>local_runner.py</code> is used for local environment. It is useful for unit test before going to the cloud, but it is also useful when you have high-end devices like GPU in your local machine. TFX is all about pipelining and orchestrating different components consisting of the entire MLOps pipeline. For example, as a researcher, you don&rsquo;t want to go for deployment but for tracking experiments. In this case, you can build a pipeline from data injection to model validation.</p>
-<p><code>kubeflow_v2_runner.py</code> is used for kubeflow environment. There is another file named <code>kubeflow_runner.py</code>, and this is for supporting the past version of kubeflow 1.x. Also, most importantly, <code>kubeflow_v2_runner.py</code> should be used if you want to leverage <code>Vertex AI</code> platform on GCP since <code>Vertex AI</code> is built on top of kubeflow 2.x.</p>
-<h3 id="ipynb">*<strong>.ipynb</strong></h3>
-<p>In the previous TFX version before the rise of <code>Vertex AI</code>, some of the out of the box visualizations for data validation and model analysis were embedded effortless in kubeflow pipeline dashboard. However, it is not supported yet in <code>Vertex AI</code>.</p>
-<p>In order to overcome this issues, this template project provides <code>data_validation.ipynb</code> and <code>model_analysis.ipynb</code> Jupyter notebooks for visualizing the outputs form <code>StatisticsGen</code> and <code>Evaluator</code> TFX components respectively.</p>
-<h3 id="models"><strong>models</strong></h3>
-<p><code>models</code> directory gives you some idea how to perform data preprocessing, modeling, and model training steps. Furthermore, you can find modeling examples in two different flavours of using <code>Keras</code> and <code>tf.estimator</code>.</p>
-<h3 id="pipeline"><strong>pipeline</strong></h3>
-<p>Finally, <code>pipeline.py</code> in the <code>pipeline</code> directory defines how the TFX pipeline is constructed by connecting all the different TFX components. This gives you a nice overview what MLOps pipeline looks like.</p>
-<p><code>pipeline</code> directory contains one more file named <code>configs.py</code>. <code>configs.py</code> is for configuring all the parameters passed down to the components. For instance, you can setup <code>Vertex AI Training</code> and <code>Vertex AI Prediction</code> directly integrated into the TFX pipeline.</p>
+<google-codelab-step label="IAM setup" duration="2:00&#34;">
 
 </google-codelab-step>
-<google-codelab-step label="Look around (pipeline)" duration="5:00">
-<p>Let&rsquo;s see the <a href="https://github.com/tensorflow/tfx/blob/master/tfx/experimental/templates/taxi/pipeline/pipeline.py"><code>pipeline/pipeline.py</code></a> to grab a big picture how the TFX pipeline is constructued.</p>
-<p><img src="https://www.tensorflow.org/tfx/guide/images/prog_fin.png" alt="TFX Pipeline"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">components <span style="color:#f92672">=</span> []
-</code></pre></div><p>First a list variable <code>components</code> is declared. This list is going to store all the TFX components. Just note that the you don&rsquo;t have to put TFX component into <code>components</code> in order. The dependencies between TFX components are defined by their inputs and outputs. The <code>components</code> is just here for storing all the TFX components to handover to the system later.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">example_gen <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>CsvExampleGen(input_base<span style="color:#f92672">=</span>data_path)
-components<span style="color:#f92672">.</span>append(example_gen)
-</code></pre></div><p>The very first TFX component is <a href="https://www.tensorflow.org/tfx/api_docs/python/tfx/v1/components/CsvExampleGen"><code>CsvExampleGen</code></a>. A component in MLOps pipeline takes inputs and produces outputs, and it stores some metadata from that process. I am going to explain each component in this manner. For example, <code>CsvExampleGen</code> takes CSV form of data as the input, and it produces train and eval examples as the output. The input CSV data is explicitly specified via <code>input_base</code> parameter.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">statistics_gen <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>StatisticsGen(
-    examples<span style="color:#f92672">=</span>example_gen<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;examples&#39;</span>])
-<span style="color:#75715e"># components.append(statistics_gen)</span>
-</code></pre></div><p>From the second component, all the <code>components.append(...)</code> statements are commented out because the TFX template wants you to try out and see the impact of each component by removing a commented out statement at a time. <code>StatisticsGen</code> takes generated output from the <code>CsvExampleGen</code> as the input, and it produces statistics of features and random samples over training data as the outputs. These outputs can be used for data visualization and validation later.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema_gen <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>SchemaGen(
-      statistics<span style="color:#f92672">=</span>statistics_gen<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;statistics&#39;</span>],
-      infer_feature_shape<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-<span style="color:#75715e"># components.append(schema_gen)</span>
-</code></pre></div><p><code>SchemaGen</code> generates a schema by infering information based on the output of <code>StatisticsGen</code>. The output of this component will be used in the downstream component, <code>Transform</code>. You can optionally include <code>ExampleValidator</code> component whose inputs are the outputs of <code>StatisticsGen</code> and <code>SchemaGen</code>. The role of <code>ExampleValidator</code> component is to check if certain type of data doesn&rsquo;t not meet the requirements. You can think of it as a sort of data anomaly detector.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">transform <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>Transform(
-    examples<span style="color:#f92672">=</span>example_gen<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;examples&#39;</span>],
-    schema<span style="color:#f92672">=</span>schema_gen<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;schema&#39;</span>],
-    preprocessing_fn<span style="color:#f92672">=</span>preprocessing_fn)
-<span style="color:#75715e"># components.append(transform)</span>
-</code></pre></div><p><code>Transform</code> generates a DAG to be attatched to the TensorFlow training Graph which will be generated by the downstream component, <code>Trainer</code>. The role of this component is to perform feature engineering. If you think about the data pre-processing step, you can figure out what kind of inputs <code>Transform</code> needs. For example, it has to know which data to transform, and that is the output of <code>ExampleGen</code>. It also has to know how the data looks like, and that is acquired from the output of <code>SchemaGen</code>. Lastly, it has to know how to pre-process the given data, and that preprocessing function is specified in <code>preprocessing_fn</code> parameter. You can switch from <code>preprocessing_fn</code> to <code>module_file</code> if you have everything in a single file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">trainer_args <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74">&#39;run_fn&#39;</span>: run_fn,
-    <span style="color:#e6db74">&#39;transformed_examples&#39;</span>: transform<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;transformed_examples&#39;</span>],
-    <span style="color:#e6db74">&#39;schema&#39;</span>: schema_gen<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;schema&#39;</span>],
-    <span style="color:#e6db74">&#39;transform_graph&#39;</span>: transform<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;transform_graph&#39;</span>],
-    <span style="color:#e6db74">&#39;train_args&#39;</span>: train_args,
-    <span style="color:#e6db74">&#39;eval_args&#39;</span>: eval_args,
-}
-
-<span style="color:#66d9ef">if</span> ai_platform_training_args <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
-    trainer_args[<span style="color:#e6db74">&#39;custom_config&#39;</span>] <span style="color:#f92672">=</span> {
-        tfx<span style="color:#f92672">.</span>extensions<span style="color:#f92672">.</span>google_cloud_ai_platform<span style="color:#f92672">.</span>TRAINING_ARGS_KEY:
-            ai_platform_training_args,
-    }
-    trainer <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>extensions<span style="color:#f92672">.</span>google_cloud_ai_platform<span style="color:#f92672">.</span>Trainer(<span style="color:#f92672">**</span>trainer_args)
-<span style="color:#66d9ef">else</span>:
-    trainer <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>Trainer(<span style="color:#f92672">**</span>trainer_args)
-<span style="color:#75715e"># components.append(trainer)</span>
-</code></pre></div><p>There are two <code>Trainer</code> components, one for the Google Cloud Vertex AI Training and the other one for local environment. The local environment here means that the training will be run on a single node in a Kubernetes infrastructure. If you use <code>google_cloud_ai_platform.Trainer</code> within Google Cloud Vertex AI Training, you can leverage the power of its distributed training capability. In any cases, <code>Trainer</code> takes the transformed data and the transform DAG from the output of <code>Transform</code> and some of the parameters. Also note that it has a similar parameter <code>run_fn</code> as <code>preprocessing_fn</code> in the <code>Transform</code>. The function assigned to the <code>run_fn</code> defines the strucuture of the model and how the model should be learnt.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model_resolver <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>dsl<span style="color:#f92672">.</span>Resolver(
-      strategy_class<span style="color:#f92672">=</span>tfx<span style="color:#f92672">.</span>dsl<span style="color:#f92672">.</span>experimental<span style="color:#f92672">.</span>LatestBlessedModelStrategy,
-      model<span style="color:#f92672">=</span>tfx<span style="color:#f92672">.</span>dsl<span style="color:#f92672">.</span>Channel(type<span style="color:#f92672">=</span>tfx<span style="color:#f92672">.</span>types<span style="color:#f92672">.</span>standard_artifacts<span style="color:#f92672">.</span>Model),
-      model_blessing<span style="color:#f92672">=</span>tfx<span style="color:#f92672">.</span>dsl<span style="color:#f92672">.</span>Channel(
-          type<span style="color:#f92672">=</span>tfx<span style="color:#f92672">.</span>types<span style="color:#f92672">.</span>standard_artifacts<span style="color:#f92672">.</span>ModelBlessing))<span style="color:#f92672">.</span>with_id(
-              <span style="color:#e6db74">&#39;latest_blessed_model_resolver&#39;</span>)
-<span style="color:#75715e"># components.append(model_resolver)</span>
-</code></pre></div><p><code>Resolver</code> is an auxiliary component to define a strategy how to select the latest best model. This is going to be used as an input of the downstream component, <code>Evaluator</code> to compare with the currently trained model with given metrics. The only provided standard strategy is <code>LatestBlessedModelStrategy</code> which selects the latest best model. You can write your own strategy by subclassing <code>ResolverStrategy</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">evaluator <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>Evaluator(
-    examples<span style="color:#f92672">=</span>example_gen<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;examples&#39;</span>],
-    model<span style="color:#f92672">=</span>trainer<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;model&#39;</span>],
-    baseline_model<span style="color:#f92672">=</span>model_resolver<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#39;model&#39;</span>],
-    <span style="color:#75715e"># Change threshold will be ignored if there is no baseline (first run).</span>
-    eval_config<span style="color:#f92672">=</span>eval_config)
-<span style="color:#75715e"># components.append(evaluator)</span>
-</code></pre></div><p><code>Evaluator</code> evaluates the currently trained model. The output of the <code>Resolver</code> goes into the <code>baseline_model</code> parameter as an input. Given by that you can define some criterias how to compare between the <code>baseline_model</code> to the currently trained model. For example, you can include <code>tfma.GenericValueThreshold</code> to define an absolute threshold that the model must meet, and you can also include <code>tfma.GenericChangeThreshold</code> to define a threshold that how the currently trained one can be evaluated as the better one than the latest best model.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">eval_config <span style="color:#f92672">=</span> tfma<span style="color:#f92672">.</span>EvalConfig(
-    model_specs<span style="color:#f92672">=</span>[
-        tfma<span style="color:#f92672">.</span>ModelSpec(
-            signature_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;serving_default&#39;</span>,
-            label_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;tips_xf&#39;</span>,
-            preprocessing_function_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;transform_features&#39;</span>])
-    ],
-    slicing_specs<span style="color:#f92672">=</span>[tfma<span style="color:#f92672">.</span>SlicingSpec()],
-    metrics_specs<span style="color:#f92672">=</span>[
-        tfma<span style="color:#f92672">.</span>MetricsSpec(metrics<span style="color:#f92672">=</span>[
-            tfma<span style="color:#f92672">.</span>MetricConfig(
-                class_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;BinaryAccuracy&#39;</span>,
-                threshold<span style="color:#f92672">=</span>tfma<span style="color:#f92672">.</span>MetricThreshold(
-                    value_threshold<span style="color:#f92672">=</span>tfma<span style="color:#f92672">.</span>GenericValueThreshold(
-                        lower_bound<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;value&#39;</span>: eval_accuracy_threshold}),
-                    change_threshold<span style="color:#f92672">=</span>tfma<span style="color:#f92672">.</span>GenericChangeThreshold(
-                        direction<span style="color:#f92672">=</span>tfma<span style="color:#f92672">.</span>MetricDirection<span style="color:#f92672">.</span>HIGHER_IS_BETTER,
-                        absolute<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;value&#39;</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1e-10</span>})))
-        ])
-    ])
-</code></pre></div><p>You can see the example of the <code>eval_config</code> like above.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> ai_platform_serving_args <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
-    pusher_args[<span style="color:#e6db74">&#39;custom_config&#39;</span>] <span style="color:#f92672">=</span> {
-        tfx<span style="color:#f92672">.</span>extensions<span style="color:#f92672">.</span>google_cloud_ai_platform<span style="color:#f92672">.</span>experimental
-        <span style="color:#f92672">.</span>PUSHER_SERVING_ARGS_KEY:
-            ai_platform_serving_args
-    }
-    pusher <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>extensions<span style="color:#f92672">.</span>google_cloud_ai_platform<span style="color:#f92672">.</span>Pusher(<span style="color:#f92672">**</span>pusher_args)
-<span style="color:#66d9ef">else</span>:
-    pusher_args[<span style="color:#e6db74">&#39;push_destination&#39;</span>] <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>proto<span style="color:#f92672">.</span>PushDestination(
-        filesystem<span style="color:#f92672">=</span>tfx<span style="color:#f92672">.</span>proto<span style="color:#f92672">.</span>PushDestination<span style="color:#f92672">.</span>Filesystem(
-            base_directory<span style="color:#f92672">=</span>serving_model_dir))
-    pusher <span style="color:#f92672">=</span> tfx<span style="color:#f92672">.</span>components<span style="color:#f92672">.</span>Pusher(<span style="color:#f92672">**</span>pusher_args)
-<span style="color:#75715e"># components.append(pusher)</span>
-</code></pre></div><p><code>Pusher</code> basically pushes the survivided model to a certain location. It can be just a plain storage like GCS bucket, but you can also directly host your model for prediction on Google Cloud Vertex AI Prediction with <code>google_cloud_ai_platform.Pusher</code> component.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">return</span> tfx<span style="color:#f92672">.</span>dsl<span style="color:#f92672">.</span>Pipeline(
-    pipeline_name<span style="color:#f92672">=</span>pipeline_name,
-    pipeline_root<span style="color:#f92672">=</span>pipeline_root,
-    components<span style="color:#f92672">=</span>components,
-    metadata_connection_config<span style="color:#f92672">=</span>metadata_connection_config,
-    beam_pipeline_args<span style="color:#f92672">=</span>beam_pipeline_args,
-)
-</code></pre></div><p>After defining a number of components that build up the whole pipeline, the last step is to define and return the <code>Pipeline</code> with the <code>components</code>.</p>
+<google-codelab-step label="Setup and requirements" duration="2:00&#34;">
 
 </google-codelab-step>
-<google-codelab-step label="Uncomment pipeline components" duration="5:00">
+<google-codelab-step label="Install required packages" duration="2:00&#34;">
 
 </google-codelab-step>
-<google-codelab-step label="Compile TFX pipeline" duration="2:00">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline compile --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
-                       --engine<span style="color:#f92672">=</span>vertex
-</code></pre></div>
-</google-codelab-step>
-<google-codelab-step label="Build custom TFX docker image" duration="2:00">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx pipeline create --pipeline-path<span style="color:#f92672">=</span>kubeflow_v2_runner.py 
-                      --engine<span style="color:#f92672">=</span>vertex 
-                      --build-image
-</code></pre></div>
-</google-codelab-step>
-<google-codelab-step label="Integrate with GCP (Vertex Pipeline)" duration="5:00">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tfx run create --engine<span style="color:#f92672">=</span>vertex 
-                 --pipeline_name<span style="color:#f92672">=</span>tfx-pipeline
-                 --project<span style="color:#f92672">=</span>$GCS_PROJECT
-                 --region<span style="color:#f92672">=</span>us-central1
-</code></pre></div><p><img src="/assets/tfx-cli-101/pipeline.png" alt=""></p>
+<google-codelab-step label="Create TFX pipeline" duration="2:00&#34;">
 
 </google-codelab-step>
-<google-codelab-step label="Integrate with GCP (Dataflow)" duration="5:00">
+<google-codelab-step label="(optional)Compile TFX pipeline" duration="2:00&#34;">
 
 </google-codelab-step>
-<google-codelab-step label="Integrate with GCP (Vertex Training)" duration="5:00">
+<google-codelab-step label="Build TFX pipeline" duration="2:00&#34;">
 
 </google-codelab-step>
-<google-codelab-step label="Integrate with GCP (Vertex Prediction)" duration="5:00">
+<google-codelab-step label="Run TFX pipeline locally" duration="2:00&#34;">
+
+</google-codelab-step>
+<google-codelab-step label="Run TFX pipeline on Vertex AI" duration="2:00&#34;">
 
 </google-codelab-step>
 
