@@ -3,7 +3,7 @@ title: Learn how to get two different models for cloud and edge device respectiv
 date: 2021-08-25
 categories: [MLOps]
 tags: [VertexAI, Pipeline, TFX, KFP, tutorial]
-duration: 10:00
+duration: 20:00
 ---
 
 {{< step label="Project Overview" duration="1:00" >}}
