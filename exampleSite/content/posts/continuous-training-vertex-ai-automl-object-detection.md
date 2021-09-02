@@ -1,5 +1,5 @@
 ---
-title: Vertex AI Dataset, AutoML, Pipeline, and Prediction to adapt to changes in data trend
+title: Learn Vertex AI's AutoML for adapting to changes in data trend
 date: 2021-08-25
 categories: [MLOps]
 tags: [VertexAI, Pipeline, AutoML, tutorial]
