@@ -3,6 +3,11 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.inner {
+    font-size: 16px;
+    line-height: 30px;
+}
+
 .inner-title {
     padding-bottom: 800px;
     text-align: center;

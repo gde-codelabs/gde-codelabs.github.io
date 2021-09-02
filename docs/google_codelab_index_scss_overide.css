@@ -1,0 +1,15 @@
+google-codelab-index-cards .card .card-author {
+    padding: 16px 16px 0;
+    flex: 1 0 auto;
+    font-size: 13px;
+    text-align: right;
+}
+
+google-codelab-index {
+    color: #5c5c5c;
+    font-family: 'Open Sans', sans-serif;
+}
+
+google-codelab-index-cards .card .card-description {
+    color: #5c5c5c;    
+}
