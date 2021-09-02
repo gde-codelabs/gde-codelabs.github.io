@@ -1,19 +1,23 @@
 [![CI](https://github.com/gde-codelabs/gde-codelabs.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/gde-codelabs/gde-codelabs.github.io/actions/workflows/ci.yml)
 
-Here is what you can do to add a tutorial:
+# Codelabs built by GDEs
 
-1. Install `hugo` ([instructions](https://gohugo.io/getting-started/installing/))
-2. Clone the repo with `--recursive` to get submodules
-3. Write posts under `exampleSite/content/posts` (you can follow this [guide](https://github.com/googlecodelabs/tools))
+This repository builds static web pages using Hugo, and the generated static web pages are hosted on GitHub Pages. The applied theme makes the appearance of the pages similar to [google codelabs](https://codelabs.developers.google.com/). This Hugo theme was originally ported by [nekocode](https://github.com/nekocode/codelabs-hugo-theme), and customized by [Chansung Park](https://github.com/deep-diver/codelabs-hugo-theme).
+
+# Guide
+
+## How to contribute as a writer
+
+1. Install Hugo ([instructions](https://gohugo.io/getting-started/installing/))
+2. Run `git submodule update --init exampleSite/themes/codelabs/`
+3. Run `git submodule foreach git pull origin master`
+4. Write a post under `exampleSite/content/posts` directory
+    - You can follow the [format guide](https://github.com/googlecodelabs/tools). However, since this is not the actual Codelabs, you have to check locally if the features are supported
 4. Run `hugo server -D` in `exampleSite` for local test
-5. Commit & open PR 
+    - You don't have to kill and run this process whenever you add more contents. You can see the reflected changes if you refresh the browser
+5. Commit & Pull Request
 
-You can use GitHub Codespaces as well:
+#### In case of using GitHub Codespace
 
-1. Open up a codespace on this repository (`<>Code` on the top right => `Codespaces` tab => `New codespace`). If this option
-   is not available on your end simply press the "." key from your keyboard while being on the homepage of this repository.
-3. Open up the terminal interface in Codespace(`three lines icon` on the top left => `Terminal` => `New Terminal`)
-4. Update the submodules with `git submodule update --init exampleSite/themes/codelabs/`
-5. Write posts under `exampleSite/content/posts`
-6. Run `hugo server -D --baseUrl=/ --appendPort=false` in `exampleSite` for local test
-7. Commit & open PR
+1. Skip the first step above since Hugo is preinstalled
+2. Run `hugo server -D --baseUrl=/ --appendPort=false` for local test instead
