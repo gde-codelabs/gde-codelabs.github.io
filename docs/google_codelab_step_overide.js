@@ -9,21 +9,26 @@ var steps = document.getElementsByTagName("google-codelab-step");
 var innerBeforeIntruction = document.querySelectorAll(".instructions")[0];
 var innerBefore = steps[0].querySelectorAll(".instructions .inner")[0];
 
-var innerNewInstruction = document.createElement("div");
-innerNewInstruction.className = "instructions about-card";
+var innerNewTitleInstruction = document.createElement("div");
+innerNewTitleInstruction.className = "instructions about-title";
 
 var innerTitle = document.createElement("div");
 innerTitle.className = "inner inner-title";
 innerTitle.innerHTML = `
-        <h1>${title}</h1>
+        ${title}
         `;
-innerNewInstruction.append(innerTitle);
+innerNewTitleInstruction.append(innerTitle);
+
+var innerNewAboutInstruction = document.createElement("div");
+innerNewAboutInstruction.className = "instructions about-card";
 
 var innerAuthor = document.createElement("div");
 innerAuthor.className = "inner inner-author";
 innerAuthor.innerHTML = `
-        <span>by ${authors}</span>
+        <div class="about-this-codelab">About this codelab</div>
+        <i class="material-icons" style="font-size:30px;">account_circle</i> Written by ${authors}
         `;
-innerNewInstruction.append(innerAuthor);
+innerNewAboutInstruction.append(innerAuthor);
 
-steps[0].insertBefore(innerNewInstruction, innerBeforeIntruction);
+steps[0].insertBefore(innerNewTitleInstruction, innerBeforeIntruction);
+steps[0].insertBefore(innerNewAboutInstruction, innerBeforeIntruction);
