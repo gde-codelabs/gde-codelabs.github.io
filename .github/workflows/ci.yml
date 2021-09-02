@@ -44,16 +44,9 @@ jobs:
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
-    - name: Git show
-      run: git status
-
-    - name: Git add docs
+    - name: Git add 
       if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git add --force docs/**
-
-    - name: Git add exampleSite.resources
-      if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git add --force exampleSite/resources/**
+      run: git add --force .
 
     - name: Git commit
       if: ${{ steps.filter.outputs.docs == 'true' }}    
