@@ -1,9 +1,9 @@
 ---
-title: Learn what TFX CLI is, how we can use it for real world MLOps project.
+title: Introduction to TFX CLI
 date: 2021-08-25
 categories: [MLOps]
 tags: [VertexAI, Pipeline, TFX, tutorial]
-duration: 40:00
+duration: 20:00
 authors: Chansung Park
 ---
 
