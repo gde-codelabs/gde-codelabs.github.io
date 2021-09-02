@@ -1,9 +1,10 @@
 ---
-title: Learn how to deploy OpenAI's CLIP model on GKE. Also learn about how to cache intermediate results in MemoryStore (Redis)
+title: Image Search with Natural Language Queries
 date: 2021-08-25
 categories: [MLOps]
 tags: [GKE, MemoryStore, Redis, Flask, CLIP, OpenAI]
 duration: 10:00
+authors: Chansung Park
 ---
 
 {{< step label="Overview" duration="1:00" >}}
