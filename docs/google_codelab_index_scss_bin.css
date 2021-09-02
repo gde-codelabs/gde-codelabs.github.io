@@ -254,13 +254,6 @@ google-codelab-index-cards .card .card-description{
     flex: 1 0 auto;
     color: #212121;
 }
-google-codelab-index-cards .card .card-author {
-    padding: 16px 16px 0;
-    flex: 1 0 auto;
-    color: #212121;
-    font-weight: bold;
-    font-style: italic;
-}
 google-codelab-index-cards .card .card-footer {
     display: flex;
     align-items: center;
