@@ -3,7 +3,7 @@ title: Introduction to TFX CLI
 date: 2021-08-25
 categories: [MLOps]
 tags: [VertexAI, Pipeline, TFX, tutorial]
-duration: 26:30
+duration: 26:00
 authors: Chansung Park
 ---
 
