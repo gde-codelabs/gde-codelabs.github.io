@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/categories/mlops/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Introduction to TFX CLI</title>
+      <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
+      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
+      <description>The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project.  There are two template projects, taxi and penguin at the moment, and we will use taxi template.</description>
+    </item>
+    
+    <item>
       <title>Learn how to deploy OpenAI&#39;s CLIP model on GKE. Also learn about how to cache intermediate results in MemoryStore (Redis)</title>
       <link>https://gde-codelabs.github.io/posts/deploy-clip-on-gke-redis/</link>
       <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
@@ -41,15 +50,6 @@
       
       <guid>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</guid>
       <description>       </description>
-    </item>
-    
-    <item>
-      <title>Learn what TFX CLI is, how we can use it for real world MLOps project.</title>
-      <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
-      <description>The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project.  There are two template projects, taxi and penguin at the moment, and we will use taxi template.</description>
     </item>
     
   </channel>
