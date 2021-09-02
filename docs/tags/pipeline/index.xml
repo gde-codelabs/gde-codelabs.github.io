@@ -8,17 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/pipeline/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Introduction to TFX CLI</title>
-      <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
-      <description>The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project.
-In this codelab, you will use Vertex AI to run TFX Pipeline.
-What you&amp;rsquo;ll learn  How to create TFX pipeline project How to compile TFX pipeline How to build TFX pipeline How to run TFX pipeline on Vertex AI  What you&amp;rsquo;ll need  A Google Cloud Project A Browser, such as Chrome or Firefox Familiarity using Python Familiarity using TFX           </description>
-    </item>
-    
-    <item>
       <title>Learn how to get two different models for cloud and edge device respectively on Vertex AI Pipeline.</title>
       <link>https://gde-codelabs.github.io/posts/dual-deployments-on-vertex-ai/</link>
       <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
