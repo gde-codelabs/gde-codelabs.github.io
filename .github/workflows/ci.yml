@@ -44,10 +44,14 @@ jobs:
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
           
-    - name: Git add
+    - name: Git add docs
       if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git add --force docs/
-    
+      run: git add --force docs/*
+
+    - name: Git add exampleSite.resources
+      if: ${{ steps.filter.outputs.docs == 'true' }}    
+      run: git add --force exampleSite/resources/*
+
     - name: Git commit
       if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: git commit -m "publish"
