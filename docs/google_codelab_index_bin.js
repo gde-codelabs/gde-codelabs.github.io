@@ -733,7 +733,7 @@
              '</div><div class="card-duration"><span>' +
              (f ? J(f) + " min" : "") +
              "</span><span>" +
-             (g ? (S ? J(S) + " \u00b7 " : "") + " Updated " + J(g) : "") +
+             (g ? " Updated " + J(g) : "") +
              '</span></div><div class="card-footer"><a class="' +
              L(e) +
              '-bg x-scope paper-button" href="';
