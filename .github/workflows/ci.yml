@@ -46,11 +46,11 @@ jobs:
           
     - name: Git add docs
       if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git add --force docs/*
+      run: git add --force docs/**
 
     - name: Git add exampleSite.resources
       if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git add --force exampleSite/resources/*
+      run: git add --force exampleSite/resources/**
 
     - name: Git commit
       if: ${{ steps.filter.outputs.docs == 'true' }}    
