@@ -16,6 +16,9 @@ jobs:
           submodules: true 
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
+    - name: update submodules up to date
+      run: git submodule foreach git pull origin master
+
     - name: check if something changed
       uses: dorny/paths-filter@v2.2.1
       id: filter
