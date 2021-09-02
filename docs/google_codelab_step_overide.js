@@ -26,7 +26,7 @@ var innerAuthor = document.createElement("div");
 innerAuthor.className = "inner inner-author";
 innerAuthor.innerHTML = `
         <div class="about-this-codelab">About this codelab</div>
-        <i class="material-icons" style="font-size:30px;">account_circle</i> Written by ${authors}
+        <i class="material-icons" style="font-size:25px;">account_circle</i> Written by ${authors}
         `;
 innerNewAboutInstruction.append(innerAuthor);
 
