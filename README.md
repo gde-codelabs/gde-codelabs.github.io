@@ -2,6 +2,10 @@
 
 # Codelabs built by GDEs
 
+This repository holds Codelabs created by [Google Developers Experts (GDE)](https://developers.google.com/community/experts) in collaboration
+with contributors from the community. In case you are wondering what Codelabs are, take a look [here](https://codelabs.developers.google.com/). This
+repository is primarily maintained by [Chansung Park](https://developers.google.com/community/experts/directory/profile/profile-chansung-park) ([@deep-diver](https://github.com/deep-diver)) and [Sayak Paul](https://developers.google.com/community/experts/directory/profile/profile-sayak-paul) ([@sayakpaul](https://github.com/sayakpaul)) who both are Machine Learning GDEs. 
+
 This repository builds static web pages using Hugo, and the generated static web pages are hosted on GitHub Pages. The applied theme makes the appearance of the pages similar to [google codelabs](https://codelabs.developers.google.com/). This Hugo theme was originally ported by [nekocode](https://github.com/nekocode/codelabs-hugo-theme), and customized by [Chansung Park](https://github.com/deep-diver/codelabs-hugo-theme).
 
 # Guide
@@ -38,6 +42,7 @@ authors: AUTHOR_NAME
 ```
 
 The categories can have two values. The first is the main, and the second is the sub, and they will appear at the bottom of the card in the front page. Only the main category is used to filter by categories and colorize the bottom color of the card. Here is the list of currently supported categories:
+
 - mlops (Machine Learning Operations)
 - gcp (Google Cloud Platform)
 - tfx (TensorFlow Extended)
@@ -57,19 +62,29 @@ WRITE YOUR OWN CONTENT
 {{< /step >}}
 ```
 
-In the `WRITE YOUR OWN CONTENT`, you can simply write anything in Markdown format. If you need to include images, you can put images in `exampleSite/content/assets/images` directory, and don't forget to refer those images with the `/` in the path (i.e. `![IMAGE](/assets/images/YOUR_CODELAB/IMAGE.png)`).
+In the `WRITE YOUR OWN CONTENT`, you can simply write anything in Markdown format. If you need to include images, you can put images in `exampleSite/content/assets/images` directory, and don't forget to refer those images with the `/` in the path (i.e. `![IMAGE](/assets/images/YOUR_CODELAB/IMAGE.png)`). You can check out the following source repositories of a few popular Codelabs for reference:
+
+* https://github.com/googlecodelabs/automl-vision-edge-in-mlkit
+* https://github.com/googlecodelabs/integrating-ml-apis
+* https://github.com/flutter/codelabs/tree/master/firebase-get-to-know-flutter
 
 
 #### Recommended first few steps
 
 In order to make codelabs as appealing as possible, here are few recommendation: 
-- Make the **title** more noticible within **no more than 60 characters** long
-- Always **add environmental setup** for readers to reproduce your experiments
-- Keep each steps as compact as possible
-  - Don't try to explain every underlying technologies
-  - Add links to other resources for not losing focus
 
-There are many wonderful codelabs at [google codelabs](https://codelabs.developers.google.com/), so please take a look how they are written. Here are some of them:
+- Codelabs are meant to be primarily about **_code_**. So it's recommended to not consider theory-focused 
+  posts for Codelabs. 
+- Make the **title** more noticible within **no more than 60 characters** long.
+- Always **add environmental setup** for readers to reproduce your experiments.
+- Keep each steps as compact as possible:
+  - Don't try to explain every underlying technologies.
+  - Add links to other resources for keeping things compact and interesting to the readers.
+- Write multi part codelabs:
+  - If you need more detailed explanation on certain topics, simply write more codelabs and leave links. In this way, readers can consume the whole concept/tutorials bite by bite.
+
+There are many wonderful codelabs at [Google Codelabs](https://codelabs.developers.google.com/), so please take a look how they are written. Here are some of them:
+
 - [Using BigQuery with Python](https://codelabs.developers.google.com/codelabs/cloud-bigquery-python)
 - [TensorFlow, Keras and deep learning, without a PhD](https://codelabs.developers.google.com/codelabs/cloud-tensorflow-mnist)
 - [Train and deploy on-device image classification model with AutoML Vision in ML Kit](https://codelabs.developers.google.com/codelabs/automl-vision-edge-in-mlkit)

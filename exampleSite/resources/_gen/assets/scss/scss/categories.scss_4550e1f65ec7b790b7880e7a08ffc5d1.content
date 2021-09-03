@@ -8,7 +8,21 @@ google-codelab-index-cards .card.gcp-bottom {
   background-image: url("/assets/icons/gcp.svg") !important;
   background-size: 32px 32px;
   width: 32px;
-  height: 32px; }
+  height: 32px; 
+  margin-right: 10px; }
+
+.jupyter-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.jupyter-bottom {
+  border-bottom-color: #fc4903; }
+
+.jupyter-icon {
+  background-image: url("/assets/icons/jupyter.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px; 
+  margin-right: 10px; }
 
 .mlops-bg {
   background-color: #1A73E8 !important; }
@@ -20,7 +34,8 @@ google-codelab-index-cards .card.mlops-bottom {
   background-image: url("/assets/icons/mlops.svg") !important;
   background-size: 32px 32px;
   width: 32px;
-  height: 32px; }
+  height: 32px; 
+  margin-right: 10px; }
 
 .tfx-bg {
   background-color: #f58442 !important; }
@@ -32,4 +47,5 @@ google-codelab-index-cards .card.tfx-bottom {
   background-image: url("/assets/icons/tfx.svg") !important;
   background-size: 32px 32px;
   width: 32px;
-  height: 32px; }
+  height: 32px; 
+  margin-right: 10px; }

@@ -18,5 +18,15 @@ In this codelab, you will use Vertex AI to run TFX Pipeline.
 What you&amp;rsquo;ll learn  How to create TFX pipeline project How to compile TFX pipeline How to build TFX pipeline How to run TFX pipeline on Vertex AI  What you&amp;rsquo;ll need  A Google Cloud Project A Browser, such as Chrome or Firefox Familiarity using Python Familiarity using TFX   For standalone TFX users, this is an optional step.</description>
     </item>
     
+    <item>
+      <title>Learn how to setup Vertex AI Notebook for pipelines</title>
+      <link>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</guid>
+      <description>Vertex AI platform provides the fully managed version of JupyterLab. JupyterLab has been the most popoular tool for data scientists and machine learning engineer. It comes with not only Jupyter Notebook but also Terminal, and so on.
+What you&amp;rsquo;ll learn  How to setup IAM How to setup and launch Vertex AI Notebook  What you&amp;rsquo;ll need  A Google Cloud Project A Browser, such as Chrome or Firefox   If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
+    </item>
+    
   </channel>
 </rss>
