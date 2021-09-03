@@ -9,3 +9,15 @@ google-codelab-index-cards .card.mlops-bottom {
   background-size: 32px 32px;
   width: 32px;
   height: 32px; }
+
+.tfx-bg {
+  background-color: #f58442 !important; }
+
+google-codelab-index-cards .card.tfx-bottom {
+  border-bottom-color: #f58442; }
+
+.tfx-icon {
+  background-image: url("/assets/icons/tfx.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px; }
