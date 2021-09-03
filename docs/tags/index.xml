@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Tutorials made by GDEs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ML Pipeline</title>
+      <link>https://gde-codelabs.github.io/tags/ml-pipeline/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/ml-pipeline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MLOps</title>
+      <link>https://gde-codelabs.github.io/tags/mlops/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/mlops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TFX</title>
+      <link>https://gde-codelabs.github.io/tags/tfx/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/tfx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VertexAI</title>
+      <link>https://gde-codelabs.github.io/tags/vertexai/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gde-codelabs.github.io/tags/vertexai/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AutoML</title>
       <link>https://gde-codelabs.github.io/tags/automl/</link>
@@ -89,29 +125,11 @@
     </item>
     
     <item>
-      <title>TFX</title>
-      <link>https://gde-codelabs.github.io/tags/tfx/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/tags/tfx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tutorial</title>
       <link>https://gde-codelabs.github.io/tags/tutorial/</link>
       <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://gde-codelabs.github.io/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VertexAI</title>
-      <link>https://gde-codelabs.github.io/tags/vertexai/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/tags/vertexai/</guid>
       <description></description>
     </item>
     
