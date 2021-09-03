@@ -99,6 +99,28 @@ Before jumping into the TFX CLI, let's create a environment to play with. In thi
 
 {{< step label="Create TFX pipeline" duration=2:00" >}}
 
+### **Create TFX pipeline project**
+
+1. Setup pipeline name and path.
+```bash
+PIPELINE_NAME=tfx-pipeline
+PIPELINE_PATH=tfx-pipeline
+```
+
+2. Create TFX pipeline project
+```bash
+$ !tfx template copy --model=taxi \
+       --pipeline-name=$PIPELINE_NAME \
+       --destination-path=$PIPELINE_PATH
+```
+
+### **Examine populated project structure**
+
+```bash
+$ tree ./$PIPELINE_PATH
+```
+![directory-structure](/assets/images/tfx-cli-101/directory-structure.png)
+
 {{< /step >}}
 
 {{< step label="(optional)Compile TFX pipeline" duration=2:00" >}}
