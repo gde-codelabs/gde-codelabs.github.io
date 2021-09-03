@@ -1,7 +1,7 @@
 ---
 title: Learn how to integrate GitHub Action, Cloud Build, and TFX based project for realizing CI/CD in MLOps.
 date: 2021-08-25
-categories: [MLOps]
+categories: [MLOps, gcp]
 tags: [VertexAI, Pipeline, TFX, tutorial]
 duration: 10:00
 ---
