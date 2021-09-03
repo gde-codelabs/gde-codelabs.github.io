@@ -1,3 +1,16 @@
+.gcp-bg {
+  background-color: #3884ff !important; }
+
+google-codelab-index-cards .card.gcp-bottom {
+  border-bottom-color: #3884ff; }
+
+.gcp-icon {
+  background-image: url("/assets/icons/gcp.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .mlops-bg {
   background-color: #1A73E8 !important; }
 
@@ -8,7 +21,8 @@ google-codelab-index-cards .card.mlops-bottom {
   background-image: url("/assets/icons/mlops.svg") !important;
   background-size: 32px 32px;
   width: 32px;
-  height: 32px; }
+  height: 32px;
+  margin-right: 10px; }
 
 .tfx-bg {
   background-color: #f58442 !important; }
@@ -20,4 +34,5 @@ google-codelab-index-cards .card.tfx-bottom {
   background-image: url("/assets/icons/tfx.svg") !important;
   background-size: 32px 32px;
   width: 32px;
-  height: 32px; }
+  height: 32px;
+  margin-right: 10px; }

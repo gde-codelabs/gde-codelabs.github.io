@@ -1,7 +1,7 @@
 ---
 title: Introduction to TFX CLI
 date: 2021-09-03
-categories: [tfx]
+categories: [tfx, gcp]
 tags: [VertexAI, ML Pipeline, TFX, MLOps]
 duration: 20:00
 authors: Chansung Park
@@ -28,6 +28,17 @@ In this codelab, you will use Vertex AI to run TFX Pipeline.
 {{< /step >}}
 
 {{< step label="IAM setup" duration=2:00" >}}
+
+For standalone TFX users, this is an optional step. However, If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.
+- Vertex AI Custom Code Service Agent
+- Vertex AI Service Agent
+- Vertex AI User
+- Storage Object Admin
+- Storage Object Creator
+
+### **Visit GCP console**
+
+
 
 {{< /step >}}
 
