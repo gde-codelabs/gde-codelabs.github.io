@@ -68,6 +68,8 @@ In order to make codelabs as appealing as possible, here are few recommendation:
 - Keep each steps as compact as possible
   - Don't try to explain every underlying technologies
   - Add links to other resources for not losing focus
+- Write multi part codelabs
+  - If you need more detailed explanation on certain topics, simply write more codelabs and leave links. In this way, readers can consume the whole concept/tutorials bite by bite.
 
 There are many wonderful codelabs at [google codelabs](https://codelabs.developers.google.com/), so please take a look how they are written. Here are some of them:
 - [Using BigQuery with Python](https://codelabs.developers.google.com/codelabs/cloud-bigquery-python)
