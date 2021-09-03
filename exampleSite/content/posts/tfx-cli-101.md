@@ -27,7 +27,7 @@ In this codelab, you will use Vertex AI to run TFX Pipeline.
 
 {{< /step >}}
 
-{{< step label="IAM setup" duration=2:00" >}}
+{{< step label="Setup IAM" duration=2:00" >}}
 
 For standalone TFX users, this is an optional step. However, If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.
 - Vertex AI Custom Code Service Agent
