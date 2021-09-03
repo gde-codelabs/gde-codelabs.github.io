@@ -692,6 +692,10 @@
      }
      O.prototype.J = function (a) {
          var b = (a.getAttribute("category") || "").toLowerCase().replace(/\s+/g, "-").replace(/--+/g, "-").trim().split(",").shift();
+
+         let categories = a.getAttribute("category").split(",");
+         var sub_category = categories.length > 1 ? categories[1] : '';
+
          var c = a.getAttribute("title") || "",
              d = parseInt(a.getAttribute("duration"), 10) || 0,
              e;
@@ -721,6 +725,8 @@
              L(d) +
              '" category="' +
              L(e) +
+             '" subcategory="' + 
+             sub_category +
              '" tags="' +
              L(m) +
              '" duration="' +
@@ -1233,4 +1239,3 @@
          console.warn("googlecodelabs.CodelabIndex", a);
      }
  }.call(this));
- 
