@@ -36,9 +36,31 @@ For standalone TFX users, this is an optional step. However, If you want to run 
 - Storage Object Admin
 - Storage Object Creator
 
-### **Visit GCP console**
+### **Visit IAM menu**
 
+1. Open [GCP Console](https://console.cloud.google.com/) on the browser
+2. Create a new project or use the existing one
+3. Find and click [**IAM & Admin** menu](https://console.cloud.google.com/iam-admin/) on the left navigation pane
+4. Go to [**Service Accounts** menu](https://console.cloud.google.com/iam-admin/serviceaccounts) on the left pane
 
+### **Create a service account**
+
+1. Click `+ CREATE SERVICE ACCOUNT` at the top bar
+
+2. Enter `Service account details` as the first step. The second text bos will be autofiled.
+![service account setup 1](/assets/images/tfx-cli-101/service-account-1.png)
+
+3. Add roles to the service account. It should have five different roles, `Vertex AI Custom Code Service Agent`, `Vertex AI SErvice Agent`, `Vertex AI User`, `Storage Object Admin`, and `Storage Object Creator`
+![service account setup 2](/assets/images/tfx-cli-101/service-account-2.png)
+
+4. Click `DONE` button at the bottom.
+![service account setup 3](/assets/images/tfx-cli-101/service-account-3.png)
+
+### **Check the service account**
+
+1. Go to [**IAM menu**](https://console.cloud.google.com/iam-admin/iam) on the left pane
+2. You should be able to see your service account like below
+![service account check](/assets/images/tfx-cli-101/service-account-4.png)
 
 {{< /step >}}
 
