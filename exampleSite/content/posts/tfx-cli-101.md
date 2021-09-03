@@ -66,6 +66,8 @@ For standalone TFX users, this is an optional step. However, If you want to run 
 
 {{< step label="Create Vertex Notebook, Install dependencies" duration=2:00" >}}
 
+Before jumping into the TFX CLI, let's create a environment to play with. In this codelab, we will use a JupyterLab or Terminal in `Vertex Notebook` service.
+
 ### **Enable Vertex Notebook API**
 
 1. Find and click [**Vertex AI**](https://console.cloud.google.com/vertex-ai) on the left navigation pane
