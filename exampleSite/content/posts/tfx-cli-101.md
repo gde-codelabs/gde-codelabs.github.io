@@ -95,14 +95,6 @@ For standalone TFX users, this is an optional step. However, If you want to run 
 
 {{< /step >}}
 
-{{< step label="Setup and requirements" duration=2:00" >}}
-
-{{< /step >}}
-
-{{< step label="Install required packages" duration=2:00" >}}
-
-{{< /step >}}
-
 {{< step label="Create TFX pipeline" duration=2:00" >}}
 
 {{< /step >}}
