@@ -50,7 +50,7 @@ For standalone TFX users, this is an optional step. However, If you want to run 
 2. Enter `Service account details` as the first step. The second text bos will be autofiled.
 ![service account setup 1](/assets/images/tfx-cli-101/service-account-1.png)
 
-3. Add roles to the service account. It should have five different roles, `Vertex AI Custom Code Service Agent`, `Vertex AI SErvice Agent`, `Vertex AI User`, `Storage Object Admin`, and `Storage Object Creator`
+3. Add roles to the service account. It should have five different roles, `Vertex AI Custom Code Service Agent`, `Vertex AI Service Agent`, `Vertex AI User`, `Storage Object Admin`, and `Storage Object Creator`
 ![service account setup 2](/assets/images/tfx-cli-101/service-account-2.png)
 
 4. Click `DONE` button at the bottom.
