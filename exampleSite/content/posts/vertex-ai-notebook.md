@@ -60,7 +60,17 @@ If you want to run the pipeline on Vertex AI, your GCP service account should ha
 
 {{< /step >}}
 
-{{< step label="Create Vertex Notebook, Install dependencies" duration=6:00" >}}
+{{< step label="Enable Vertex AI API" duration="1:00" >}}
+
+In order to use APIs for Vertex AI, you have to enable it. After enabling the APIs, you will be able to access APIs for Vertex AI in other GCP services such as Vertex AI Notebook or Cloud Build.
+
+To do this, please visit [Vertex AI API](https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview) and click `ENABLE` button. The UI looks something like below.
+
+![vertex ai api](/assets/images/vertex-ai-notebook/vertex-ai-api.png)
+
+{{< /step >}}
+
+{{< step label="Create Vertex Notebook, Install dependencies" duration="5:00" >}}
 
 Before jumping into the TFX CLI, let's create a environment to play with. In this codelab, we will use a JupyterLab or Terminal in `Vertex Notebook` service.
 

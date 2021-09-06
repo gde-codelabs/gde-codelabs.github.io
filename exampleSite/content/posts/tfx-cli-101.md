@@ -1,6 +1,6 @@
 ---
 title: Introduction to TFX CLI
-date: 2021-09-03
+date: 2021-09-06
 categories: [tfx, gcp]
 tags: [VertexAI, ML Pipeline, TFX, MLOps]
 duration: 20:00
@@ -91,7 +91,7 @@ $ tfx pipeline update \
        --engine=... \ 
 ```
 
-`tfx pipeline update` CLI lets you update the previously created pipeline. All the arguments from `tfx pipeline create` are also available for `tfx pipeline update` CLI. That means you can choose different running environments whenever you want. 
+`tfx pipeline update` CLI lets you update the previously created pipeline. All the arguments from `tfx pipeline create` are also available for `tfx pipeline update` CLI. That means you can update the existing pipeline whenever there is any changes. However, please note that you don't update a pipeline to be run in different environment even though the names are the same (i.e. from `local` to `vertex`).
 
 When `--build-image` option is specified, TFX CLI will build a custom TFX docker image, and every component will be run based on the built image. The image tag can be modified with `PIPELINE_IMAGE` defined in `pipeline/configs.py`.
 
@@ -175,55 +175,72 @@ When you create a template project with TFX CLI, the only included TFX component
 
 {{< step label="Run on Vertex AI" duration=2:00" >}}
 
-### 1. Copy data.csv to GCS bucket
+Before running the pipeline on Vertex AI, it assumes the data is stored in the cloud. You can find out the exact location in `_DATA_PATH` variable from `kubeflow_v2_runner.py`. It says the pipeline will read the data from `'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)`, and the `configs.GCS_BUCKET_NAME` is `GCS_BUCKET_NAME = GOOGLE_CLOUD_PROJECT + '-kubeflowpipelines-default'`. You don't have to use this name, and you can simply change it as you like. However, we will use the every names as they are to be clear.
+
+### 1. Create a GCS bucket
+
+A GCS Bucket can be created using `gsutil` CLI tool, and it is pre-installed if you are using Vertex AI Notebook. Otherwise, you can follow the [official document](https://cloud.google.com/storage/docs/gsutil_install) to install `gsutil` for your environment.
 
 ```bash
-DATA_GCS_BUCKET="..."
-
-$ gsutil cp $PIPELINE_PATH/data/data.csv gs://$DATA_GCS_BUCKET/data
+$ GCP_PROJECT_ID="..."
+$ gsutil mb \ 
+    -c standard \
+    -l us \
+    gs://$GCP_PROJECT_ID'-kubeflowpipelines-default'
 ```
 
-### 2. Update the pipeline with `kubeflow_v2_runner.py`
+Please check out the [official document](https://cloud.google.com/storage/docs/gsutil/commands/mb) for more detailed information about `gsutil mb` CLI. To simply put the above command, it creates a GCS bucket named `gs://...` in `us` location, and the bucket will be the standard class.
+
+### 2. Copy data.csv to GCS bucket
+
+TFX template project provides a default dataset, and it is stored in `data/data.csv` for taxi template. The command below simply copies the `data/data.csv` to the designated GCS location. You don't explicitly have to create the nested directories.
 
 ```bash
-$ tfx pipeline update \
+$ gsutil cp \
+    $PIPELINE_PATH/data/data.csv \
+    gs://$GCP_PROJECT_ID'-kubeflowpipelines-default'/tfx-template/data/taxi/
+```
+
+### 3. Create a pipeline with `kubeflow_v2_runner.py`
+
+Now we can create the pipeline for Vertex AI. As you see, we don't `update` the one created for `local` run, but we create the other pipeline with the same name and different environment, `vertex`. Just make sure you specify the `--pipeline-path` to where the `kubeflow_v2_runner.py` is and `--engine` to `vertex` for Vertex AI. 
+
+Also, because each TFX component is run based on a docker image, we need to specify which docker image to use. By default `kubeflow_v2_runner.py` will try to use custom docker image built from the current pipeline source codes. However, the docker image hasn't been built yet, so we need to set `--build-image` option in `tfx pipeline create` CLI.
+
+```bash
+$ tfx pipeline create \
       --pipeline-path=$PIPELINE_PATH/kubeflow_v2_runner.py \
       --engine=vertex
+      --build-image
 ```
 
-### 3. Run the pipeline
+With `--build-image` option, you will see the process of the docker image being built in the output. Additionally, if you want you can modify `Dockerfile` in the root directory of the project.
+
+### 4. Run the pipeline
+
+Runnning the pipeline on Vertex AI is not so different. You have to make sure `--engine` is set to `vertex`. Also, because Vertex AI pipeline is a serverless platform, you need to tell which GCP Project and Region you want to run the pipeline on. So there are `--project` and `--region` options.
 
 ```bash
-GCP_PROJECT_ID="..."
-GCP_PROJECT_REGION="..."
-
+$ GCP_PROJECT_REGION="us-central1"
 $ tfx run create \
       --pipeline-name=$PIPELINE_NAME \
-      --engine=vertex
-      --project=$GCP_PROJECT_ID
+      --engine=vertex \
+      --project=$GCP_PROJECT_ID \
       --region=$GCP_PROJECT_REGION
 ```
 
+After running `tfx run create` CLI, you will see the output like below. 
+
+![vertex pipelin run output](/assets/images/tfx-cli-101/vertex-pipeline-run.png)
+
+### 5. View from GCP Console
+
+If you visit [Vertex AI Pipeline](https://console.cloud.google.com/vertex-ai/pipelines), you will see the running pipelines are listed. Click the one that you have created, then you will see the graph like below. As the procedure goes by, each node will be filled with colors (green for runnning and success, red for failure).
+
 ![vertex pipeline](/assets/images/tfx-cli-101/pipeline.png)
 
-{{< /step >}}
+At this point, you can click one of the nodes. Then detail information will show up in the right pane. It basically tells you the metadata of the node. You can find out what kind of input it took, and which output it produced. 
 
-{{< step label="[OPTIONAL] Run Pipeline Programatically" duration=2:00" >}}
-
-```python
-GCP_PROJECT_ID="..."
-GCP_PROJECT_REGION="..."
-PIPELINE_DEFINITION_FILE="pipeline.json"
-
-from kfp.v2.google import client
-
-pipelines_client = client.AIPlatformClient(
-    project_id=GCP_PROJECT_ID,
-    region=GCP_PROJECT_REGION,
-)
-
-_ = pipelines_client.create_run_from_job_spec(PIPELINE_DEFINITION_FILE, 
-                                              enable_caching=True)
-```
+![vertex node](/assets/images/tfx-cli-101/node-vertex-ai.png)
 
 {{< /step >}}
