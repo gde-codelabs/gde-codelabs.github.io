@@ -75,21 +75,31 @@ You can explore what's included in each file, but here is a short description.
 
 {{< step label="Create & Compile Pipeline" duration=2:00" >}}
 
+Before running the pipeline, it should be created or compiled. TFX provides `tfx pipeline create` and `tfx pipeline compile` CLIs for this purpose. Let's see what they do.
+
 ```bash
 $ tfx pipeline create --pipeline-path=... \
        --engine=... \ 
        --build-image
 ```
 
+`tfx pipeline create` CLI is used to create tfx pipeline. `--pipeline-path` is a mandatory argument, and the one of the paths for `local.py`, `kubeflow_runner.py`, or `kubeflow_v2_runner.py ` should be specified. Also note that `--engine` parameter should be specified accordingly. The [official document](https://www.tensorflow.org/tfx/guide/cli#create) says "If the engine is not set, the engine is auto-detected based on the environment.", but it is safe to be set manually. 
+
 ```bash
 $ tfx pipeline update --pipeline-path=... \
        --engine=... \ 
 ```
 
+`tfx pipeline update` CLI lets you update the previously created pipeline. All the arguments from `tfx pipeline create` are also available for `tfx pipeline update` CLI. That means you can choose different running environments whenever you want. 
+
+When `--build-image` option is specified, TFX CLI will build a custom TFX docker image, and every component will be run based on the built image. The image tag can be modified with `PIPELINE_IMAGE` defined in `pipeline/configs.py`.
+
 ```bash
 $ tfx pipeline compile --pipeline-path=... \
        --engine=... \ 
 ```
+
+Once you run `tfx pipeline create`, you can run the pipeline. However, you have to run `tfx pipeline create` whenever the local environment changes. For instance, there are a number of situations that only fresh environment is availalbe such as GitHub Action, Cloud Build, and so on. 
 
 {{< /step >}}
 
