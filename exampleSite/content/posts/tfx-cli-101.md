@@ -204,6 +204,8 @@ $ tfx run create \
       --region=$GCP_PROJECT_REGION
 ```
 
+![vertex pipeline](/assets/images/tfx-cli-101/pipeline.png)
+
 {{< /step >}}
 
 {{< step label="[OPTIONAL] Run Pipeline Programatically" duration=2:00" >}}
