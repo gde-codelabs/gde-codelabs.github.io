@@ -86,7 +86,8 @@ $ tfx pipeline create --pipeline-path=... \
 `tfx pipeline create` CLI is used to create tfx pipeline. `--pipeline-path` is a mandatory argument, and the one of the paths for `local.py`, `kubeflow_runner.py`, or `kubeflow_v2_runner.py ` should be specified. Also note that `--engine` parameter should be specified accordingly. The [official document](https://www.tensorflow.org/tfx/guide/cli#create) says "If the engine is not set, the engine is auto-detected based on the environment.", but it is safe to be set manually. 
 
 ```bash
-$ tfx pipeline update --pipeline-path=... \
+$ tfx pipeline update \
+       --pipeline-path=... \
        --engine=... \ 
 ```
 
@@ -95,41 +96,109 @@ $ tfx pipeline update --pipeline-path=... \
 When `--build-image` option is specified, TFX CLI will build a custom TFX docker image, and every component will be run based on the built image. The image tag can be modified with `PIPELINE_IMAGE` defined in `pipeline/configs.py`.
 
 ```bash
-$ tfx pipeline compile --pipeline-path=... \
+$ tfx pipeline compile \
+       --pipeline-path=... \
        --engine=... \ 
 ```
 
 Once you run `tfx pipeline create`, you can run the pipeline. However, you have to run `tfx pipeline create` whenever the local environment changes. For instance, there are a number of situations that only fresh environment is availalbe such as GitHub Action, Cloud Build, and so on. 
 
+In the following steps, let's see how to create and run a pipeline in local and Vertex AI environment.
+
 {{< /step >}}
 
 {{< step label="Run Pipeline Locally" duration=2:00" >}}
 
+### 1. Create pipeline with `local_runner.py`
+
+As discussed before, we need to sepcify `--pipeline-path` to `local_runner.py` and `--engine` to `local` in order to create a pipeline to be run in local environment. 
+
 ```bash
-$ tfx pipeline create --pipeline-path=$PIPELINE_PATH/local_runner.py \
+$ tfx pipeline create \
+      --pipeline-path=$PIPELINE_PATH/local_runner.py \
       --engine=local
 ```
 
+You will see `Pipeline "tfx-pipeline" created successfully.` message if the pipeline is successfully created.
+
+### 2. Run the pipeline
+
+After the pipeline creation, we can run the pipeline with `tfx run create` CLI like below. Notice that we only need to let the CLI know the name of pipeline with `--pipeline-name` since it was created before.
+
 ```bash
-$ tfx run create --pipeline-name=$PIPELINE_NAME \
+$ tfx run create \
+      --pipeline-name=$PIPELINE_NAME \
       --engine=local
 ```
+
+This will print out a long text like below. Basically what it tells us is all the metadata from the TFX pipeline. For further information about the metadata, please take a look at [ MLMD(ML Metadata) ](https://www.tensorflow.org/tfx/guide/mlmd). 
+
+```bash
+INFO:absl:Running pipeline:
+ pipeline_info {
+  id: "tfx-pipeline"
+}
+...
+
+custom_driver_specs {
+  key: "CsvExampleGen"
+  value {
+    python_class_executable_spec {
+      class_path: "tfx.components.example_gen.driver.FileBasedDriver"
+    }
+  }
+}
+metadata_connection_config {
+  sqlite {
+    filename_uri: "./tfx_metadata/tfx-pipeline/metadata.db"
+    connection_mode: READWRITE_OPENCREATE
+  }
+}
+...
+
+INFO:absl:MetadataStore with DB connection initialized
+INFO:absl:select span and version = (0, None)
+INFO:absl:latest span and version = (0, None)
+INFO:absl:MetadataStore with DB connection initialized
+INFO:absl:Going to run a new execution 10
+...
+...
+INFO:absl:Component CsvExampleGen is finished.
+```
+
+The only things you need to care about is `custom_driver_specs` to check if the pipeline was run on local environment. It basically says TFX pipeline uses `sqlite` as the backend metadata store and `FileBasedDriver` to interact with `sqlite`. As you know `sqlite` is a in-memory database hosted on local environment, so it is used here for `local_runner.py` as well.
+
+When you create a template project with TFX CLI, the only included TFX component is `CSVExampleGen`. That is why you only see any metadata related to `CSVExampleGen`. If you want to run the pipeline with the other TFX components, please open up `pipeline/pipeline.py` and uncomment `components.append(...)` statements. 
 
 {{< /step >}}
 
 
 {{< step label="Run on Vertex AI" duration=2:00" >}}
 
+### 1. Copy data.csv to GCS bucket
+
 ```bash
-$ tfx pipeline update --pipeline-path=$PIPELINE_PATH/kubeflow_v2_runner.py \
+DATA_GCS_BUCKET="..."
+
+$ gsutil cp $PIPELINE_PATH/data/data.csv gs://$DATA_GCS_BUCKET/data
+```
+
+### 2. Update the pipeline with `kubeflow_v2_runner.py`
+
+```bash
+$ tfx pipeline update \
+      --pipeline-path=$PIPELINE_PATH/kubeflow_v2_runner.py \
       --engine=vertex
 ```
+
+### 3. Run the pipeline
 
 ```bash
 GCP_PROJECT_ID="..."
 GCP_PROJECT_REGION="..."
 
-$ tfx run create --pipeline-name=$PIPELINE_NAME \
+$ tfx run create \
+      --pipeline-name=$PIPELINE_NAME \
       --engine=vertex
       --project=$GCP_PROJECT_ID
       --region=$GCP_PROJECT_REGION
