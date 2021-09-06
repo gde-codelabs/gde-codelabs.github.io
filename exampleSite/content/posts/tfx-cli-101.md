@@ -3,11 +3,11 @@ title: Introduction to TFX CLI
 date: 2021-09-06
 categories: [tfx, gcp]
 tags: [VertexAI, ML Pipeline, TFX, MLOps]
-duration: 20:00
+duration: 40:00
 authors: Chansung Park
 ---
 
-{{< step label="Overview" duration="1:00" >}}
+{{< step label="Overview" duration="5:00" >}}
 
 ![tensorflow exteded](https://2.bp.blogspot.com/-bAi9PTHhS_A/XdZJ89UhUII/AAAAAAAABFE/NbSy0gqGRW4AVCEmC6QhSu---NbVmUWcQCLcBGAsYHQ/s1600/0_4wQdCndV1ame3Bpm.png)
 
@@ -33,7 +33,7 @@ Please follow [Learn how to setup Vertex AI Notebook for pipelines](https://gde-
 
 {{< /step >}}
 
-{{< step label="Create TFX pipeline" duration=2:00" >}}
+{{< step label="Create TFX pipeline" duration=10:00" >}}
 
 ### 1. Setup pipeline name and path. 
 
@@ -73,7 +73,7 @@ You can explore what's included in each file, but here is a short description.
 
 {{< /step >}}
 
-{{< step label="Create & Compile Pipeline" duration=2:00" >}}
+{{< step label="Create & Compile Pipeline" duration=5:00" >}}
 
 Before running the pipeline, it should be created or compiled. TFX provides `tfx pipeline create` and `tfx pipeline compile` CLIs for this purpose. Let's see what they do.
 
@@ -107,7 +107,7 @@ In the following steps, let's see how to create and run a pipeline in local and 
 
 {{< /step >}}
 
-{{< step label="Run Pipeline Locally" duration=2:00" >}}
+{{< step label="Run Pipeline Locally" duration=5:00" >}}
 
 ### 1. Create pipeline with `local_runner.py`
 
@@ -173,7 +173,7 @@ When you create a template project with TFX CLI, the only included TFX component
 {{< /step >}}
 
 
-{{< step label="Run on Vertex AI" duration=2:00" >}}
+{{< step label="Run on Vertex AI" duration=15:00" >}}
 
 Before running the pipeline on Vertex AI, it assumes the data is stored in the cloud. You can find out the exact location in `_DATA_PATH` variable from `kubeflow_v2_runner.py`. It says the pipeline will read the data from `'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)`, and the `configs.GCS_BUCKET_NAME` is `GCS_BUCKET_NAME = GOOGLE_CLOUD_PROJECT + '-kubeflowpipelines-default'`. You don't have to use this name, and you can simply change it as you like. However, we will use the every names as they are to be clear.
 
@@ -236,6 +236,8 @@ After running `tfx run create` CLI, you will see the output like below.
 ### 5. View from GCP Console
 
 If you visit [Vertex AI Pipeline](https://console.cloud.google.com/vertex-ai/pipelines), you will see the running pipelines are listed. Click the one that you have created, then you will see the graph like below. As the procedure goes by, each node will be filled with colors (green for runnning and success, red for failure).
+
+Please note that the below figure is achieved by uncommenting all the `components.append(...)` statements in `pipeline/pipiline.py`.
 
 ![vertex pipeline](/assets/images/tfx-cli-101/pipeline.png)
 
