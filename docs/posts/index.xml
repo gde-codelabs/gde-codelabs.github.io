@@ -6,16 +6,15 @@
     <description>Recent content in Posts on Tutorials made by GDEs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to TFX CLI</title>
       <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
-      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 06 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
-      <description>The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project.
-In this codelab, you will use Vertex AI to run TFX Pipeline.
-What you&amp;rsquo;ll learn  How to create TFX pipeline project How to compile TFX pipeline How to build TFX pipeline How to run TFX pipeline on Vertex AI  What you&amp;rsquo;ll need  A Google Cloud Project A Browser, such as Chrome or Firefox Familiarity using Python Familiarity using TFX   For standalone TFX users, this is an optional step.</description>
+      <description>TensorFlow Extended(TFX) gives you the power of building a end to end machine learning pipeline. However it is somewhat difficult to grasp the ideas coupled with the actual codebase, and it is non trivial to write an entire machinie learning project from scratch.
+The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure.</description>
     </item>
     
     <item>
