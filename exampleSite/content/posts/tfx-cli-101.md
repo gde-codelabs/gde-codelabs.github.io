@@ -35,7 +35,7 @@ Please follow [Learn how to setup Vertex AI Notebook for pipelines](https://gde-
 
 {{< /step >}}
 
-{{< step label="Create TFX pipeline" duration=10:00" >}}
+{{< step label="Copy TFX pipeline" duration=10:00" >}}
 
 ### 1. Setup pipeline name and path. 
 
