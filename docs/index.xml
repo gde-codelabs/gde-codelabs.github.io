@@ -24,7 +24,7 @@ The main advantage of using TFX CLI is that you can get a fully working end to e
       
       <guid>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</guid>
       <description>Vertex AI platform provides the fully managed version of JupyterLab. JupyterLab has been the most popoular tool for data scientists and machine learning engineer. It comes with not only Jupyter Notebook but also Terminal, and so on.
-What you&amp;rsquo;ll learn  How to setup IAM How to setup and launch Vertex AI Notebook  What you&amp;rsquo;ll need  A Google Cloud Project A Browser, such as Chrome or Firefox   If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
+What you&amp;rsquo;ll learn How to setup IAM How to setup and launch Vertex AI Notebook What you&amp;rsquo;ll need A Google Cloud Project A Browser, such as Chrome or Firefox If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
     </item>
     
   </channel>
