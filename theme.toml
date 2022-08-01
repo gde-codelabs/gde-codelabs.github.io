@@ -2,10 +2,10 @@ name = "codelabs"
 license = "APACHE"
 licenselink = "https://www.apache.org/licenses/LICENSE-2.0"
 description = "A hugo theme of Google's codelabs."
-homepage = "https://github.com/nekocode/codelabs-hugo-theme"
+homepage = "https://github.com/gde-codelabs/gde-codelabs.github.io"
 tags = ["codelabs","syntax highlighting"]
 min_version = "0.31"
 
 [author]
-  name = "nekocode"
-  homepage = "https://github.com/nekocode"
+  name = "chansung park"
+  homepage = "https://github.com/deep-diver"
