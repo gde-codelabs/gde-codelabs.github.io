@@ -1,46 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>MLOps on Tutorials made by GDEs</title>
+    <title>mlops on Tutorials made by GDEs</title>
     <link>https://gde-codelabs.github.io/categories/mlops/</link>
-    <description>Recent content in MLOps on Tutorials made by GDEs</description>
+    <description>Recent content in mlops on Tutorials made by GDEs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/categories/mlops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/categories/mlops/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Image Search with Natural Language Queries</title>
-      <link>https://gde-codelabs.github.io/posts/deploy-clip-on-gke-redis/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+      <title>Build CPU Optmized TensorFlow Serving Docker Image</title>
+      <link>https://gde-codelabs.github.io/posts/how-to-build-cpuopt-tfserving/</link>
+      <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://gde-codelabs.github.io/posts/deploy-clip-on-gke-redis/</guid>
-      <description>       </description>
-    </item>
-    
-    <item>
-      <title>Learn how to get two different models for cloud and edge device respectively on Vertex AI Pipeline.</title>
-      <link>https://gde-codelabs.github.io/posts/dual-deployments-on-vertex-ai/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/posts/dual-deployments-on-vertex-ai/</guid>
-      <description>          </description>
-    </item>
-    
-    <item>
-      <title>Learn how to integrate GitHub Action, Cloud Build, and TFX based project for realizing CI/CD in MLOps.</title>
-      <link>https://gde-codelabs.github.io/posts/ci-cd-pipeline-and-modules-update/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/posts/ci-cd-pipeline-and-modules-update/</guid>
-      <description>       </description>
-    </item>
-    
-    <item>
-      <title>Learn Vertex AI&#39;s AutoML for adapting to changes in data trend</title>
-      <link>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</link>
-      <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://gde-codelabs.github.io/posts/continuous-training-vertex-ai-automl-object-detection/</guid>
-      <description>       </description>
+      <guid>https://gde-codelabs.github.io/posts/how-to-build-cpuopt-tfserving/</guid>
+      <description>This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment on CPU platforms.
+What you&amp;rsquo;ll learn How to build CPU optimized TensorFlow Core Docker image How to build custom TF Serving Docker image How to modify the TF Serving Docker image to have a custom TensorFlow model How to push the custom TF Serving Docker image to GCR(Google Cloud Registry) What you&amp;rsquo;ll need Machine to deploye TF Serving TF Serving repository provides a easy-to-use tool to build both custom TensorFlow Core and TF Serving Docker images out of the box, and the tool leverages Docker technology under the hood.</description>
     </item>
     
   </channel>
