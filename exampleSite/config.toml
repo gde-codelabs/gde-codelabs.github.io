@@ -13,8 +13,8 @@ of topics including Google Cloud, Android, Firebase, TensorFlow, and so on.
 
 If you'd like to see a tutorial written on a specific topic, [let us know](#).
 """
-  footer = "<a href=\"https://github.com/nekocode/codelabs-hugo-theme\">❤ Source code</a>"
-  feedbackLink = "mailto:nekocode.cn@gmail.com"
+  footer = "<a href=\"https://github.com/gde-codelabs/gde-codelabs.github.io\">❤ Source code</a>"
+  feedbackLink = "mailto:deep.diver.csp@gmail.com"
   [params.categoryColors]
     mlops = "#1A73E8"
     tfx = "#f58442"
