@@ -30,7 +30,7 @@
   <google-codelab title="Build CPU Optmized TensorFlow Serving Docker Image" id="build-cpu-optmized-tensorflow-serving-docker-image" authors="Chansung Park" environment="web" feedback-link="mailto:deep.diver.csp@gmail.com" home-url="https://gde-codelabs.github.io/">
 
 <google-codelab-step label="Overview" duration="1:00">
-<p>This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment on CPU platforms.</p>
+<p>This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment depending on the currently available CPU platform.</p>
 <h2 id="what-youll-learn"><strong>What you&rsquo;ll learn</strong></h2>
 <ul>
 <li>How to build CPU optimized TensorFlow Core Docker image</li>
@@ -45,61 +45,63 @@
 
 </google-codelab-step>
 <google-codelab-step label="Install Docker" duration="9:00&#34;">
-<p>TF Serving repository provides a easy-to-use tool to build both custom TensorFlow Core and TF Serving Docker images out of the box, and the tool leverages Docker technology under the hood. So you need to install Docker in the system where you want to deploy TF Serving.</p>
-<p>Below shows how to install Docker for Ubuntu OS.</p>
+<p><a href="https://github.com/tensorflow/serving">TF Serving repository</a> provides a easy-to-use tool to build both custom TensorFlow Core and TF Serving Docker images out of the box, and the tool leverages <a href="https://www.docker.com/">Docker</a> technology under the hood. So you need to install Docker in the system where you want to deploy <a href="https://www.tensorflow.org/tfx/guide/serving">TF Serving</a>.</p>
+<p>Below shows how to install Docker on Ubuntu. The official guide for the other OSes can be found <a href="https://docs.docker.com/engine/install/">here</a>.</p>
 <pre tabindex="0"><code>$ sudo apt update
+
 $ sudo apt install docker.io
-</code></pre><p>After the installation succeeds, it creates a user group called <code>docker</code>. You need to make the current user to be one of the <code>docker</code> member. Otherwise, you don&rsquo;t need <code>sudo</code> whenever you run <code>docker</code> command later, and that is not a recommended way.</p>
-<p>Below shows how to put the current user(<code>$USER</code>) into the <code>docker</code> group. Linux command <code>usermod</code> modifies designated user account. <code>-a</code> option means <strong>append</strong>, and <code>-G</code> option means <strong>group</strong>. So it basically means to append <code>$USER</code> to the group <code>docker</code>.</p>
+</code></pre><p>After the installation succeeds, it creates a user group called <code>docker</code>. You need to make the current user to be one of the <code>docker</code> member. Otherwise, you will need <code>sudo</code> whenever you run <a href="https://docs.docker.com/engine/reference/commandline/cli/"><code>docker</code></a> command later, and that is not the recommended way.</p>
+<p>Below shows how to put the current user(<code>$USER</code>) into the <code>docker</code> group. Linux command <a href="https://linux.die.net/man/8/usermod"><code>usermod</code></a> modifies designated user account. <code>-a</code> option means <strong>append</strong>, and <code>-G</code> option means <strong>group</strong>. So it basically means to append <a href="https://man7.org/linux/man-pages/man1/login.1.html"><code>$USER</code></a> to the group <code>docker</code>.</p>
 <pre tabindex="0"><code>$ sudo usermod -aG docker $USER
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="Clone TF Serving Repository" duration="5:00&#34;">
-<p>After having Docker in your local system successfully, you need to clone the repository of TF Serving because it comes with a set of nice tools and scripts to build CPU optimized custom Docker image.</p>
-<p>Below shows how to clone the repository of TF Serving, and everything basically happens inside the root of the repository.</p>
+<p>After having Docker in your local system successfully, you need to clone the repository of TF Serving because it comes with a set of nice tools and scripts to build a (CPU optimized) custom Docker image.</p>
+<p>Below shows how to clone the repository of TF Serving. And everything afterwards basically will happen inside the root of the repository.</p>
 <pre tabindex="0"><code>$ git clone https://github.com/tensorflow/serving.git
+
 $ cd serving
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="Build TensorFlow Core Docker Image" duration="240:00&#34;">
-<p>We use <code>run_in_docker.sh</code> script under <code>tools</code> directory to build a custom TensorFlow Core Docker image. <code>bazel</code> is used under the hood, but you don&rsquo;t need to install it in your system. Docker provides a completely isolated environment, so <code>run_in_docker.sh</code> provides everything inside a fresh environment.</p>
-<p>Run the <code>run_in_docker.sh</code> script with the options exactly the same as below. <code>--copt=-march=native</code> automatically figures out which instruction sets are available on the current CPU architecture, and <code>--copt=-Wno-error=maybe-uninitialized</code> option allows ingnoring warnings occured by <code>uninitialized variable</code>. This happens if there is a sort of failure after the static analysis of the codebase, but the it is recognized as a critical failure, so it stops the building process.</p>
+<p>We use <a href="https://github.com/tensorflow/serving/blob/master/tools/run_in_docker.sh"><code>run_in_docker.sh</code></a> script under <code>tools</code> directory to build a custom TensorFlow Core Docker image. <a href="https://bazel.build/"><code>bazel</code></a> is used under the hood, but you don&rsquo;t need to install it in your system. Docker provides a completely isolated environment, so <code>run_in_docker.sh</code> provides everything inside a fresh environment.</p>
+<p>Run the <code>run_in_docker.sh</code> script with the options exactly the same as below. <a href="https://github.com/tensorflow/serving/blob/2b20315418346837a26a11f640fed0da90048a08/tensorflow_serving/g3doc/setup.md#optimized-build"><code>--copt=-march=native</code></a> automatically figures out which instruction sets are available on the current CPU architecture, and <a href="https://github.com/tensorflow/serving/issues/1642#issuecomment-770832441"><code>--copt=-Wno-error=maybe-uninitialized</code></a> option allows ingnoring warnings occured by <code>uninitialized variable</code>. This happens if there is a sort of failure after the static analysis of the codebase, but the it is recognized as a critical failure, so it stops the building process.</p>
 <pre tabindex="0"><code>$ tools/run_in_docker.sh bazel build \
     --config=nativeopt \
     --copt=-march=native \
     --copt=-Wno-error=maybe-uninitialized \
     tensorflow_serving/...
-</code></pre><p>It will take about 3 to 4 hours to build successfully. After being successfully, run <code>docker images</code> command like below, then you will see newly built Docker image named <code>tensorflow/serving</code> and taged <code>nightly-devel</code>.</p>
+</code></pre><p>It will take about 3 to 4 hours to build successfully. After being successfully, run <a href="https://docs.docker.com/engine/reference/commandline/image/"><code>docker images</code></a> command like below, then you will see newly built Docker image named <code>tensorflow/serving</code> and tagged as <code>nightly-devel</code>.</p>
 <pre tabindex="0"><code>$ docker images
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="Build TF Serving Docker Image" duration="10:00&#34;">
-<p>With the custom built Docker image of TensorFlow Core, now you can build a custom TF Serving Docker image leveraging the TensorFlow Core under the hood. In order to do that, you need a <code>Dockerfile</code>.</p>
-<p>Fortunately, the repository of TF Serving already provides the <code>Dockerfile</code> in <code>tensorflow_serving/tools/docker</code> directory for this purpose, so go into that folder.</p>
+<p>With the custom built Docker image of TensorFlow Core, now you can build a custom TF Serving Docker image by leveraging the TensorFlow Core under the hood. In order to do that, you need a <a href="https://docs.docker.com/engine/reference/builder/"><code>Dockerfile</code></a>.</p>
+<p>Fortunately, the repository of TF Serving already provides the <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/tools/docker/Dockerfile"><code>Dockerfile</code></a> in <code>tensorflow_serving/tools/docker</code> directory for this purpose, so go into that folder.</p>
 <pre tabindex="0"><code>$ cd tensorflow_serving/tools/docker
 </code></pre><p>There are a number of <code>Dockerfile</code>s, but you need the one exactly named as <code>Dockerfile</code>. Open it up with your favorite IDE, update the value of <code>TF_SERVING_VERSION</code> variable to <code>nightly</code>. This means we are going to use the newly built Docker image from the previous step.</p>
-<p>Then you can build your own custom TF Serving Docker image using the command below. Update <code>&lt;IMAGE_NAME_TO_BUILD&gt;</code> and <code>&lt;TAG_NAME&gt;</code> with the appropriate strings.</p>
+<p>Then you can build your own custom TF Serving Docker image using the <a href="https://docs.docker.com/engine/reference/commandline/build/"><code>docker build</code></a> command like below. Update <code>&lt;IMAGE_NAME_TO_BUILD&gt;</code> and <code>&lt;TAG_NAME&gt;</code> with the appropriate strings.</p>
 <pre tabindex="0"><code>$ docker build -t &lt;IMAGE_NAME_TO_BUILD&gt;:&lt;TAG_NAME&gt; -f Dockerfile .
-</code></pre><p>After successfully building the custom TF Serving Docker image, you will see it listed by running <code>docker images</code> command.</p>
+</code></pre><p>After successfully building the custom TF Serving Docker image, you will see it listed by running <a href="https://docs.docker.com/engine/reference/commandline/image/"><code>docker images</code></a> command.</p>
 <pre tabindex="0"><code>$ docker images
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="Embed Custom TensorFlow Model" duration="10:00&#34;">
-<p>Now it is time to insert TensorFlow model into the TF Serving Docker image so you can deploy the model with the endpoints of REST and gRPC. In order to do that, we first need to run the base TF Serving Docker image like below. <code>--name serving_base</code> option gives the running Docker container a name of <code>serving_base</code>. <code>-d</code> option lets the Docker container run in background mode.</p>
+<p>Now it is time to insert TensorFlow model into the TF Serving Docker image so you can deploy the model with the endpoints of REST and gRPC. In order to do that, we first need to run the base TF Serving Docker image with <a href="https://docs.docker.com/engine/reference/run/"><code>docker run</code></a> command like below. <code>--name serving_base</code> option gives the running Docker container a name of <code>serving_base</code>. <code>-d</code> option lets the Docker container run in background mode.</p>
 <pre tabindex="0"><code>$ docker run -d --name serving_base \
     &lt;IMAGE_NAME_TO_BUILD&gt;:&lt;TAG_NAME&gt;
-</code></pre><p>Next step is to copy the SavedModel from local file system to the running Docker container under <code>/models/</code>. This can be done with <code>docker cp</code> command. Also we are assuming there is a parent folder of the SavedModel, and it should be named as integer(version information). For instance, under <code>1/</code> directory, you can put SavedModel in it.</p>
+</code></pre><p>Next step is to copy the <a href="https://www.tensorflow.org/guide/saved_model">SavedModel</a> from local file system to the running Docker container under <code>/models/</code>. This can be done with <a href="https://docs.docker.com/engine/reference/commandline/cp/"><code>docker cp</code></a> command. Also we are assuming there is a parent folder of the SavedModel, and it should be named as integer(version information). For instance, under <code>1/</code> directory, you can put SavedModel in it.</p>
 <pre tabindex="0"><code>$ docker cp &lt;WHERE_TF_MODEL_IS_STORED&gt; \ 
     serving_base:/models/&lt;MODEL_NAME&gt;
-</code></pre><p>We made changes to the running Docker container, but it will be gone if we instantiate a Docker container from the image again. So, we need to commit that changes and makes a new Docker image based on that. This can be done with <code>docker commit</code> command.</p>
+</code></pre><p>We made changes to the running Docker container, but it will be gone if we instantiate a Docker container from the image again. So, we need to commit that changes and makes a new Docker image based on that. This can be done with <a href="https://docs.docker.com/engine/reference/commandline/commit/"><code>docker commit</code></a> command.</p>
 <pre tabindex="0"><code>$ docker commit --change &#34;ENV MODEL_NAME &lt;MODEL_NAME&gt;&#34; \ 
     serving_base &lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt;
-</code></pre><p>After this, when you run <code>docker images</code> command, you will see a Docker image named <code>&lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt;</code>.</p>
+</code></pre><p>After this, when you run <a href="https://docs.docker.com/engine/reference/commandline/image/"><code>docker images</code></a> command, you will see a Docker image named <code>&lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt;</code>.</p>
 
 </google-codelab-step>
 <google-codelab-step label="(Optional) Push the Docker Image to GCR" duration="10:00&#34;">
 <p>Now, you have a fully working CPU optimized custom TF Serving Docker image for your own TensorFlow model. However, it is commonly good idea to push the image to the cloud such as Docker Hub or Google Cloud Registry(GCR). In this optional step, you will learn how to push a Docker image to GCR.</p>
-<p>First, you need <code>gcloud</code> command line CLI tool to authenticate, access to services from Google Cloud Platform. Below shows how to download files to install <code>gcloud</code> CLI tool. The version is constantly updated, so please check out the newest version from <a href="https://cloud.google.com/sdk/docs/install">here</a></p>
+<p>First, you need <a href="https://cloud.google.com/sdk/gcloud"><code>gcloud</code></a> command line CLI tool to authenticate, access to services from Google Cloud Platform. Below shows how to download files to install <code>gcloud</code> CLI tool. The version is constantly updated, so please check out the newest version from <a href="https://cloud.google.com/sdk/docs/install">here</a></p>
 <pre tabindex="0"><code>$ SOURCE_FILENAME=google-cloud-cli-393.0.0-linux-x86_64.tar.gz
 $ TARGET_FILENAME=gcloud_cli.tar.gz
 
@@ -109,13 +111,13 @@ $ curl &#34;https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/$SOURCE_F
 $ tar -xf gcloud_cli.tar.gz
 </code></pre><p>After downloading and extracting the <code>gcloud_cli.tar.gz</code> file, the extracted contents will be placed under <code>google-cloud-sdk</code> directory. And run <code>install.sh</code> script under <code>google-cloud-sdk/bin</code> directory to install <code>gcloud</code> CLI tool.</p>
 <pre tabindex="0"><code>$ google-cloud-sdk/bin/install.sh
-</code></pre><p>Besides the <code>gcloud</code> CLI tool itself, you also need to install additional component <code>docker-credential-gcr</code> by using <code>gcloud components install</code> command. Thi will make <code>docker</code> command compatible with GCR. It means you can push locally built Docker image to GCR with <code>docker</code> command.</p>
+</code></pre><p>Besides the <code>gcloud</code> CLI tool itself, you also need to install additional component <code>docker-credential-gcr</code> by using <code>gcloud components install</code> command. This will make <code>docker</code> command compatible with GCR. It means you can push locally built Docker image to GCR with <code>docker</code> command.</p>
 <pre tabindex="0"><code>$ gcloud components install docker-credential-gcr
-</code></pre><p>After the installation is complete, you need to log in and authenticate with a Service Account. Logging in process can be done with <code>gcloud auth login</code> command. It will pop-up a new tab on the browser, and copy and paste the tokens appeared in the browser to the terminal. <code>gcloud auth activate-service-account</code> command lets you to activate a certain Service Account by specifying the associated key file(JSON) in <code>--key-file</code> option. Please note that the Service Account should have appropriate permissions to the Google Cloud Storage. Refer this <a href="https://cloud.google.com/container-registry/docs/access-control">document</a> for the detailed descriptions about the permission.</p>
+</code></pre><p>After the installation is complete, you need to log in and authenticate with a <a href="https://cloud.google.com/iam/docs/service-accounts">Service Account</a>. Logging in process can be done with <a href="https://cloud.google.com/sdk/gcloud/reference/auth/login"><code>gcloud auth login</code></a> command. It will pop-up a new tab on the browser, and copy and paste the tokens appeared in the browser to the terminal. <a href="https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account"><code>gcloud auth activate-service-account</code></a> command lets you to activate a certain Service Account by specifying the associated <a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys">key file(JSON)</a> in <code>--key-file</code> option. Please note that the Service Account should have appropriate permissions to the Google Cloud Storage. Refer this <a href="https://cloud.google.com/container-registry/docs/access-control">document</a> for the detailed descriptions about the permission.</p>
 <pre tabindex="0"><code>$ gcloud auth login
 $ gcloud auth activate-service-account &lt;SA_ACCOUNT&gt; --key-file=&lt;KEY_FILE&gt;
 $ gcloud config set project &lt;GCP_PROJECT_ID&gt;
-</code></pre><p>You can push a Docker image to GCR with <code>docker push</code> command, and <code>docker</code> command only knows where to push by looking up the prefix of the name. So, we need to rename the Docker image with a certain format of <code>gcr.io/&lt;GCP_PROJECT_ID&gt;/&lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt;</code>, and the renaming can be done with <code>docker tag</code> command like below.</p>
+</code></pre><p>You can push a Docker image to GCR with <a href="https://docs.docker.com/engine/reference/commandline/push/"><code>docker push</code></a> command, and <code>docker</code> command only knows where to push by looking up the prefix of the name. So, we need to rename the Docker image with a certain format of <code>gcr.io/&lt;GCP_PROJECT_ID&gt;/&lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt;</code>, and the renaming can be done with <code>docker tag</code> command like below.</p>
 <pre tabindex="0"><code>$ docker tag &lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt; \
     gcr.io/&lt;GCP_PROJECT_ID&gt;/&lt;NEW_IMAGE_NAME&gt;:&lt;NEW_TAG&gt;
 </code></pre><p>As the final step, you can run <code>docker push</code> command to push the Docker image to GCR.</p>
