@@ -1,10 +1,8 @@
 var topElement = document.getElementsByTagName("google-codelab")[0];
 var title = topElement.getAttribute("codelab-title");
 var authors = topElement.getAttribute("authors");
-var avatars = topElement.getAttribute("avatars");
 console.log(title);
 console.log(authors);
-console.log(avatars);
 
 var steps = document.getElementsByTagName("google-codelab-step");
 
