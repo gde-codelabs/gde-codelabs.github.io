@@ -5,7 +5,6 @@ categories: [tfx, mlops]
 tags: [TFX, MLOps]
 duration: 285:00
 authors: Chansung Park, Sayak Paul
-avatars: https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/127915712_10219925992685548_7123416519296645953_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=NCxQfCCpDG8AX-0JKlb&tn=fcmClWe81V8wwAZ1&_nc_ht=scontent-ssn1-1.xx&oh=00_AT_mPpEz0ntdbHnMiBp5WCkXiBGVDXzTxJQRYWYtzZaeJA&oe=6310935F, https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/127915712_10219925992685548_7123416519296645953_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=NCxQfCCpDG8AX-0JKlb&tn=fcmClWe81V8wwAZ1&_nc_ht=scontent-ssn1-1.xx&oh=00_AT_mPpEz0ntdbHnMiBp5WCkXiBGVDXzTxJQRYWYtzZaeJA&oe=6310935F
 ---
 
 {{< step label="Overview" duration="1:00" >}}
