@@ -4,7 +4,7 @@ date: 2022-08-01
 categories: [tfx, mlops]
 tags: [TFX, MLOps]
 duration: 285:00
-authors: Chansung Park
+authors: Chansung Park, Sayak Paul
 ---
 
 {{< step label="Overview" duration="1:00" >}}
