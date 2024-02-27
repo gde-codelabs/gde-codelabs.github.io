@@ -37,6 +37,19 @@ google-codelab-index-cards .card.mlops-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.openai-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.openai-bottom {
+  border-bottom-color: #fc4903; }
+
+.openai-icon {
+  background-image: url("/assets/icons/openai.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .tfx-bg {
   background-color: #f58442 !important; }
 
