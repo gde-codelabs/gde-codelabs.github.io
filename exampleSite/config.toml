@@ -20,3 +20,4 @@ of topics in Machine Learning including services on Google Cloud Platform such a
     jupyter = "#fc4903"
     openai = "#fc4903"
     gemini = "#fc4903"
+    huggingface = "#fc4903"
