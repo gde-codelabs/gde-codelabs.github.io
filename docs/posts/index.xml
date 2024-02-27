@@ -6,36 +6,28 @@
     <description>Recent content in Posts on Tutorials by ML-GDE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gde-codelabs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Build CPU Optmized TensorFlow Serving Docker Image</title>
       <link>https://gde-codelabs.github.io/posts/how-to-build-cpuopt-tfserving/</link>
       <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://gde-codelabs.github.io/posts/how-to-build-cpuopt-tfserving/</guid>
-      <description>This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment depending on the currently available CPU platform.
-What you&amp;rsquo;ll learn How to build CPU optimized TensorFlow Core Docker image How to build custom TF Serving Docker image How to modify the TF Serving Docker image to have a custom TensorFlow model How to push the custom TF Serving Docker image to GCR(Google Cloud Registry) What you&amp;rsquo;ll need Machine to deploye TF Serving TF Serving repository provides a easy-to-use tool to build both custom TensorFlow Core and TF Serving Docker images out of the box, and the tool leverages Docker technology under the hood.</description>
+      <description>This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment depending on the currently available CPU platform.&#xA;What you&amp;rsquo;ll learn How to build CPU optimized TensorFlow Core Docker image How to build custom TF Serving Docker image How to modify the TF Serving Docker image to have a custom TensorFlow model How to push the custom TF Serving Docker image to GCR(Google Cloud Registry) What you&amp;rsquo;ll need Machine to deploye TF Serving TF Serving repository provides a easy-to-use tool to build both custom TensorFlow Core and TF Serving Docker images out of the box, and the tool leverages Docker technology under the hood.</description>
     </item>
-    
     <item>
       <title>Introduction to TFX CLI</title>
       <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
       <pubDate>Mon, 06 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
-      <description>TensorFlow Extended(TFX) gives you the power of building a end to end machine learning pipeline. However it is somewhat difficult to grasp the ideas coupled with the actual codebase, and it is non trivial to write an entire machinie learning project from scratch.
-The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure.</description>
+      <description>TensorFlow Extended(TFX) gives you the power of building a end to end machine learning pipeline. However it is somewhat difficult to grasp the ideas coupled with the actual codebase, and it is non trivial to write an entire machinie learning project from scratch. aaasdfc bsdfs&#xA;The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure.</description>
     </item>
-    
     <item>
       <title>Learn how to setup Vertex AI Notebook for pipelines</title>
       <link>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</link>
       <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</guid>
-      <description>Vertex AI platform provides the fully managed version of JupyterLab. JupyterLab has been the most popoular tool for data scientists and machine learning engineer. It comes with not only Jupyter Notebook but also Terminal, and so on.
-What you&amp;rsquo;ll learn How to setup IAM How to setup and launch Vertex AI Notebook What you&amp;rsquo;ll need A Google Cloud Project A Browser, such as Chrome or Firefox If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
+      <description>Vertex AI platform provides the fully managed version of JupyterLab. JupyterLab has been the most popoular tool for data scientists and machine learning engineer. It comes with not only Jupyter Notebook but also Terminal, and so on.&#xA;What you&amp;rsquo;ll learn How to setup IAM How to setup and launch Vertex AI Notebook What you&amp;rsquo;ll need A Google Cloud Project A Browser, such as Chrome or Firefox If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
     </item>
-    
   </channel>
 </rss>

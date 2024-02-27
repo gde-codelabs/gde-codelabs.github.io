@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>gcp on Tutorials by ML-GDE</title>
+    <title>Gcp on Tutorials by ML-GDE</title>
     <link>https://gde-codelabs.github.io/categories/gcp/</link>
-    <description>Recent content in gcp on Tutorials by ML-GDE</description>
+    <description>Recent content in Gcp on Tutorials by ML-GDE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gde-codelabs.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gde-codelabs.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction to TFX CLI</title>
       <link>https://gde-codelabs.github.io/posts/tfx-cli-101/</link>
       <pubDate>Mon, 06 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://gde-codelabs.github.io/posts/tfx-cli-101/</guid>
-      <description>TensorFlow Extended(TFX) gives you the power of building a end to end machine learning pipeline. However it is somewhat difficult to grasp the ideas coupled with the actual codebase, and it is non trivial to write an entire machinie learning project from scratch.
-The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure.</description>
+      <description>TensorFlow Extended(TFX) gives you the power of building a end to end machine learning pipeline. However it is somewhat difficult to grasp the ideas coupled with the actual codebase, and it is non trivial to write an entire machinie learning project from scratch. aaasdfc bsdfs&#xA;The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure.</description>
     </item>
-    
     <item>
       <title>Learn how to setup Vertex AI Notebook for pipelines</title>
       <link>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</link>
       <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</guid>
-      <description>Vertex AI platform provides the fully managed version of JupyterLab. JupyterLab has been the most popoular tool for data scientists and machine learning engineer. It comes with not only Jupyter Notebook but also Terminal, and so on.
-What you&amp;rsquo;ll learn How to setup IAM How to setup and launch Vertex AI Notebook What you&amp;rsquo;ll need A Google Cloud Project A Browser, such as Chrome or Firefox If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
+      <description>Vertex AI platform provides the fully managed version of JupyterLab. JupyterLab has been the most popoular tool for data scientists and machine learning engineer. It comes with not only Jupyter Notebook but also Terminal, and so on.&#xA;What you&amp;rsquo;ll learn How to setup IAM How to setup and launch Vertex AI Notebook What you&amp;rsquo;ll need A Google Cloud Project A Browser, such as Chrome or Firefox If you want to run the pipeline on Vertex AI, your GCP service account should have the following roles.</description>
     </item>
-    
   </channel>
 </rss>
