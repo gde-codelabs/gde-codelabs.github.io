@@ -16,3 +16,5 @@ TensorFlow Extended(TFX) gives you the power of building a end to end machine le
 The main advantage of using TFX CLI is that you can get a fully working end to end example out of the box. Also, many customizable points are already included such as how to leverage BigQuery, Vertex AI Training/Serving, Dataflow GCP infrastructure. You will see a full capability of TFX at hand with a template project. 
 
 In this codelab, you will use Vertex AI to run TFX Pipeline.
+
+{{< /step >}}
