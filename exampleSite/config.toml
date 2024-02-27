@@ -22,3 +22,4 @@ Welcome to my codelab. This codelab is built by Chansung, and it tries to provid
     huggingface = "#fc4903"
     gradio = "#fc4903"
     keras = "#fc4903"
+    dstack = "#fc4903"
