@@ -1,7 +1,7 @@
 ---
 title: Learn how to setup Vertex AI Notebook for pipelines
 date: 2021-09-03
-categories: [gemini, keras]
+categories: [jupyter, gcp]
 tags: [VertexAI, Notebook]
 duration: 14:00
 authors: Chansung Park
