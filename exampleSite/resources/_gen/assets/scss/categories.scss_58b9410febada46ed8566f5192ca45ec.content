@@ -24,6 +24,19 @@ google-codelab-index-cards .card.gemini-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.gradio-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.gradio-bottom {
+  border-bottom-color: #fc4903; }
+
+.gradio-icon {
+  background-image: url("/assets/icons/gradio.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .huggingface-bg {
   background-color: #fc4903 !important; }
 
