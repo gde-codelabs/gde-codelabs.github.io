@@ -1,10 +1,10 @@
 ---
-title: Build CPU Optmized TensorFlow Serving Docker Image
-date: 2022-08-01
-categories: [tfx, mlops]
-tags: [TFX, MLOps]
+title: Introduction to ChatGPT
+date: 2024-02-28
+categories: [openai]
+tags: [OpenAI, ChatGPT]
 duration: 285:00
-authors: Chansung Park, Sayak Paul
+authors: Chansung Park
 ---
 
 {{< step label="Overview" duration="1:00" >}}
