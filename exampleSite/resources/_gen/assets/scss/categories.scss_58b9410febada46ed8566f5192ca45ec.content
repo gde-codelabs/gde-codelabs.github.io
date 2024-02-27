@@ -24,6 +24,19 @@ google-codelab-index-cards .card.gemini-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.huggingface-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.huggingface-bottom {
+  border-bottom-color: #fc4903; }
+
+.huggingface-icon {
+  background-image: url("/assets/icons/huggingface.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .jupyter-bg {
   background-color: #fc4903 !important; }
 
