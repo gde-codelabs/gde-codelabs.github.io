@@ -18,3 +18,4 @@ of topics in Machine Learning including services on Google Cloud Platform such a
     tfx = "#f58442"
     gcp = "#3884ff"
     jupyter = "#fc4903"
+    openai = "#fc4903"
