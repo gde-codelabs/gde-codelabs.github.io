@@ -11,6 +11,19 @@ google-codelab-index-cards .card.gcp-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.gemini-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.gemini-bottom {
+  border-bottom-color: #fc4903; }
+
+.gemini-icon {
+  background-image: url("/assets/icons/gemini.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .jupyter-bg {
   background-color: #fc4903 !important; }
 
