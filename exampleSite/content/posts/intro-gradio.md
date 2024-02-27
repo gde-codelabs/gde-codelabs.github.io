@@ -1,5 +1,5 @@
 ---
-title: Introduction to Gradio
+title: Build CPU Optmized TensorFlow Serving Docker Image
 date: 2024-02-28
 categories: [gradio, huggingface]
 tags: [Gradio, HuggingFace]

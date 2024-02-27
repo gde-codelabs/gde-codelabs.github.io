@@ -1,5 +1,5 @@
 ---
-title: Introduction to ChatGPT
+title: Build CPU Optmized TensorFlow Serving Docker Image
 date: 2024-02-28
 categories: [openai]
 tags: [OpenAI, ChatGPT]
