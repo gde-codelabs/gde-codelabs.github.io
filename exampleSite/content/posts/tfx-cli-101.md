@@ -1,7 +1,7 @@
 ---
 title: Introduction to TFX CLI
 date: 2021-09-06
-categories: [tfx, gcp]
+categories: [tfx, openai]
 tags: [VertexAI, ML Pipeline, TFX, MLOps]
 duration: 40:00
 authors: Chansung Park
