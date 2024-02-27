@@ -62,3 +62,16 @@ google-codelab-index-cards .card.tfx-bottom {
   width: 32px;
   height: 32px;
   margin-right: 10px; }
+
+.gemini-bg {
+  background-color: #f58442 !important; }
+
+google-codelab-index-cards .card.gemini-bottom {
+  border-bottom-color: #f58442; }
+
+.gemini-icon {
+  background-image: url("/assets/icons/gemini.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }  
