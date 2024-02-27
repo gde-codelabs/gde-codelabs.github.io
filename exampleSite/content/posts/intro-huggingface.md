@@ -1,10 +1,10 @@
 ---
-title: Introduction to ChatGPT
+title: Introduction to HuggingFace
 date: 2024-02-27
-categories: [tfx, mlops]
-tags: [TFX, MLOps]
+categories: [huggingface]
+tags: [HuggingFace]
 duration: 285:00
-authors: Chansung Park, Sayak Paul
+authors: Chansung Park
 ---
 
 {{< step label="Overview" duration="1:00" >}}
