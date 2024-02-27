@@ -1,7 +1,7 @@
 ---
 title: Build CPU Optmized TensorFlow Serving Docker Image
 date: 2022-08-01
-categories: [tfx, huggingface]
+categories: [gradio, huggingface]
 tags: [TFX, MLOps]
 duration: 285:00
 authors: Chansung Park, Sayak Paul
