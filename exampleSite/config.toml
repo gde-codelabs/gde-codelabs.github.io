@@ -22,3 +22,4 @@ of topics in Machine Learning including services on Google Cloud Platform such a
     gemini = "#fc4903"
     huggingface = "#fc4903"
     gradio = "#fc4903"
+    keras = "#fc4903"
