@@ -63,6 +63,19 @@ google-codelab-index-cards .card.jupyter-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.keras-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.keras-bottom {
+  border-bottom-color: #fc4903; }
+
+.keras-icon {
+  background-image: url("/assets/icons/keras.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .mlops-bg {
   background-color: #1A73E8 !important; }
 

@@ -37,17 +37,17 @@
       <description></description>
     </item>
     <item>
-      <title>Gcp</title>
-      <link>https://gde-codelabs.github.io/categories/gcp/</link>
-      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://gde-codelabs.github.io/categories/gcp/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Gemini</title>
       <link>https://gde-codelabs.github.io/categories/gemini/</link>
       <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
       <guid>https://gde-codelabs.github.io/categories/gemini/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Keras</title>
+      <link>https://gde-codelabs.github.io/categories/keras/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/categories/keras/</guid>
       <description></description>
     </item>
   </channel>
