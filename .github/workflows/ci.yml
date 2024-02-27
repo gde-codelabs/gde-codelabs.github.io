@@ -32,8 +32,8 @@ jobs:
     - name: Setup Hugo
       if: ${{ steps.filter.outputs.docs == 'true' }}
       run: |
-          snap remove hugo
-          snap install hugo
+          sudo snap remove hugo
+          sudo snap install hugo
       # uses: peaceiris/actions-hugo@v2
       # with:
         # hugo-version: 'latest'
