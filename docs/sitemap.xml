@@ -2,32 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gde-codelabs.github.io/posts/</loc>
+    <lastmod>2024-02-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gde-codelabs.github.io/</loc>
+    <lastmod>2024-02-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://gde-codelabs.github.io/posts/how-to-build-cpuopt-tfserving/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gde-codelabs.github.io/categories/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gde-codelabs.github.io/categories/gradio/</loc>
-    <lastmod>2022-08-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gde-codelabs.github.io/categories/huggingface/</loc>
+    <loc>https://gde-codelabs.github.io/categories/mlops/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gde-codelabs.github.io/tags/mlops/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gde-codelabs.github.io/posts/</loc>
+    <loc>https://gde-codelabs.github.io/tags/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gde-codelabs.github.io/tags/</loc>
+    <loc>https://gde-codelabs.github.io/categories/tfx/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gde-codelabs.github.io/tags/tfx/</loc>
     <lastmod>2022-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gde-codelabs.github.io/</loc>
-    <lastmod>2022-08-01T00:00:00+00:00</lastmod>
+    <loc>https://gde-codelabs.github.io/categories/gcp/</loc>
+    <lastmod>2021-09-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gde-codelabs.github.io/posts/tfx-cli-101/</loc>
     <lastmod>2021-09-06T00:00:00+00:00</lastmod>
@@ -35,19 +38,10 @@
     <loc>https://gde-codelabs.github.io/tags/ml-pipeline/</loc>
     <lastmod>2021-09-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gde-codelabs.github.io/categories/openai/</loc>
-    <lastmod>2021-09-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gde-codelabs.github.io/categories/tfx/</loc>
-    <lastmod>2021-09-06T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://gde-codelabs.github.io/tags/vertexai/</loc>
     <lastmod>2021-09-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gde-codelabs.github.io/categories/gemini/</loc>
-    <lastmod>2021-09-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://gde-codelabs.github.io/categories/keras/</loc>
+    <loc>https://gde-codelabs.github.io/categories/jupyter/</loc>
     <lastmod>2021-09-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gde-codelabs.github.io/posts/vertex-ai-notebook/</loc>
