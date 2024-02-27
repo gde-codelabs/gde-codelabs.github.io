@@ -1,6 +1,6 @@
 ---
 title: Introduction to ChatGPT
-date: 2022-08-01
+date: 2024-02-28
 categories: [tfx, mlops]
 tags: [TFX, MLOps]
 duration: 285:00
