@@ -48,9 +48,13 @@ jobs:
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
+    - name: Git branch 
+      if: ${{ steps.filter.outputs.docs == 'true' }}
+      run: git add --force .
+
     - name: Git add 
       if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git add --force .
+      run: git checkout publish || git checkout -b publish
 
     - name: Git commit
       if: ${{ steps.filter.outputs.docs == 'true' }}    
@@ -59,4 +63,4 @@ jobs:
     - name: Push public to branch
       if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: |
-          git push -f origin main
+          git push -f origin publish
