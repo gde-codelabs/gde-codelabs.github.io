@@ -9,7 +9,7 @@ authors: Chansung Park, Sayak Paul
 
 {{< step label="Overview" duration="1:00" >}}
 
-This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment depending on the currently available CPU platform. 
+This codelab shows you how to build a CPU optimized custom TensorFlow Serving Docker image with your own TensorFlow model. With this, you will have a better performant TensorFlow deployment depending on the currently available CPU platform. asdf
 
 ## **What you'll learn**
 - How to build CPU optimized TensorFlow Core Docker image
