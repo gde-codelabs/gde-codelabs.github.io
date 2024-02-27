@@ -1,8 +1,8 @@
 ---
 title: Introduction to ChatGPT
 date: 2024-02-28
-categories: [openai]
-tags: [ChatGPT]
+categories: [openai, mlops]
+tags: [ChatGPT, MLOps]
 duration: 10:00
 authors: Chansung Park
 ---

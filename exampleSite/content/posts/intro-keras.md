@@ -1,8 +1,8 @@
 ---
 title: Introduction to Keras
 date: 2024-02-28
-categories: [keras]
-tags: [Keras]
+categories: [keras, mlops]
+tags: [Keras, MLOps]
 duration: 10:00
 authors: Chansung Park
 ---

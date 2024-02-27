@@ -1,8 +1,8 @@
 ---
 title: Introduction to Gradio
 date: 2024-02-28
-categories: [gradio]
-tags: [Gradio]
+categories: [gradio, mlops]
+tags: [Gradio, MLOps]
 duration: 10:00
 authors: Chansung Park
 ---

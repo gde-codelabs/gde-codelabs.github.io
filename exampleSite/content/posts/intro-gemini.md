@@ -1,8 +1,8 @@
 ---
 title: Introduction to Gemini
 date: 2024-02-28
-categories: [gemini]
-tags: [Gemini]
+categories: [gemini, mlops]
+tags: [Gemini, MLOps]
 duration: 10:00
 authors: Chansung Park
 ---

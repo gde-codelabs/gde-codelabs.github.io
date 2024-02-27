@@ -1,8 +1,8 @@
 ---
 title: Introduction to Hugging Face
 date: 2024-02-28
-categories: [huggingface]
-tags: [HuggingFace]
+categories: [huggingface, mlops]
+tags: [HuggingFace, MLOps]
 duration: 10:00
 authors: Chansung Park
 ---
