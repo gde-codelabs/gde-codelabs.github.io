@@ -1,9 +1,9 @@
 ---
-title: Beginner's guide on Gradio custom component
+title: Beginner's guide on Gradio custom component(front-end)
 date: 2024-02-27
 categories: [gradio]
 tags: [Gradio]
-duration: 30:00
+duration: 16:00
 authors: Chansung Park
 ---
 
