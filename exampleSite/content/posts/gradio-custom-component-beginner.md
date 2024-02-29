@@ -178,7 +178,7 @@ Now, go back to the browser that you just opend in step 4. You will see the glow
 
 {{< /step >}}
 
-{{< step label="Conclusion" duration="5:00" >}}
+{{< step label="Conclusion" duration="1:00" >}}
 
 We have gone through very simple steps to create a Gradio's custom component. We havn't touch the back-end side, and this tutorial simply changed the background color of the existing textbox component. 
 
