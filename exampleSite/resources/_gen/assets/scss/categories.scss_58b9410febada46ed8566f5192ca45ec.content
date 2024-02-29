@@ -1,3 +1,16 @@
+.dstack-bg {
+  background-color: #cc00ff !important; }
+
+google-codelab-index-cards .card.dstack-bottom {
+  border-bottom-color: #cc00ff; }
+
+.dstack-icon {
+  background-image: url("/assets/icons/dstack.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .gcp-bg {
   background-color: #3884ff !important; }
 
@@ -12,10 +25,10 @@ google-codelab-index-cards .card.gcp-bottom {
   margin-right: 10px; }
 
 .gemini-bg {
-  background-color: #fc4903 !important; }
+  background-color: #5983d1 !important; }
 
 google-codelab-index-cards .card.gemini-bottom {
-  border-bottom-color: #fc4903; }
+  border-bottom-color: #5983d1; }
 
 .gemini-icon {
   background-image: url("/assets/icons/gemini.svg") !important;
@@ -25,10 +38,10 @@ google-codelab-index-cards .card.gemini-bottom {
   margin-right: 10px; }
 
 .gradio-bg {
-  background-color: #fc4903 !important; }
+  background-color: #ffbf00 !important; }
 
 google-codelab-index-cards .card.gradio-bottom {
-  border-bottom-color: #fc4903; }
+  border-bottom-color: #ffbf00; }
 
 .gradio-icon {
   background-image: url("/assets/icons/gradio.svg") !important;
@@ -38,10 +51,10 @@ google-codelab-index-cards .card.gradio-bottom {
   margin-right: 10px; }
 
 .huggingface-bg {
-  background-color: #fc4903 !important; }
+  background-color: #ffbf00 !important; }
 
 google-codelab-index-cards .card.huggingface-bottom {
-  border-bottom-color: #fc4903; }
+  border-bottom-color: #ffbf00; }
 
 .huggingface-icon {
   background-image: url("/assets/icons/huggingface.svg") !important;
@@ -64,10 +77,10 @@ google-codelab-index-cards .card.jupyter-bottom {
   margin-right: 10px; }
 
 .keras-bg {
-  background-color: #fc4903 !important; }
+  background-color: #ff0000 !important; }
 
 google-codelab-index-cards .card.keras-bottom {
-  border-bottom-color: #fc4903; }
+  border-bottom-color: #ff0000; }
 
 .keras-icon {
   background-image: url("/assets/icons/keras.svg") !important;
@@ -90,10 +103,10 @@ google-codelab-index-cards .card.mlops-bottom {
   margin-right: 10px; }
 
 .openai-bg {
-  background-color: #fc4903 !important; }
+  background-color: #001a00 !important; }
 
 google-codelab-index-cards .card.openai-bottom {
-  border-bottom-color: #fc4903; }
+  border-bottom-color: #001a00; }
 
 .openai-icon {
   background-image: url("/assets/icons/openai.svg") !important;
