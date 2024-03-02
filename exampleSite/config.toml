@@ -25,3 +25,6 @@ Welcome to my codelab. This codelab is built by Chansung, and it tries to provid
     dstack = "#cc00ff"
     dspy = "#ff5c33"
     hf_hub = "#ffbf00"
+    mistral = "#ff471a"
+    aws = "#ff9900"
+    azure = "#4d4dff"

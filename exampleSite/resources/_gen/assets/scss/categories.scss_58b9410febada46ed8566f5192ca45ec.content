@@ -1,3 +1,29 @@
+.aws-bg {
+  background-color: #ff9900 !important; }
+
+google-codelab-index-cards .card.aws-bottom {
+  border-bottom-color: #ff9900; }
+
+.aws-icon {
+  background-image: url("/assets/icons/aws.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.azure-bg {
+  background-color: #4d4dff !important; }
+
+google-codelab-index-cards .card.azure-bottom {
+  border-bottom-color: #4d4dff; }
+
+.azure-icon {
+  background-image: url("/assets/icons/azure.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .dspy-bg {
   background-color: #ff5c33 !important; }
 
@@ -110,6 +136,19 @@ google-codelab-index-cards .card.keras-bottom {
 
 .keras-icon {
   background-image: url("/assets/icons/keras.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.mistral-bg {
+  background-color: #ff471a !important; }
+
+google-codelab-index-cards .card.mistral-bottom {
+  border-bottom-color: #ff471a; }
+
+.mistral-icon {
+  background-image: url("/assets/icons/mistral.svg") !important;
   background-size: 32px 32px;
   width: 32px;
   height: 32px;
