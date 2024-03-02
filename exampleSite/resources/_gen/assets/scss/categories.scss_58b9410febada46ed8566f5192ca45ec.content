@@ -1,3 +1,16 @@
+.dspy-bg {
+  background-color: #ff5c33 !important; }
+
+google-codelab-index-cards .card.dspy-bottom {
+  border-bottom-color: #ff5c33; }
+
+.dspy-icon {
+  background-image: url("/assets/icons/dspy.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .dstack-bg {
   background-color: #cc00ff !important; }
 
