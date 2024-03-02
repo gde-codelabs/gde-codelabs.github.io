@@ -63,6 +63,19 @@ google-codelab-index-cards .card.gradio-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.hf_hub-bg {
+  background-color: #ffbf00 !important; }
+
+google-codelab-index-cards .card.hf_hub-bottom {
+  border-bottom-color: #ffbf00; }
+
+.hf_hub-icon {
+  background-image: url("/assets/icons/hf_hub.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .huggingface-bg {
   background-color: #ffbf00 !important; }
 
