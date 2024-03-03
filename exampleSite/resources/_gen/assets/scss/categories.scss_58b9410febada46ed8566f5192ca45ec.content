@@ -24,6 +24,19 @@ google-codelab-index-cards .card.azure-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.chatgpt-bg {
+  background-color: #74aa9d !important; }
+
+google-codelab-index-cards .card.chatgpt-bottom {
+  border-bottom-color: #74aa9d; }
+
+.chatgpt-icon {
+  background-image: url("/assets/icons/chatgpt.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .dspy-bg {
   background-color: #ff5c33 !important; }
 
@@ -71,6 +84,19 @@ google-codelab-index-cards .card.gemini-bottom {
 
 .gemini-icon {
   background-image: url("/assets/icons/gemini.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.gemma-bg {
+  background-color: #5983d1 !important; }
+
+google-codelab-index-cards .card.gemma-bottom {
+  border-bottom-color: #5983d1; }
+
+.gemma-icon {
+  background-image: url("/assets/icons/gemma.svg") !important;
   background-size: 32px 32px;
   width: 32px;
   height: 32px;
@@ -141,6 +167,19 @@ google-codelab-index-cards .card.keras-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.meta-bg {
+  background-color: #659df6 !important; }
+
+google-codelab-index-cards .card.meta-bottom {
+  border-bottom-color: #659df6; }
+
+.meta-icon {
+  background-image: url("/assets/icons/meta.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .mistral-bg {
   background-color: #ff471a !important; }
 
@@ -180,6 +219,32 @@ google-codelab-index-cards .card.openai-bottom {
   height: 32px;
   margin-right: 10px; }
 
+.phi2-bg {
+  background-color: #001a00 !important; }
+
+google-codelab-index-cards .card.phi2-bottom {
+  border-bottom-color: #001a00; }
+
+.phi2-icon {
+  background-image: url("/assets/icons/phi2.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.solar-bg {
+  background-color: #5983d1 !important; }
+
+google-codelab-index-cards .card.solar-bottom {
+  border-bottom-color: #5983d1; }
+
+.solar-icon {
+  background-image: url("/assets/icons/solar.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
 .tfx-bg {
   background-color: #f58442 !important; }
 
@@ -188,6 +253,19 @@ google-codelab-index-cards .card.tfx-bottom {
 
 .tfx-icon {
   background-image: url("/assets/icons/tfx.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.vertexai-bg {
+  background-color: #659df6 !important; }
+
+google-codelab-index-cards .card.vertexai-bottom {
+  border-bottom-color: #659df6; }
+
+.vertexai-icon {
+  background-image: url("/assets/icons/vertexai.svg") !important;
   background-size: 32px 32px;
   width: 32px;
   height: 32px;
