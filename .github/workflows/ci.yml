@@ -30,37 +30,32 @@ jobs:
             - 'exampleSite/**'
 
     - name: Setup Hugo
-      if: ${{ steps.filter.outputs.docs == 'true' }}
       run: |
           sudo snap remove hugo
           sudo snap install hugo
-      # uses: peaceiris/actions-hugo@v2
-      # with:
-        # hugo-version: 'latest'
-      
-    - name: Build hugo
-      if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: ./build_docs.sh
       
     - name: Git init
-      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: |
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
-    - name: Git branch 
-      if: ${{ steps.filter.outputs.docs == 'true' }}
+    - name: Git branch
+      run: |
+        git checkout publish || git checkout -b publish
+
+    - name: Remove docs
+      run: |
+        rm -rf docs
+
+    - name: Build hugo
+      run: ./build_docs.sh
+      
+    - name: Git add 
       run: git add --force .
 
-    - name: Git add 
-      if: ${{ steps.filter.outputs.docs == 'true' }}    
-      run: git checkout publish || git checkout -b publish
-
     - name: Git commit
-      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: git commit -m "publish"
 
     - name: Push public to branch
-      if: ${{ steps.filter.outputs.docs == 'true' }}    
       run: |
           git push -f origin publish
