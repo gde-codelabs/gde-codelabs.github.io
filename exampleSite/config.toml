@@ -6,7 +6,7 @@ languageCode = "en-us"
 theme = "codelabs"
 
 [params]
-  homeTitle = "Learn AI through a set of tutorials"
+  homeTitle = "Learn AI through a set of tutorials!"
   homeDescription = """
 Welcome to my codelab. This codelab is built by Chansung, and it tries to provide step-by-step hands-on guide on a variety of technologies including Gemini, ChatGPT, GCP, Keras, TensorFlow, TensorFlow Extended, HuggingFace, Gradio, and more! 
 """
