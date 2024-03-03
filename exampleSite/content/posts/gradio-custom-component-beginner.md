@@ -120,7 +120,7 @@ Backend Server:  http://127.0.0.1:7860
 Frontend Server (Go here): http://localhost:7861/
 ```
 
-As you see there are two exposed endpoints, `Backend Server` and `Frontend Server`. To see the running UI component, open up a web browser, then naviate to the `Backend Server` address (`http://localhost:7861/`). Then you will see the following screen with the two Textboxes: 
+As you see there are two exposed endpoints, `Backend Server` and `Frontend Server`. To see the running UI component, open up a web browser, then naviate to the `Frontend Server` address (`http://localhost:7861/`). Then you will see the following screen with the two Textboxes: 
 
 ![first-connect](/assets/images/gradio-custom-component-beginner/first-connect.png)
 
