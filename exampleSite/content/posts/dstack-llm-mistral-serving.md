@@ -180,7 +180,7 @@ We have gone through how to serve `Mistral-7B-Instruct-v0.2` model on the cloud 
 
 ## Next 
 
-In the next step, I am going to write byte sized tutorials about
+In the next step, I am going to write byte sized tutorials about 
 - how to configure dstack server and gateway on GCP and AWS
 - how to use dstack for the other types of jobs such as LLM fine-tuning
 
