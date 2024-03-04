@@ -1,6 +1,6 @@
 ---
 title: Try out Upstage's SOLAR mini chat as API
-date: 2024-03-03
+date: 2024-03-02
 categories: [solar]
 tags: [upstage, solar]
 duration: 26:00
