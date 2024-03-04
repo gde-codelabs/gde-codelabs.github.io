@@ -39,12 +39,12 @@ jobs:
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
+    - name: Build hugo
+      run: ./build_docs.sh
+
     - name: Git branch
       run: |
         git checkout publish || git checkout -b publish
-
-    - name: Build hugo
-      run: ./build_docs.sh
       
     - name: Git add 
       run: git add --force .
