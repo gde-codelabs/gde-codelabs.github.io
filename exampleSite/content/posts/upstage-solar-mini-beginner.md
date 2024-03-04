@@ -7,7 +7,7 @@ duration: 26:00
 authors: Chansung Park
 ---
 
-{{< step label="Overview" duration="3:00" >}}
+{{< step label="Overview" duration="3:00" >}} 
 
 [Upstage](https://www.upstage.ai/) has developed remarkable [Solar 10.7B LLM](https://huggingface.co/upstage/SOLAR-10.7B-v1.0) model by [Depth Up-Scaling](https://arxiv.org/pdf/2312.15166.pdf) technique applied on [LLaMA2](https://llama.meta.com/llama2/) and [Mistral-7B](https://mistral.ai/news/announcing-mistral-7b/) base models. 
 
