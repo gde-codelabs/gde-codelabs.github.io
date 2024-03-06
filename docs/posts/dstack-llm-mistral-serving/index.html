@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta property="og:url" content="https://gde-codelabs.github.io/posts/dstack-llm-mistral-serving/">
+  <meta property="og:title" content="Let&#39;s serve Mistral-7B on the cloud with dstack">
+  <meta property="og:image" content="https://ogi.sh/gzzIXzt5-?title=Let&#39;s serve Mistral-7B on the cloud with dstack&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  <meta property="og:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta property="og:site_name" content="Chansung's Codelabs">
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Let&#39;s serve Mistral-7B on the cloud with dstack">
+  <meta name="twitter:title" content="Chansung's Codelabs">
+  <meta name="twitter:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta name="twitter:image" content="https://ogi.sh/gzzIXzt5-?title=Let&#39;s serve Mistral-7B on the cloud with dstack&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  
+  <title>Let&#39;s serve Mistral-7B on the cloud with dstack</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_survey_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_overide.css">
+  <style>
+    body {
+      transition: opacity ease-in 0.2s;
+    }
+
+    body[unresolved] {
+      opacity: 0;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body unresolved>
+  <google-codelab title="Let&#39;s serve Mistral-7B on the cloud with dstack" id="lets-serve-mistral-7b-on-the-cloud-with-dstack" authors="Chansung Park" environment="web" feedback-link="mailto:deep.diver.csp@gmail.com" home-url="https://gde-codelabs.github.io/">
+
+<google-codelab-step label="Overview" duration="2:00">
+<p>This tutorial walks you through steps to serve Large Language Model(LLM) on the cloud using <a href="https://dstack.ai/">dstack</a>. dstack is a framework that helps us allocate jobs on any cloud of your choice. Furthermore, you can choose a VM instance between on-demand and spot to meet your requirements.</p>
+<blockquote>
+<p>The cloud service provider is called <strong>backend</strong> in dstack, and currently supported backends include <a href="https://cloud.google.com/">Google Cloud Platform</a>(GCP), <a href="https://aws.amazon.com/">Amazon Web Service</a>(AWS), <a href="https://azure.microsoft.com/">Microsoft Azure</a>, <a href="https://lambdalabs.com/">Lambda Labs</a>, and <a href="https://tensordock.com/">TensorDock</a>.</p>
+</blockquote>
+<p>This tutorial is not covering how to setup your own cloud accoucnt, gateway on it, and how to request GPU quotas. These topics will be covered in separate tutorials in the future, and this tutorial will be updated to point them when they are up. For the sake of simplicity, this tutorial will use <a href="">dstack Sky</a> which is a dstack&rsquo;s fully managed cloud service.</p>
+<h2 id="the-workflow-of-this-tutorial">The workflow of this tutorial</h2>
+<ol>
+<li>Initializing dstack project</li>
+<li>Writing job description</li>
+<li>Provisioning the job on the cloud</li>
+<li>Interacting with Mistral-7B</li>
+<li>Conclusion</li>
+</ol>
+
+</google-codelab-step>
+<google-codelab-step label="Initializing dstack project" duration="2:00">
+<p>Let&rsquo;s create a directory named <code>mistral</code> first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ mkdir mistral
+</span></span><span style="display:flex;"><span>$ cd mistral
+</span></span></code></pre></div><p>Then, inside the <code>mistral</code> directory, run <code>dstack init</code> command.</p>
+<blockquote>
+<p>This tutorial assumes that you have already installed dstack package via <code>pip install &quot;dstack[all]&quot;</code></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ dstack init
+</span></span><span style="display:flex;"><span>OK
+</span></span></code></pre></div><blockquote>
+<p>If you encounter <code>No default project, specify project name</code> error, you need to run <code>dstack server</code> first as below</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ dstack server &amp;
+</span></span><span style="display:flex;"><span>$ dstack init
+</span></span><span style="display:flex;"><span>OK
+</span></span></code></pre></div>
+</google-codelab-step>
+<google-codelab-step label="Writing job description" duration="5:00">
+<p>Since dstack is just a tool to provision any kind of job on the cloud, we could leverage almost every existing frameworks to serve a LLM such as <a href="https://github.com/huggingface/text-generation-inference">Text Generation Inference</a>, <a href="https://docs.vllm.ai/en/latest/">vLLM</a>, or something else.</p>
+<p>For instance, write below <code>yaml</code> file and save as <code>serve.dstack.yml</code> in the <code>mistral</code> directory. It describes a job that serve <a href="https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2"><code>mistralai/Mistral-7B-Instruct-v0.2</code></a> via vLLM on a machine with 24GB of GPU memory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># serve.dstack.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">service</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">python</span>: <span style="color:#e6db74">&#34;3.11&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">MODEL_ID=mistralai/Mistral-7B-Instruct-v0.2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">gpu</span>: <span style="color:#ae81ff">24GB</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">commands</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">pip install vllm</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">python -m vllm.entrypoints.openai.api_server --model $MODEL --port 8000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">model</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">format</span>: <span style="color:#ae81ff">openai</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">chat</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mistral-7b-it</span>
+</span></span></code></pre></div><p>Or, below <code>yaml</code> file describes a job that serve the same model via TGI on the same type of machine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># serve.dstack.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">service</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/huggingface/text-generation-inference:latest</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">MODEL_ID=mistralai/Mistral-7B-Instruct-v0.2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">gpu</span>: <span style="color:#ae81ff">24GB</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">commands</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">text-generation-launcher --port 80 --trust-remote-code</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">model</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">format</span>: <span style="color:#ae81ff">tgi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">chat</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mistral-7b-it</span>
+</span></span></code></pre></div><blockquote>
+<p>The <code>model</code> field in the <code>yaml</code> basically exposes the model&rsquo;s endpoint as OpenAI API compatible format. Different LLM serving frameworks exposes different API endpoints, so the <code>model</code> field helps exposing different API endpoints in a uniform way.</p>
+</blockquote>
+<p>Choose either of the <code>yaml</code> files, then save it under the <code>mistral</code> directory as <code>serve.dstack.yml</code>.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Provisioning the job on the cloud" duration="2:00">
+<p>Now, we are ready to provision a VM instance that serves <code>mistralai/Mistral-7B-Instruct-v0.2</code> model via OpenAI API compatible endpoints. To do that, we can simply run <code>dstack run</code> command as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ dstack run . -f mistral/serve.dstack.yml
+</span></span></code></pre></div><p>Then, it shows the all the possible plan to choose and interactive prompt to confirm the decision.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>⠸ Getting run plan...
+</span></span><span style="display:flex;"><span>    Configuration  serve.dstack.yml             
+</span></span><span style="display:flex;"><span>    Project        deep-diver-main              
+</span></span><span style="display:flex;"><span>    User           deep-diver                   
+</span></span><span style="display:flex;"><span>    Min resources  2..xCPU, 8GB.., 1xGPU (24GB) 
+</span></span><span style="display:flex;"><span>    Max price      -                            
+</span></span><span style="display:flex;"><span>    Max duration   -                            
+</span></span><span style="display:flex;"><span>    Spot policy    auto                         
+</span></span><span style="display:flex;"><span>    Retry policy   no                           
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    #  BACKEND  REGION       INSTANCE       RESOURCES                               SPOT  PRICE       
+</span></span><span style="display:flex;"><span>    1  gcp   us-central1  g2-standard-4  4xCPU, 16GB, 1xL4 (24GB), 100GB (disk)  yes   $0.223804   
+</span></span><span style="display:flex;"><span>    2  gcp   us-east1     g2-standard-4  4xCPU, 16GB, 1xL4 (24GB), 100GB (disk)  yes   $0.223804   
+</span></span><span style="display:flex;"><span>    3  gcp   us-west1     g2-standard-4  4xCPU, 16GB, 1xL4 (24GB), 100GB (disk)  yes   $0.223804   
+</span></span><span style="display:flex;"><span>    ...                                                                                            
+</span></span><span style="display:flex;"><span>    Shown 3 of 193 offers, $5.876 max
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>Continue? [y/n]: y
+</span></span><span style="display:flex;"><span>⠙ Submitting run...
+</span></span><span style="display:flex;"><span>⠏ Launching spicy-treefrog-1 (pulling)
+</span></span><span style="display:flex;"><span>spicy-treefrog-1 provisioning completed (running)
+</span></span><span style="display:flex;"><span>Service is published at ...
+</span></span></code></pre></div><p>On the <code>Continue? [y/n]:</code> prompt, if you type <code>y</code>, it will start the provisioning process.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Interacting with Mistral-7B" duration="5:00">
+<blockquote>
+<p>If you haven&rsquo;t installed <code>openai</code> package, install it via <code>pip install openai</code> command.</p>
+</blockquote>
+<p>Now, you can directly interact with the provisioned <code>mistralai/Mistral-7B-Instruct-v0.2</code> model using <code>openai</code> package as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>  base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://gateway.&lt;gateway domain&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>  api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;dstack token&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>completion <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>  model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mistral-7b-it&#34;</span>,
+</span></span><span style="display:flex;"><span>  messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Compose a poem that explains the concept of recursion in programming.&#34;</span>}
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(completion<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message)
+</span></span></code></pre></div><p>Everything is the same as the usage of OpenAI API, but ust remember the followings:</p>
+<ul>
+<li><code>base_url</code> is the endpoint exposed by dstack. You can find this information on the <code>model</code> menu in the dstack UI.</li>
+<li><code>api_key</code> is the dstack&rsquo;s access token.</li>
+<li><code>model</code> in <code>client.chat.completions.create</code> is the model name that you cnofigured in the <code>yaml</code> file from the step 3.</li>
+</ul>
+
+</google-codelab-step>
+<google-codelab-step label="Conclusion" duration="1:00">
+<p>We have gone through how to serve <code>Mistral-7B-Instruct-v0.2</code> model on the cloud with dstack. However, it is straight forward to serve different LLM with exactly the same steps since almost every LLMs is supported in the most modern LLM serving frameworks such as TGI, vLLM, and etc.,</p>
+<h2 id="next">Next</h2>
+<p>In the next step, I am going to write byte sized tutorials about</p>
+<ul>
+<li>how to configure dstack server and gateway on GCP and AWS</li>
+<li>how to use dstack for the other types of jobs such as LLM fine-tuning</li>
+</ul>
+<p>Stay tuned. When they are ready, this page will be updated accordingly as well.</p>
+
+</google-codelab-step>
+
+
+  </google-codelab>
+  <script src="https://gde-codelabs.github.io/native-shim.js"></script>
+  <script src="https://gde-codelabs.github.io/custom-elements.min.js"></script>
+  <script src="https://gde-codelabs.github.io/prettify.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_survey_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_overide.js"></script>
+</body>
+
+</html>

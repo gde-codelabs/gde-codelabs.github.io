@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gemini on Hands-on</title>
+    <link>https://gde-codelabs.github.io/categories/gemini/</link>
+    <description>Recent content in Gemini on Hands-on</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gde-codelabs.github.io/categories/gemini/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ask Gemini about video clip in Python</title>
+      <link>https://gde-codelabs.github.io/posts/ask-gemini-about-video-clip/</link>
+      <pubDate>Sun, 03 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/posts/ask-gemini-about-video-clip/</guid>
+      <description>This tutorial walks you through steps to ask questions about a video clip to Gemini 1.0 Pro Vision on Vertex AI.&#xA;Google offers different tools for different usages. Gemini comes with built-in chat applications for regular users, and Google AI Studio is a tool for regular developers to use a family of Gemini models, and Generative AI on Vertex AI is for enterprise developers who want to leverage most of generative AI technologies built by Google.</description>
+    </item>
+  </channel>
+</rss>

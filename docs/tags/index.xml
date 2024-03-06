@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Hands-on</title>
+    <link>https://gde-codelabs.github.io/tags/</link>
+    <description>Recent content in Tags on Hands-on</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gde-codelabs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gemini</title>
+      <link>https://gde-codelabs.github.io/tags/gemini/</link>
+      <pubDate>Sun, 03 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/tags/gemini/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VertexAI</title>
+      <link>https://gde-codelabs.github.io/tags/vertexai/</link>
+      <pubDate>Sun, 03 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/tags/vertexai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Solar</title>
+      <link>https://gde-codelabs.github.io/tags/solar/</link>
+      <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/tags/solar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Upstage</title>
+      <link>https://gde-codelabs.github.io/tags/upstage/</link>
+      <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/tags/upstage/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gradio</title>
+      <link>https://gde-codelabs.github.io/tags/gradio/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/tags/gradio/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

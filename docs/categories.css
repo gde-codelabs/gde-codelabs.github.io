@@ -1,0 +1,272 @@
+.aws-bg {
+  background-color: #ff9900 !important; }
+
+google-codelab-index-cards .card.aws-bottom {
+  border-bottom-color: #ff9900; }
+
+.aws-icon {
+  background-image: url("/assets/icons/aws.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.azure-bg {
+  background-color: #4d4dff !important; }
+
+google-codelab-index-cards .card.azure-bottom {
+  border-bottom-color: #4d4dff; }
+
+.azure-icon {
+  background-image: url("/assets/icons/azure.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.chatgpt-bg {
+  background-color: #74aa9d !important; }
+
+google-codelab-index-cards .card.chatgpt-bottom {
+  border-bottom-color: #74aa9d; }
+
+.chatgpt-icon {
+  background-image: url("/assets/icons/chatgpt.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.dspy-bg {
+  background-color: #ff5c33 !important; }
+
+google-codelab-index-cards .card.dspy-bottom {
+  border-bottom-color: #ff5c33; }
+
+.dspy-icon {
+  background-image: url("/assets/icons/dspy.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.dstack-bg {
+  background-color: #cc00ff !important; }
+
+google-codelab-index-cards .card.dstack-bottom {
+  border-bottom-color: #cc00ff; }
+
+.dstack-icon {
+  background-image: url("/assets/icons/dstack.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.gcp-bg {
+  background-color: #3884ff !important; }
+
+google-codelab-index-cards .card.gcp-bottom {
+  border-bottom-color: #3884ff; }
+
+.gcp-icon {
+  background-image: url("/assets/icons/gcp.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.gemini-bg {
+  background-color: #5983d1 !important; }
+
+google-codelab-index-cards .card.gemini-bottom {
+  border-bottom-color: #5983d1; }
+
+.gemini-icon {
+  background-image: url("/assets/icons/gemini.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.gemma-bg {
+  background-color: #5983d1 !important; }
+
+google-codelab-index-cards .card.gemma-bottom {
+  border-bottom-color: #5983d1; }
+
+.gemma-icon {
+  background-image: url("/assets/icons/gemma.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.gradio-bg {
+  background-color: #ffbf00 !important; }
+
+google-codelab-index-cards .card.gradio-bottom {
+  border-bottom-color: #ffbf00; }
+
+.gradio-icon {
+  background-image: url("/assets/icons/gradio.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.hf_hub-bg {
+  background-color: #ffbf00 !important; }
+
+google-codelab-index-cards .card.hf_hub-bottom {
+  border-bottom-color: #ffbf00; }
+
+.hf_hub-icon {
+  background-image: url("/assets/icons/hf_hub.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.huggingface-bg {
+  background-color: #ffbf00 !important; }
+
+google-codelab-index-cards .card.huggingface-bottom {
+  border-bottom-color: #ffbf00; }
+
+.huggingface-icon {
+  background-image: url("/assets/icons/huggingface.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.jupyter-bg {
+  background-color: #fc4903 !important; }
+
+google-codelab-index-cards .card.jupyter-bottom {
+  border-bottom-color: #fc4903; }
+
+.jupyter-icon {
+  background-image: url("/assets/icons/jupyter.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.keras-bg {
+  background-color: #ff0000 !important; }
+
+google-codelab-index-cards .card.keras-bottom {
+  border-bottom-color: #ff0000; }
+
+.keras-icon {
+  background-image: url("/assets/icons/keras.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.meta-bg {
+  background-color: #659df6 !important; }
+
+google-codelab-index-cards .card.meta-bottom {
+  border-bottom-color: #659df6; }
+
+.meta-icon {
+  background-image: url("/assets/icons/meta.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.mistral-bg {
+  background-color: #ff471a !important; }
+
+google-codelab-index-cards .card.mistral-bottom {
+  border-bottom-color: #ff471a; }
+
+.mistral-icon {
+  background-image: url("/assets/icons/mistral.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.mlops-bg {
+  background-color: #1A73E8 !important; }
+
+google-codelab-index-cards .card.mlops-bottom {
+  border-bottom-color: #1A73E8; }
+
+.mlops-icon {
+  background-image: url("/assets/icons/mlops.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.openai-bg {
+  background-color: #001a00 !important; }
+
+google-codelab-index-cards .card.openai-bottom {
+  border-bottom-color: #001a00; }
+
+.openai-icon {
+  background-image: url("/assets/icons/openai.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.phi2-bg {
+  background-color: #001a00 !important; }
+
+google-codelab-index-cards .card.phi2-bottom {
+  border-bottom-color: #001a00; }
+
+.phi2-icon {
+  background-image: url("/assets/icons/phi2.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.solar-bg {
+  background-color: #5983d1 !important; }
+
+google-codelab-index-cards .card.solar-bottom {
+  border-bottom-color: #5983d1; }
+
+.solar-icon {
+  background-image: url("/assets/icons/solar.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.tfx-bg {
+  background-color: #f58442 !important; }
+
+google-codelab-index-cards .card.tfx-bottom {
+  border-bottom-color: #f58442; }
+
+.tfx-icon {
+  background-image: url("/assets/icons/tfx.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }
+
+.vertexai-bg {
+  background-color: #659df6 !important; }
+
+google-codelab-index-cards .card.vertexai-bottom {
+  border-bottom-color: #659df6; }
+
+.vertexai-icon {
+  background-image: url("/assets/icons/vertexai.svg") !important;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px; }

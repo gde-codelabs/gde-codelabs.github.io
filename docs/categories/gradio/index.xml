@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gradio on Hands-on</title>
+    <link>https://gde-codelabs.github.io/categories/gradio/</link>
+    <description>Recent content in Gradio on Hands-on</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gde-codelabs.github.io/categories/gradio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beginner&#39;s guide on Gradio custom component(front-end)</title>
+      <link>https://gde-codelabs.github.io/posts/gradio-custom-component-beginner/</link>
+      <pubDate>Tue, 27 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/posts/gradio-custom-component-beginner/</guid>
+      <description>This tutorial walks you through the general steps about how to build your own Gradio custom component. At the end, you will be able to create a text box component with the glowing background by default.&#xA;Before getting started, I want to clarify that Gradio is a full stack web service framework. That means you need some background knowledge about the front-end and back-end in general. Specifically, you need to know about Python and FastAPI for the back-end and JavaScript and Svelte for the front-end.</description>
+    </item>
+  </channel>
+</rss>

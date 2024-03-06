@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta property="og:url" content="https://gde-codelabs.github.io/posts/gradio-custom-component-beginner/">
+  <meta property="og:title" content="Beginner&#39;s guide on Gradio custom component(front-end)">
+  <meta property="og:image" content="https://ogi.sh/gzzIXzt5-?title=Beginner&#39;s guide on Gradio custom component(front-end)&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  <meta property="og:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta property="og:site_name" content="Chansung's Codelabs">
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Beginner&#39;s guide on Gradio custom component(front-end)">
+  <meta name="twitter:title" content="Chansung's Codelabs">
+  <meta name="twitter:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta name="twitter:image" content="https://ogi.sh/gzzIXzt5-?title=Beginner&#39;s guide on Gradio custom component(front-end)&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  
+  <title>Beginner&#39;s guide on Gradio custom component(front-end)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_survey_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_overide.css">
+  <style>
+    body {
+      transition: opacity ease-in 0.2s;
+    }
+
+    body[unresolved] {
+      opacity: 0;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body unresolved>
+  <google-codelab title="Beginner&#39;s guide on Gradio custom component(front-end)" id="beginners-guide-on-gradio-custom-componentfront-end" authors="Chansung Park" environment="web" feedback-link="mailto:deep.diver.csp@gmail.com" home-url="https://gde-codelabs.github.io/">
+
+<google-codelab-step label="Overview" duration="1:00">
+<p>This tutorial walks you through the general steps about how to build your own <a href="https://www.gradio.app/">Gradio</a> custom component. At the end, you will be able to create a text box component with the glowing background by default.</p>
+<p>Before getting started, I want to clarify that Gradio is a full stack web service framework. That means you need some background knowledge about the front-end and back-end in general. Specifically, you need to know about Python and <a href="https://fastapi.tiangolo.com/">FastAPI</a> for the back-end and JavaScript and <a href="https://svelte.dev/">Svelte</a> for the front-end.</p>
+<h2 id="the-workflow-of-this-tutorial">The workflow of this tutorial</h2>
+<ol>
+<li>Install prerequisites</li>
+<li>Create Gradio custom component project</li>
+<li>Running dev mode</li>
+<li>Modifying front-end side</li>
+<li>Conclusion</li>
+</ol>
+
+</google-codelab-step>
+<google-codelab-step label="Install prerequisites" duration="5:00">
+<p>For Gradio custom component development, you need to install the following four programs.</p>
+<h2 id="1-python-38">1. Python 3.8+</h2>
+<p>Depending on your operating system, the install process could vary. Please follow the <a href="https://www.python.org/downloads/">official Python installation guide</a>. For macOS user, you can install Python with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ brew install python
+</span></span></code></pre></div><h2 id="2-nodejs-v1614">2. Node.js v16.14+</h2>
+<p>Depending on your operating system, the install process could vary. Please follow the <a href="https://nodejs.org/en/download/package-manager/">official Node.js installation guide</a>. For macOS user, you can install <code>Node.js</code> with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl <span style="color:#e6db74">&#34;https://nodejs.org/dist/latest/</span><span style="color:#66d9ef">$(</span>curl -s https://nodejs.org/dist/latest/ | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    grep <span style="color:#e6db74">&#34;pkg&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    cut -d<span style="color:#e6db74">&#39;&#34;&#39;</span> -f 2<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> -o <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/Downloads/node-latest.pkg&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    sudo installer -store -pkg <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/Downloads/node-latest.pkg&#34;</span> -target <span style="color:#e6db74">&#34;/&#34;</span>
+</span></span></code></pre></div><h2 id="3-npm-9">3. npm 9+</h2>
+<p><code>npm</code> should be successfully installed when you install Node.js in the previous step. If the version of <code>npm</code> is lower than 9, simply run the following command to upgrade <code>npm</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ npm install -g npm
+</span></span></code></pre></div><h2 id="4-gradio-40">4. Gradio 4.0+</h2>
+<p>To develope Gradio custom components, you should have Gradio &gt; 4.0+ installed. If your Gradio version is lower than <code>4.0</code>, run the following command to install <code>4.0+</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pip install -U gradio
+</span></span></code></pre></div>
+</google-codelab-step>
+<google-codelab-step label="Create project" duration="2:00">
+<p>The first step to get started with building your custom Gradio component is to create a template using the Gradio CLI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gradio cc create MyGlowingTextbox --template SimpleTextbox
+</span></span></code></pre></div><p>The <code>--template SimpleTextbox</code> option tells Gradio to use the <code>SimpleTextbox</code> component as a starting point for your custom component. This template provides a basic structure for text input components. If you are curious what templates are provided, check them out with <code>gradio cc show</code> CLI.</p>
+<p>Now, go inside the created project directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd myglowingtextbox
+</span></span></code></pre></div><p>If you navigate the directory inside, you will see the similar directory structure as follow:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>myglowingtextbox/
+</span></span><span style="display:flex;"><span>|-- backend/
+</span></span><span style="display:flex;"><span>|   |── myglowingtextbox.py
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>|── demo/
+</span></span><span style="display:flex;"><span>|   |── app.py
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>|── frontend/
+</span></span><span style="display:flex;"><span>|   |── Example.svelte
+</span></span><span style="display:flex;"><span>|   |── Index.svelte
+</span></span><span style="display:flex;"><span>|   |── package.json
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>|── pyproject.toml
+</span></span></code></pre></div><p>Now you have a basic template to start customizing your glowing textbox component. You&rsquo;ll need to modify the Python code in <code>backend/myglowingtextbox.py</code> to handle the logic and the Svelte code in <code>frontend/Index.svelte</code> to implement the glowing background effect.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Running dev mode" duration="2:00">
+<p>To run custom component dev mode, run the following command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gradio cc dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>♻ Launching demo/app.py in reload mode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Watching: <span style="color:#e6db74">&#39;myglowingtextbox/demo&#39;</span> 
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;myglowingtextbox/frontend&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;myglowingtextbox&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Backend Server:  http://127.0.0.1:7860
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Frontend Server <span style="color:#f92672">(</span>Go here<span style="color:#f92672">)</span>: http://localhost:7861/
+</span></span></code></pre></div><p>As you see there are two exposed endpoints, <code>Backend Server</code> and <code>Frontend Server</code>. To see the running UI component, open up a web browser, then naviate to the <code>Frontend Server</code> address (<code>http://localhost:7861/</code>). Then you will see the following screen with the two Textboxes:</p>
+<p><img src="/assets/images/gradio-custom-component-beginner/first-connect.png" alt="first-connect"></p>
+<p>Gradio&rsquo;s custom component dev mode actively hot reloads changes. For instance, if you change any codes, the changes will be reflected at real time without refreshing the browser.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Modifying front-end side" duration="5:00">
+<p>The custom component&rsquo;s look (UI) is defined in <code>frontend/Index.svelte</code>. Specifically, find the following code block:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-svelte" data-lang="svelte"><span style="display:flex;"><span>&lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">class:container</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">BlockTitle</span> {<span style="color:#a6e22e">show_label</span>} <span style="color:#a6e22e">info</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">undefined</span>}<span style="color:#960050;background-color:#1e0010">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#e6db74">&lt;/BlockTitle</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data-testid</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;textbox&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;scroll-hide&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">bind:value</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">bind:this</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">el</span>}
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">placeholder</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">disabled=</span>{<span style="color:#f92672">!</span><span style="color:#a6e22e">interactive</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">dir</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">rtl</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;rtl&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ltr&#34;</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">on:keypress=</span>{<span style="color:#a6e22e">handle_keypress</span>}
+</span></span><span style="display:flex;"><span>    /&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span></code></pre></div><p>This is where the custom component is defined. To change the style of the component, you don&rsquo;t need to touch anything else but just <code>class</code>. For instance add <code>glowing-textbox</code> to the <code>class</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-svelte" data-lang="svelte"><span style="display:flex;"><span>&lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">class:container</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">BlockTitle</span> {<span style="color:#a6e22e">show_label</span>} <span style="color:#a6e22e">info</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">undefined</span>}<span style="color:#960050;background-color:#1e0010">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#e6db74">&lt;/BlockTitle</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;scroll-hide glowing-textbox&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>    /&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span></code></pre></div><p>Now, define any CSS styles for the <code>glowing-textbox</code> as you like after the <code>&lt;style&gt; ... &lt;/style&gt;</code> section. For the purpose of this tutorial, to add the glowing background on the textbox, you can simply add the following CSS:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">glowing-textbox</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">box-shadow</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">5</span><span style="color:#66d9ef">px</span> rgba(<span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">204</span>, <span style="color:#ae81ff">0.3</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now, go back to the browser that you just opend in step 4. You will see the glowing background is successfully applied to the textbox component as below:</p>
+<p><img src="/assets/images/gradio-custom-component-beginner/after-css.png" alt="first-connect"></p>
+
+</google-codelab-step>
+<google-codelab-step label="Conclusion" duration="1:00">
+<p>We have gone through very simple steps to create a Gradio&rsquo;s custom component. We havn&rsquo;t touch the back-end side, and this tutorial simply changed the background color of the existing textbox component.</p>
+<p>You probably think this is too simple!</p>
+<p>However, if you have experiences to customize the look of Gradio application in the past (<code>Gradio &lt; 4.0</code>), this tutorial could save a lot of your time! Of course we could reuse our custom component across various different Gradio applications.</p>
+<h2 id="next">Next</h2>
+<p>In the next step, I am going to write byte sized tutorials about</p>
+<ul>
+<li>how to publish Gradio custom component on PyPI</li>
+<li>how to use custom component from PyPI</li>
+</ul>
+<p>Stay tuned. When they are ready, this page will be updated accordingly as well.</p>
+
+</google-codelab-step>
+
+
+  </google-codelab>
+  <script src="https://gde-codelabs.github.io/native-shim.js"></script>
+  <script src="https://gde-codelabs.github.io/custom-elements.min.js"></script>
+  <script src="https://gde-codelabs.github.io/prettify.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_survey_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_overide.js"></script>
+</body>
+
+</html>

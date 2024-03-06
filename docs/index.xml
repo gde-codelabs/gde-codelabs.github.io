@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hands-on</title>
+    <link>https://gde-codelabs.github.io/</link>
+    <description>Recent content on Hands-on</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gde-codelabs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ask Gemini about video clip in Python</title>
+      <link>https://gde-codelabs.github.io/posts/ask-gemini-about-video-clip/</link>
+      <pubDate>Sun, 03 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/posts/ask-gemini-about-video-clip/</guid>
+      <description>This tutorial walks you through steps to ask questions about a video clip to Gemini 1.0 Pro Vision on Vertex AI.&#xA;Google offers different tools for different usages. Gemini comes with built-in chat applications for regular users, and Google AI Studio is a tool for regular developers to use a family of Gemini models, and Generative AI on Vertex AI is for enterprise developers who want to leverage most of generative AI technologies built by Google.</description>
+    </item>
+    <item>
+      <title>Try out Upstage&#39;s SOLAR mini chat as API</title>
+      <link>https://gde-codelabs.github.io/posts/upstage-solar-mini-beginner/</link>
+      <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/posts/upstage-solar-mini-beginner/</guid>
+      <description>Upstage has developed remarkable Solar 10.7B LLM model by Depth Up-Scaling technique applied on LLaMA2 and Mistral-7B base models.&#xA;As of writing this tutorial on 03.04.2024, Upstage has opened up Solar model (called Solar mini chat) as API, and it is even more powerful model than Solar 10.7B which was open sourced a while ago. This tutorial will walk you through how to get access of the Solar mini chat and how to make a call to that model in Python.</description>
+    </item>
+    <item>
+      <title>Let&#39;s serve Mistral-7B on the cloud with dstack</title>
+      <link>https://gde-codelabs.github.io/posts/dstack-llm-mistral-serving/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/posts/dstack-llm-mistral-serving/</guid>
+      <description>This tutorial walks you through steps to serve Large Language Model(LLM) on the cloud using dstack. dstack is a framework that helps us allocate jobs on any cloud of your choice. Furthermore, you can choose a VM instance between on-demand and spot to meet your requirements.&#xA;The cloud service provider is called backend in dstack, and currently supported backends include Google Cloud Platform(GCP), Amazon Web Service(AWS), Microsoft Azure, Lambda Labs, and TensorDock.</description>
+    </item>
+    <item>
+      <title>Beginner&#39;s guide on Gradio custom component(front-end)</title>
+      <link>https://gde-codelabs.github.io/posts/gradio-custom-component-beginner/</link>
+      <pubDate>Tue, 27 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://gde-codelabs.github.io/posts/gradio-custom-component-beginner/</guid>
+      <description>This tutorial walks you through the general steps about how to build your own Gradio custom component. At the end, you will be able to create a text box component with the glowing background by default.&#xA;Before getting started, I want to clarify that Gradio is a full stack web service framework. That means you need some background knowledge about the front-end and back-end in general. Specifically, you need to know about Python and FastAPI for the back-end and JavaScript and Svelte for the front-end.</description>
+    </item>
+  </channel>
+</rss>

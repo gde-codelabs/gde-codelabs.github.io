@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta property="og:url" content="https://gde-codelabs.github.io/posts/ask-gemini-about-video-clip/">
+  <meta property="og:title" content="Ask Gemini about video clip in Python">
+  <meta property="og:image" content="https://ogi.sh/gzzIXzt5-?title=Ask Gemini about video clip in Python&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  <meta property="og:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta property="og:site_name" content="Chansung's Codelabs">
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Ask Gemini about video clip in Python">
+  <meta name="twitter:title" content="Chansung's Codelabs">
+  <meta name="twitter:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta name="twitter:image" content="https://ogi.sh/gzzIXzt5-?title=Ask Gemini about video clip in Python&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  
+  <title>Ask Gemini about video clip in Python</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_survey_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_overide.css">
+  <style>
+    body {
+      transition: opacity ease-in 0.2s;
+    }
+
+    body[unresolved] {
+      opacity: 0;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body unresolved>
+  <google-codelab title="Ask Gemini about video clip in Python" id="ask-gemini-about-video-clip-in-python" authors="Chansung Park" environment="web" feedback-link="mailto:deep.diver.csp@gmail.com" home-url="https://gde-codelabs.github.io/">
+
+<google-codelab-step label="Overview" duration="2:00">
+<p>This tutorial walks you through steps to ask questions about a video clip to <a href="https://deepmind.google/technologies/gemini/">Gemini</a> 1.0 Pro Vision on <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview">Vertex AI</a>.</p>
+<blockquote>
+<p>Google offers different tools for different usages. Gemini comes with built-in chat applications for regular users, and <a href="https://ai.google.dev/">Google AI Studio</a> is a tool for regular developers to use a family of Gemini models, and Generative AI on Vertex AI is for enterprise developers who want to leverage most of generative AI technologies built by Google.</p>
+</blockquote>
+<p>At the time of writing this tutorial, accessing multimodal feature of Gemini via API is only supported on Vertex AI. Hence, the contents of thie tutorial are basically for Vertex AI users who want to try out Gemini&rsquo;s multimodality.</p>
+<blockquote>
+<p>You could try out multimodality on Google AI Studio&rsquo;s web interface though.</p>
+</blockquote>
+<h2 id="the-workflow-of-this-tutorial">The workflow of this tutorial</h2>
+<ol>
+<li>GCP authentication</li>
+<li>Initializing Vertex AI session</li>
+<li>Writing Python function to interact with Gemini 1.0 Pro Vision</li>
+<li>Interacting with Gemini 1.0 Pro Vision (stream mode)</li>
+<li>Interacting with Gemini 1.0 Pro Vision (non-stream mode)</li>
+<li>Conclusion</li>
+</ol>
+
+</google-codelab-step>
+<google-codelab-step label="GCP authentication" duration="5:00">
+<p>To use any service on <a href="https://cloud.google.com/?hl=en">Google Cloud Platform</a>(GCP) including Vertex AI, authentication is always required. To do this, you need to install <code>gcloud</code> CLI toolkit. If you haven&rsquo;t yet, install it by following the instruction from <a href="https://cloud.google.com/sdk/docs/install">this page</a></p>
+<p>If you are a Apple silicon macos user, you can simply follow the below (keep in mind that the future version of <code>gcloud</code> may be different from this tutorial):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Download gcloud CLI toolkit</span>
+</span></span><span style="display:flex;"><span>$ curl -L https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-466.0.0-darwin-arm.tar.gz -o google-cloud-cli-466.0.0-darwin-arm.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Decompress the tar.gz. You may want to </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># do this on a directory of your choice</span>
+</span></span><span style="display:flex;"><span>$ tar -xvf google-cloud-cli-466.0.0-darwin-arm.tar.gz 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install gcloud CLI toolkit</span>
+</span></span><span style="display:flex;"><span>$ ./google-cloud-sdk/install.sh
+</span></span></code></pre></div><blockquote>
+<p>If you try out this tutorial on <a href="https://colab.research.google.com/">Google Colab</a> environment, <code>gcloud</code> CLI toolkit is pre-installed in it, so you don&rsquo;t need to install it by yourself.</p>
+</blockquote>
+<p>Once <code>gcloud</code> CLI toolkit is installed correctly, run below to autheticate. When you run the following command, it gives you a link. Open it up on a browser, then grasp the generated key, then paste it into the terminal.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ gcloud auth application-default login
+</span></span></code></pre></div><p>While the above process works perfectly fine, we can&rsquo;t automate it since there is a interactive part of copy and paste stuffs. If that is what you are looking for, consider to run the following commands(it assumes you already have saved your service account key somewhere):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ gcloud auth application-default login <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --client-id-file<span style="color:#f92672">=</span>/path/to/your/service_account_key.json
+</span></span></code></pre></div>
+</google-codelab-step>
+<google-codelab-step label="Initializing Vertex AI API" duration="5:00">
+<p>The final step to get ready to use Gemini 1.0 Pro Vision is to initialize Vertex AI API. This is to updates common initialization parameters with provided options. If you are curious about what other parameters could be configured, check out the <a href="https://cloud.google.com/python/docs/reference/aiplatform/latest/vertexai#vertexai_init">official doc</a>. For the purpose of this tutorial, all we need is GCP project ID and GCP location.</p>
+<p>To do that, run the following to install <code>google-cloud-aiplatform</code> PyPI package:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pip install --upgrade google-cloud-aiplatform
+</span></span></code></pre></div><p>Then, import <code>vertexai</code> package and initialize Vertex AI API by using <code>vertexai.init</code> method. When calling <code>vertexai.init</code> method, pass your GCP project ID and GCP location such as <code>us-central1</code>. Those two information is all we need for this tutorial.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> vertexai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GCP_PROJECT_ID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;YOUR-GCP-PROJECT-ID&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>GCP_LOCATION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;YOUR-CHOICE-OF-GCP-LOCATION&gt;&#34;</span> <span style="color:#75715e"># i.e. us-central1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vertexai<span style="color:#f92672">.</span>init(project<span style="color:#f92672">=</span>GCP_PROJECT_ID, location<span style="color:#f92672">=</span>GCP_LOCATION)
+</span></span></code></pre></div><p>Now, we are all set to interact with Gemini 1.0 Pro Vision! In the next step, we are going to write a simple Python function to send message to Gemini 1.0 Pro Vision model.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Writing Python function to interact with Gemini 1.0 Pro Vision" duration="10:00">
+<p>To interact with Gemini 1.0 Pro Vision model on Vertex AI, we need to use <code>vertexai.generative_models</code> modules. Especially, we import two modules, <code>GenerativeModel</code> to specify the model type and <code>Part</code> to define a message to be sent to the model. In the below code snippet, <code>GenerationResponse</code> is imported to give type hint of the return value, so it is not mendatory to import it.</p>
+<blockquote>
+<p>For the sake of simplicity, I dropped the sanity checking code snippets to focus on the core business logic.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Union, Iterable
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vertexai.generative_models <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    GenerativeModel, GenerationResponse,
+</span></span><span style="display:flex;"><span>    Part, GenerationConfig
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_default_gen_config</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> GenerationConfig(
+</span></span><span style="display:flex;"><span>        max_output_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">2048</span>,
+</span></span><span style="display:flex;"><span>        temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.4</span>,
+</span></span><span style="display:flex;"><span>        top_p<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ask_gemini</span>(
+</span></span><span style="display:flex;"><span>    prompt: str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What is in the video?&#34;</span>, 
+</span></span><span style="display:flex;"><span>    video_gcs: str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gs://cloud-samples-data/video/animals.mp4&#34;</span>, 
+</span></span><span style="display:flex;"><span>    gen_config: dict<span style="color:#f92672">=</span>_default_gen_config(),
+</span></span><span style="display:flex;"><span>    stream: bool<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, 
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> Union[GenerationResponse, Iterable[GenerationResponse]]:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    vision_model <span style="color:#f92672">=</span> GenerativeModel(<span style="color:#e6db74">&#34;gemini-1.0-pro-vision&#34;</span>)
+</span></span><span style="display:flex;"><span>    video <span style="color:#f92672">=</span> Part<span style="color:#f92672">.</span>from_uri(video_gcs, mime_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video/mp4&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> vision_model<span style="color:#f92672">.</span>generate_content(
+</span></span><span style="display:flex;"><span>        [video, prompt], 
+</span></span><span style="display:flex;"><span>        generation_config<span style="color:#f92672">=</span>gen_config, stream<span style="color:#f92672">=</span>stream
+</span></span><span style="display:flex;"><span>    )     
+</span></span></code></pre></div><p>Here is what <code>ask_gemini()</code> function does in a nutshell without any explicit parameters:</p>
+<ul>
+<li>it basically asks Gemini 1.0 Pro Vision a question(<code>What is in the video?</code>) about the video hosted on Google Cloud Storage(<code>gs://cloud-samples-data/video/animals.mp4</code>).</li>
+<li><code>GenerativeModel</code> is used to define which model to interact with. Here it is set to <code>gemini-1.0-pro-vision</code>. If you want to interact with just language model Gemini, you could simply switch to <code>gemini-1.0-pro</code>.</li>
+<li><code>Part.from_uri</code> is used to define a special type of contents to be included in a message other than text. Unfortunately, when it comes to define a video content within <code>Part.from_uri</code>, the videos hosted on Google Cloud Storage is only allowed. We will see how to include a video on a local machine in the step 7.</li>
+<li><code>vision_model.generate_content()</code> is a method that actually sends out a message to the model and receives back the results.</li>
+<li><code>vision_model.generate_content()</code> returns a type of <code>GenerationResponse</code> when <code>stream=False</code>, or it returns a type of <code>Iterable[GenerationResponse]</code> when <code>stream=True</code>. We will see both usages in step 5 and 6.</li>
+</ul>
+<p>Now, we have all the ingredients to play with Gemini 1.0 Pro Vision model!</p>
+
+</google-codelab-step>
+<google-codelab-step label="Interacting with Gemini 1.0 Pro Vision (stream mode)" duration="2:00">
+<p>Now, let&rsquo;s ask gemini about the video hosted on Google Cloud Storage as below:</p>
+<blockquote>
+<p>Since the default value of <code>video_gcs</code> is already <code>gs://cloud-samples-data/video/animals.mp4</code>, we don&rsquo;t need to specify any parameter to <code>ask_gemini()</code> function. However, below code snippet set the value of<code>video_gcs</code> parameter to highlight what video we are going to analyze.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#f92672">=</span> ask_gemini(video_gcs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gs://cloud-samples-data/video/animals.mp4&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response)
+</span></span></code></pre></div><p>Calling <code>ask_gemini()</code> function would take up to 1 minute (this could vary a bit though). Then, similar text as below is displayed out:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> The video is an advertisement <span style="color:#66d9ef">for</span> the movie Zootopia. It features a sloth, a fox, and a rabbit taking selfies with a Google Pixel phone. The ad highlights the phone<span style="color:#960050;background-color:#1e0010">&#39;</span>s camera quality and its ability to take great photos even in low-light conditions. The ad also features the tagline <span style="color:#e6db74">&#34;See more at g.co/ZootopiaSelfies&#34;</span>.
+</span></span></code></pre></div><p>In UX perspective, waiting until the response text is fully generated isn&rsquo;t good because there is no feedback at all for about an minute. Is there a better way? Let&rsquo;s explore how we could get streamed intermediate results back in the next step.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Interacting with Gemini 1.0 Pro Vision (non-stream mode)" duration="2:00">
+<p>By passing <code>stream=True</code> to the <code>ask_gemini()</code> function, it returns a type of <code>Iterable[GenerationResponse]</code> back. As you could guess, nothing is different from when <code>stream=False</code> except the response is now iterable. How do we handle iterable? Using <code>for ... in</code> loop of course!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>responses <span style="color:#f92672">=</span> ask_gemini(gcs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gs://cloud-samples-data/video/animals.mp4&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> resp <span style="color:#f92672">in</span> responses:
+</span></span><span style="display:flex;"><span>    print(resp<span style="color:#f92672">.</span>text, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><blockquote>
+<p>To get a natural output set <code>sep</code> parameter of <code>print</code> function to <code>&quot;&quot;</code>. This tutorial set <code>sep=\n\n</code> to clearly show how response from each <code>GenerationResponse</code> is separated.</p>
+</blockquote>
+<p>The above code snippet should print out two chunk of texts as similar as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>It is a commercial <span style="color:#66d9ef">for</span> the movie Zootopia. It shows a sloth, a fox, and a rabbit in a city. It also shows a tiger,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> an elephant, and a seal. The animals are taking pictures of each other. The commercial is funny because it shows the animals doing human things.
+</span></span></code></pre></div>
+</google-codelab-step>
+<google-codelab-step label="Send video contents on a local disk" duration="5:00">
+<p>Last but not least, it is not ideal to upload video clip on the Google Cloud Storage all the time. Instead, it is more common to ask questions about video clips stored in your local system. Luckily, there is a way for this! To do this, we need to modify <code>ask_gemini</code> function to take additional <code>bytes</code> type parameter as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> base64
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Union, Iterable
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vertexai.generative_models <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    GenerativeModel, GenerationResponse, Part
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ask_gemini</span>(
+</span></span><span style="display:flex;"><span>    prompt: str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What is in the video?&#34;</span>, 
+</span></span><span style="display:flex;"><span>    video_gcs: str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gs://cloud-samples-data/video/animals.mp4&#34;</span>,
+</span></span><span style="display:flex;"><span>    base64_encoded: bytes<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>    gen_config: dict<span style="color:#f92672">=</span>_default_gen_config(),
+</span></span><span style="display:flex;"><span>    stream: bool<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, 
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> Union[GenerationResponse, Iterable[GenerationResponse]]:
+</span></span><span style="display:flex;"><span>    vision_model <span style="color:#f92672">=</span> GenerativeModel(<span style="color:#e6db74">&#34;gemini-1.0-pro-vision&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> gcs <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        video <span style="color:#f92672">=</span> Part<span style="color:#f92672">.</span>from_uri(gcs, mime_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video/mp4&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        video <span style="color:#f92672">=</span> Part<span style="color:#f92672">.</span>from_data(
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">=</span>base64<span style="color:#f92672">.</span>b64decode(base64_encoded),
+</span></span><span style="display:flex;"><span>            mime_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video/mp4&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> vision_model<span style="color:#f92672">.</span>generate_content(
+</span></span><span style="display:flex;"><span>        [video, prompt], 
+</span></span><span style="display:flex;"><span>        generation_config<span style="color:#f92672">=</span>gen_config, stream<span style="color:#f92672">=</span>stream
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><p><code>vertexai.generative_models.Part</code> comes with the built-in class method <code>from_data()</code>, and this allows you to define a message with <a href="https://docs.python.org/3/library/base64.html#base64.b64encode">based64 encoded</a> <code>bytes</code> type value. You can easily create base64 encoded bytes with the following code snippet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;animals.mp4&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> video_file:
+</span></span><span style="display:flex;"><span>    video_data <span style="color:#f92672">=</span> video_file<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>based64encoded_video <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64encode(video_data)
+</span></span></code></pre></div><p>Then, you are all set. Just call <code>ask_gemini</code> as below:</p>
+<blockquote>
+<p>The above code snippet assumes that you already have <code>animals.mp4</code> in the current directory. You can pass your own video clip, but if you want to get the same video clip, use <code>gsutil</code> CLI which is installed together when you install <code>gcloud</code> CLI toolkit. <code>gsutil cp gs://cloud-samples-data/video/animals.mp4 ./</code> command should download the sample video clip.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#f92672">=</span> ask_gemini(base64_encoded<span style="color:#f92672">=</span>based64encoded_video, video_gcs<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>print(response)
+</span></span></code></pre></div>
+</google-codelab-step>
+<google-codelab-step label="Conclusion" duration="2:00">
+<p>We have gone through how to interact with Gemini 1.0 Pro Vision model to ask about a video clip.</p>
+<p>Here are some takeaways:</p>
+<ul>
+<li>Always authenticate your GCP account to get access to Gemini models on Vertex AI.</li>
+<li>You can pass video clips stored in either on Google Cloud Storage or on your local machine.</li>
+<li>For the video clips on Google Cloud Storage, use <code>Part.from_uri</code>.</li>
+<li>For the video clips on your local machine, use <code>Part.from_data</code> with base64 encoded video clips.</li>
+<li>Set <code>stream=True</code> if you want to get partially generated text in real time.</li>
+<li>For streaming mode, the returned value from <code>generate_content()</code> is iterable.</li>
+</ul>
+
+</google-codelab-step>
+
+
+  </google-codelab>
+  <script src="https://gde-codelabs.github.io/native-shim.js"></script>
+  <script src="https://gde-codelabs.github.io/custom-elements.min.js"></script>
+  <script src="https://gde-codelabs.github.io/prettify.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_survey_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_overide.js"></script>
+</body>
+
+</html>

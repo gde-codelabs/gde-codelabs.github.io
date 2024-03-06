@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta property="og:url" content="https://gde-codelabs.github.io/posts/upstage-solar-mini-beginner/">
+  <meta property="og:title" content="Try out Upstage&#39;s SOLAR mini chat as API">
+  <meta property="og:image" content="https://ogi.sh/gzzIXzt5-?title=Try out Upstage&#39;s SOLAR mini chat as API&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  <meta property="og:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta property="og:site_name" content="Chansung's Codelabs">
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Try out Upstage&#39;s SOLAR mini chat as API">
+  <meta name="twitter:title" content="Chansung's Codelabs">
+  <meta name="twitter:description" content="Chansung's Codelabs provides a set of tutorials on practical usage of artificial intelligence">
+  <meta name="twitter:image" content="https://ogi.sh/gzzIXzt5-?title=Try out Upstage&#39;s SOLAR mini chat as API&size=facebook&imageUrl=https://r2.easyimg.io/6wul34c5i/codelabs-background.png">
+  
+  <title>Try out Upstage&#39;s SOLAR mini chat as API</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_survey_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_scss_bin.css">
+  <link rel="stylesheet" href="https://gde-codelabs.github.io/google_codelab_step_overide.css">
+  <style>
+    body {
+      transition: opacity ease-in 0.2s;
+    }
+
+    body[unresolved] {
+      opacity: 0;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body unresolved>
+  <google-codelab title="Try out Upstage&#39;s SOLAR mini chat as API" id="try-out-upstages-solar-mini-chat-as-api" authors="Chansung Park" environment="web" feedback-link="mailto:deep.diver.csp@gmail.com" home-url="https://gde-codelabs.github.io/">
+
+<google-codelab-step label="Overview" duration="3:00">
+<p><a href="https://www.upstage.ai/">Upstage</a> has developed remarkable <a href="https://huggingface.co/upstage/SOLAR-10.7B-v1.0">Solar 10.7B LLM</a> model by <a href="https://arxiv.org/pdf/2312.15166.pdf">Depth Up-Scaling</a> technique applied on <a href="https://llama.meta.com/llama2/">LLaMA2</a> and <a href="https://mistral.ai/news/announcing-mistral-7b/">Mistral-7B</a> base models.</p>
+<p><img src="https://images.squarespace-cdn.com/content/v1/659384103b38c97cdaf368bd/3125b51c-329a-49a5-820b-9a212c5f548a/Screenshot+2024-01-25+at+1.01.27%E2%80%AFPM.png?format=2500w" alt=""></p>
+<p>As of writing this tutorial on 03.04.2024, Upstage has opened up Solar model (called <code>Solar mini chat</code>) as API, and it is even more powerful model than Solar 10.7B which was open sourced a while ago. This tutorial will walk you through how to get access of the <code>Solar mini chat</code> and how to make a call to that model in Python.</p>
+<blockquote>
+<p>Upstage offers a free trial of Solar API until 03.31.2024, so try it out for free! Even if the free trial date is expired after that, this tutorial should be applicable for paid users.</p>
+</blockquote>
+<h2 id="the-workflow-of-this-tutorial">The workflow of this tutorial</h2>
+<ol>
+<li>Signup Upstage developer console</li>
+<li>Exploring Upstage developer console</li>
+<li>Grasp access token for Solar mini chat</li>
+<li>Interacting with Solar mini chat</li>
+<li>Interacting with Solar mini chat with Stream mode</li>
+<li>Conclusion</li>
+</ol>
+
+</google-codelab-step>
+<google-codelab-step label="Signup Upstage developer console" duration="3:00">
+<p>If you already have an account for <a href="https://console.upstage.ai/">Upstage&rsquo;s devleoper console</a>, you can simply skip this step. Otherwise, Go to the <a href="https://console.upstage.ai/">Upstage&rsquo;s devleoper console</a>, then you will see similar screen as below:</p>
+<p><img src="/assets/images/upstage-solar-mini-beginner/signup.png" alt="signup"></p>
+<p>Click the <code>Sign up</code> link, or click <code>Continue with Google</code> button if you want to sign up with your Google account. After that, you are all set!</p>
+
+</google-codelab-step>
+<google-codelab-step label="Exploring Upstage developer console" duration="3:00">
+<p>On the left navigation panel, the most relevant menus to this tutorial are <code>Playground / Chat</code> and <code>APIs / Solar</code>. Let&rsquo;s try out Solar mini chat model with the first menu.</p>
+<p><img src="/assets/images/upstage-solar-mini-beginner/console.png" alt="console"></p>
+<p>It is very simple chat interface, and it should be looking familiar if you have used ChatGPT, Gemini, or other LLM powered chat applications. Just type anything in the Textbox at the bottom, then you will get the response back.</p>
+<blockquote>
+<p>In my personal opinion, chat interface is a must have toolbox for developers who want to build anything on top of LLM. Experiment a lot to get the prompts that give you the best outputs.</p>
+</blockquote>
+
+</google-codelab-step>
+<google-codelab-step label="Grasp access token for Solar mini chat" duration="5:00">
+<p>Now, let&rsquo;s move to the second menu, <code>APIs / Solar</code>. You will see the similar screen as below:</p>
+<p><img src="/assets/images/upstage-solar-mini-beginner/access-token.png" alt="console"></p>
+<p>On the very top of the screen, you can grasp your own access token for the Solar mini chat as API. Clik the <code>Copy</code> button, then it will be copied automatically. Also, scroll down the page, then check out the actual model name, <code>solar-1-mini-chat</code>. These two pieces of information will be required to interact with Solar mini chat model as API programatically.</p>
+<blockquote>
+<p>If you scroll down the page, you will notice the other two models, <code>solar-1-mini-translate-enko</code> and <code>solar-1-mini-translate-koen	</code>. These two models are fine-tuned variants of the base Solar model that works well on translation between English and Korean.</p>
+</blockquote>
+
+</google-codelab-step>
+<google-codelab-step label="Interacting with Solar mini chat" duration="5:00">
+<p>The API for the Upstage&rsquo;s Solar mini chat is provided as OpenAI&rsquo;s API compatible format. This means you can interact with it by using OpenAI&rsquo;s <a href="https://pypi.org/project/openai/">openai</a> Python package. So, the first step is to install the openai Python package as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ pip install openai
+</span></span></code></pre></div><p>Then, we could easily interact with the Solar mini chat model as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>  base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://api.upstage.ai/v1/solar&#34;</span>,
+</span></span><span style="display:flex;"><span>  api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;YOUR-UPSTAGE-SOLAR-ACCESS-TOKEN&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>completion <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>  model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;solar-1-mini-chat&#34;</span>,
+</span></span><span style="display:flex;"><span>  messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Compose a poem that explains the concept of recursion in programming.&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(completion<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><p>Here are some things to recognize:</p>
+<ul>
+<li><code>base_url</code> should points to <code>https://api.upstage.ai/v1/solar</code>.</li>
+<li>you should insert your own Solar API in the <code>api_key</code> that you grasped from the step 3.</li>
+<li>the <code>model</code> name should be <code>solar-1-mini-chat</code>. If you want to use English-Korean or Korean-English translation model, replace the <code>model</code> name to <code>solar-1-mini-translate-enko</code> or <code>solar-1-mini-translate-koen</code> respectively.</li>
+</ul>
+<blockquote>
+<p>Here is the simplest possible <a href="https://colab.research.google.com/drive/1gtChVPtb55eiUxdc2dca0OsXqYR3-IMn?usp=sharing">Colab notebook</a> that demonstrates the usage.</p>
+</blockquote>
+<p>The above code snippet should print out something similar as below:</p>
+<pre tabindex="0"><code>In the digital realm, where code is king,
+A concept reigns, unique and grand,
+Recursion, it&#39;s called, a method divine,
+That solves problems, a beautiful design.
+
+Imagine a task, a mountain so grand,
+Too large to conquer by hand,
+...
+</code></pre>
+</google-codelab-step>
+<google-codelab-step label="Interacting with Solar mini chat with Stream mode" duration="5:00">
+<p>It is also straight forward to consume generated output in <code>stream</code> mode if you are already familiar with the usage of OpenAI&rsquo;s openai package.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>  base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://api.upstage.ai/v1/solar&#34;</span>,
+</span></span><span style="display:flex;"><span>  api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;YOUR-UPSTAGE-SOLAR-ACCESS-TOKEN&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>completion <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>  model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;solar-1-mini-chat&#34;</span>,
+</span></span><span style="display:flex;"><span>  messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Compose a poem that explains the concept of recursion in programming.&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> stream <span style="color:#f92672">in</span> completion:
+</span></span><span style="display:flex;"><span>    print(stream<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>delta<span style="color:#f92672">.</span>content, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span></code></pre></div><p>There are just two differences comparing to the step 4.</p>
+<ul>
+<li>add <code>stream=True</code> parameter to the <code>client.chat.completions.create</code> method</li>
+<li>the returned value from the <code>client.chat.completions.create</code> method is a type of <code>openai.Stream</code> object, and it is iterable object. When you iterate it, you can access to the streamed output via <code>choices[0].delta.content</code> attribute.</li>
+</ul>
+<p>For further detailed usage of the API, check out the <a href="https://platform.openai.com/docs/api-reference/making-requests">OpenAI&rsquo;s API documentation</a>.</p>
+
+</google-codelab-step>
+<google-codelab-step label="Conclusion" duration="2:00">
+<p>We have gone through how to interact with Upstage&rsquo;s Solar mini chat model as API. As you experience it, you will quickly notice that it is not only very powerful but also very speedy model due to its compact size ( just 10.7B! ).</p>
+<p>Also, it is very nice that the API for Solar mini chat is compatible to OpenAI&rsquo;s API. This will help us smoothly migrating from ChatGPT to much smaller and cheaper Solar mini model. We can&rsquo;t be sure it will be as much powerful as ChatGPT on every kinds of task, but it is possible for many certain/small-scoped task oriented business to switch to Solar model.</p>
+
+</google-codelab-step>
+
+
+  </google-codelab>
+  <script src="https://gde-codelabs.github.io/native-shim.js"></script>
+  <script src="https://gde-codelabs.github.io/custom-elements.min.js"></script>
+  <script src="https://gde-codelabs.github.io/prettify.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_survey_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_bin.js"></script>
+  <script src="https://gde-codelabs.github.io/google_codelab_step_overide.js"></script>
+</body>
+
+</html>
