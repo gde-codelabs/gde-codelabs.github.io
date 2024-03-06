@@ -97,16 +97,17 @@ To interact with Gemini 1.0 Pro Vision model on Vertex AI, we need to use `verte
 ```python
 from typing import Union, Iterable
 from vertexai.generative_models import (
-    GenerativeModel, GenerationResponse, Part
+    GenerativeModel, GenerationResponse,
+    Part, GenerationConfig
 )
 
 def _default_gen_config():
-    return {
-        "max_output_tokens": 2048,
-        "temperature": 0.4,
-        "top_p": 1,
-        "top_k": 32
-    }
+    return GenerationConfig(
+        max_output_tokens=2048,
+        temperature=0.4,
+        top_p=1,
+        top_k=32
+    )
 
 def ask_gemini(
     prompt: str="What is in the video?", 
@@ -203,7 +204,8 @@ def ask_gemini(
         video = Part.from_uri(gcs, mime_type="video/mp4")
     else:
         video = Part.from_data(
-            data=base64_encoded, mime_type="video/mp4"
+            data=base64.b64decode(base64_encoded),
+            mime_type="video/mp4"
         )
 
     return vision_model.generate_content(
